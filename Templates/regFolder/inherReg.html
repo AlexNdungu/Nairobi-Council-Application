@@ -1,0 +1,81 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Font Import-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--Css Link-->
+
+    <link rel="stylesheet" href="{% static '/Css/inher.css' %}">
+
+    <!--Font Awesome Link-->
+    <script src="https://kit.fontawesome.com/09e314988c.js" crossorigin="anonymous"></script>
+
+    <!--Head For Other Pages-->
+    {% block extra_head %}{% endblock %}
+
+    <title>E-Application :: - Inherit</title>
+
+</head>
+<body>
+
+    <div class="headTabs">
+
+        <!--Individual tabs-->
+        <div class="tab1">
+            <span>Personal Info</span>
+            <div id="tabIc">
+                <i class="fas fa-info-circle"></i>
+            </div>
+        </div>
+
+        <!--Individual tabs-->
+        <div class="tab2" >
+            <span>Next Of Kin</span>
+            <div id="tabIc">
+                <i class="fas fa-regular fa-crown"></i>
+            </div>
+        </div>
+
+        <!--Individual tabs-->
+        <div class="tab3">
+            <span>Upload Files</span>
+            <div id="tabIc">
+                <i class="fas fa-solid fa-file"></i>
+            </div>
+        </div>
+
+        <!--Individual tabs-->
+        <div class="tab4">
+            <span>Educational BG</span>
+            <div id="tabIc">
+                <i class="fas fa-regular fa-graduation-cap"></i>
+            </div>
+        </div>
+        
+
+    </div>
+
+    <!-- line Separate-->
+
+    <div class="sepAlg">
+        <div class="sep">
+        </div>
+    </div>
+
+    <!--The rest of the contents will be replace here-->
+    {% block content %}
+    {% endblock %}
+    
+</body>
+
+{% block js %}
+{% endblock %}
+
+</html>

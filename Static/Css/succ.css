@@ -1,0 +1,124 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* The whole section */
+
+.allSuc {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Logout and Status */
+
+.HED {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Status  */
+
+.sts {
+    width: 200px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border: 2px solid #013D1E;
+    border-radius: 10px;
+    transition: transform .6s;
+}
+
+.sts span {
+    color: #013D1E;
+}
+
+.sts h2 {
+    color: #1BBDB3;
+}
+
+/* LogOut Button */
+
+.logUt a {
+    width: 200px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 20px;
+    border: 2px solid #DD4D4D;
+    color: #DD4D4D;
+    border-radius: 10px;
+    transition: transform .6s;
+}
+
+.logUt a:hover {
+    transform: scale(1.1);
+}
+
+
+/* Details Of Applicant */
+
+.details {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    border-top: 2px solid #e7e7e7;
+    border-bottom: 2px solid #e7e7e7;
+}
+
+/* Item Detail */
+
+.mDet {
+    width: 400px;
+    height: 120px;
+}
+
+.mDet h2 {
+    color: #0F790D;
+}
+
+/* Label and Icon */
+.detN {
+    width: 100%;
+    height: 55px;
+    display: flex;
+    align-items: center;
+}
+
+.detN h3 {
+    margin-left: 20px;
+    color: #013D1E;
+}
+
+#detIc {
+    font-size: 25px;
+    color: #013D1E;
+}
+
+/* Success Message */
+
+.message {
+    width: 100%;
+    height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    color: #DD804C;
+}
+
+
+#succ {
+    font-size: 40px;
+}

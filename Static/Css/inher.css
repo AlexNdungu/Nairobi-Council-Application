@@ -1,0 +1,68 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Tab Section */
+
+.headTabs {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Tab Buttons */
+
+.tab1,.tab2,.tab3,.tab4 {
+    width: 240px;
+    height: 50px;
+    background-color: white;
+    border: 2px solid #013D1E;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #013D1E;
+    margin: 10px;
+    cursor: pointer;
+    transition: transform .6s;
+    
+}
+
+/* Hover tab */
+
+.tab1:hover,.tab2:hover,.tab3:hover,.tab4:hover {
+    transform: scale(1.1);
+}
+
+.tab1 span, .tab2 span,.tab3 span,.tab4 span {
+    font-size: 18px;
+}
+
+#tabIc {
+    font-size: 23px;
+    margin-left: 20px;
+}
+
+
+/* Line Separator */
+
+.sepAlg {
+    width: 100%;
+    height: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sep {
+    width: 70%;
+    height: 2px;
+    background-color: #013D1E;
+    opacity: 0.5;
+}

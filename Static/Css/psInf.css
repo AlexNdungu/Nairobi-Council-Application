@@ -1,0 +1,310 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Tabs Color */
+
+.tab1 {
+    background-color: #013D1E;
+    color: white;
+}
+
+/* Heading */
+
+.psDiv {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Heading */
+.psDiv h3 {
+    color: #013D1E;
+    font-size: 27px;
+}
+
+/* Pop Up Head */
+
+.suss {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #DD4D4D;
+}
+
+.suss h4 {
+    color: rgb(240, 240, 240);
+    font-weight: 400;
+}
+
+/* Form Section */
+.dFm {
+    width: 100%;
+    height: 700px;
+}
+
+.dFm form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+
+}
+
+.bigSec {
+    width: 100%;
+    height: 520px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.secFm {
+    width: 450px;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+    
+}
+
+/* Individual Inputs */
+
+.inFoForm {
+    width: 300px;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.inpSpan {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #013D1E;
+}
+
+/* The Input itself */
+
+.inFoForm input {
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid #013D1E;
+}
+
+/* The email part style */
+.emailDiv {
+    width: 300px;
+    height: 80px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.emailDiv input{
+    width: 100%;
+    height: 50px;
+    outline: none;
+    border-radius: 10px;
+    border: 2px solid #013D1E;
+}
+
+#eSpan {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #013D1E;
+}
+
+/* Drop Down Menu */
+
+.dropForm {
+    width: 300px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-color: white;
+    font-size: 20px;
+}
+
+/* Changing Drop down font */
+select#id_gender,select#id_county {
+    font-size: 16px;
+    color: #013D1E;
+    outline: none;
+    border: 2px solid #013D1E;
+    border-radius: 10px;
+}
+
+.dropForm select , .inFoForm select{
+    width: 300px;
+    height: 50px;
+}
+
+.dropForm span {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+    margin-bottom: 5px;
+    color: #013D1E;
+}
+
+.dropForm select option {
+    padding: 10px 0;
+}
+
+
+/* Input Fonts */
+
+input[type=text],input[type=email] ,input[type=number] {
+    padding-left: 10px;
+    font-size: 18px;
+    color: #013D1E;
+}
+
+/* disable arrows */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 1;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+/* Submit button */
+
+.butt {
+    width: 100%;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+/* When Active */
+
+.active {
+    width: 180px;
+    height: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 45px;
+    background-color: #013D1E;
+    color: antiquewhite;
+    cursor: pointer;
+    transition: transform .6s;
+    margin-top: 20px;
+}
+
+.active:hover {
+    transform: scale(1.1);
+}
+
+/* When Inactive */
+
+.inactive {
+    width: 180px;
+    height: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 45px;
+    background-color: #d4d4d4;
+    color: antiquewhite;
+    margin-top: 20px;
+}
+
+/* The controls */
+
+.contIc1,.contIc2 {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .6s;
+}
+
+.contIc2:hover {
+    transform: scale(1.3);
+}
+
+.contIc1 {
+    border: 3px solid #4D5BDD;
+}
+
+.contIc2 {
+    border: 3px solid #DD4D4D;
+}
+
+/* Icons themselves */
+#refresh,#canc {
+    font-size: 25px;
+}
+
+#refresh {
+    color: #4D5BDD;
+}
+
+#canc {
+    color: #DD4D4D;
+}
+ 
+.flexContr {
+    width: 180px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.rotate {
+    -webkit-animation:spin 0.5s linear infinite;
+    -moz-animation:spin 0.5s linear infinite;
+    animation:spin 0.5s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}

@@ -1,0 +1,424 @@
+{% extends "regFolder/inherReg.html" %}
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>E-Application :: - Personal Infomation</title>
+
+<link rel="stylesheet" href="{% static '/Css/psInf.css' %}">
+
+{% endblock %}
+
+<!--The rest of the contents will be replace here-->
+{% block content %}
+
+<!--Personal Info Form-->
+
+<div class="psDiv">
+    <h3>PERSONAL INFOMATION</h3>
+</div>
+
+
+<!--Success popup-->
+
+ {% for message in messages %}
+
+<div class="suss">
+
+    <h5>{{message}}</h5>
+
+</div>
+
+{% endfor %}
+
+
+<!--tHE fORMS-->
+
+<div class="dFm">
+
+
+    <form method="POST" enctype="multipart/form-data" id="eduForm" >
+        {% csrf_token %}
+        
+        <div class="bigSec">
+
+            <!--Form Division-->
+            <div class="secFm">
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="fNSpan">* Full Name</span>
+
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                    {{theApplicationForm.full_name}}
+
+                    <!--Disabling Number typing-->
+
+                    <script>
+
+                        //To disable number inputs
+                        //let fulInput = document.getElementById('id_full_name').onkeydown = function() {return alphaOnly(event)}
+
+                        //function alphaOnly(event) {
+                            //var key = event.keyCode;`enter code here`
+                            //return ((key >= 65 && key <= 90) || key == 8);
+                          //};
+
+                        function testInput(event) {
+                            var value = String.fromCharCode(event.which);
+                            var pattern = new RegExp(/[a-zåäö ]/i);
+                            return pattern.test(value);
+                         }
+                         
+                         $('#id_full_name').bind('keypress', testInput);
+
+                    </script>
+                    
+                </div>
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="natIdSpan" >* National ID</span>
+
+                    {{theApplicationForm.nat_id}}
+
+                    <script>
+
+
+                        var idNum = document.getElementById('id_nat_id').onkeydown = function() {isNumbers(event)};
+
+                        function isNumbers(evt) {
+                            evt = (evt) ? evt : window.event;
+                            let charCode = (evt.which) ? evt.which : evt.keyCode;
+                            if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                            evt.preventDefault();
+                            } else {
+                            return true;
+                            }
+                        }
+
+                        //Adding eventlistener to check how many digits are in nat id
+
+                        let howManyNatId = document.getElementById('id_nat_id').onkeyup = function() {howManyDigits()};
+
+                    </script>
+
+                </div>
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="ageSpan" >* Age</span>
+
+                    {{theApplicationForm.age}}
+
+                    <script>
+
+
+                        var num = document.getElementById('id_age').onkeydown = function() {isNumber(event)};
+
+                        function isNumber(evt) {
+                            evt = (evt) ? evt : window.event;
+                            let charCode = (evt.which) ? evt.which : evt.keyCode;
+                            if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                            evt.preventDefault();
+                            } else {
+                            return true;
+                            }
+                        }
+
+                    </script>
+                </div>
+
+                <!--Drop Down Menu-->
+                <div class="dropForm">
+
+                    <span class="inpSpan" id="gendSpan" >* Gender</span>
+
+                    {{theApplicationForm.gender}}
+                </div>
+
+
+            </div>
+            
+
+            <!--Form Division-->
+            <div class="secFm">
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="phoneSpan" >*  Phone Number</span>
+
+                    {{theApplicationForm.phone}}
+
+                    <!--check if phone number is valid-->
+
+                    <script>
+
+                        //Check Phone Number validity
+                        let phoneInp = document.getElementById('id_phone').onkeydown = function() {validationPhone()};
+
+                        //The Fuction
+
+                        function validationPhone(){
+
+                            let phoneval = document.getElementById('id_phone').value;
+
+                            let changePhone = document.getElementById('id_phone');
+
+                            let phoneSpan = document.getElementById('phoneSpan');
+
+                            let phonePtn = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+
+                            if(phoneval.match(phonePtn)){
+
+                                changePhone.style.borderColor = 'rgb(17, 197, 107)';
+                                phoneSpan.style.color = 'rgb(17, 197, 107)';
+
+                            }
+                            else{
+
+                                changePhone.style.borderColor = 'rgb(197, 17, 17)';
+                                phoneSpan.style.color = 'rgb(197, 17, 17)';
+
+                            }
+
+                        }
+
+                    </script>
+
+                </div>
+
+                <!--Individual Inputs-->
+                <div class="emailDiv" id="inFoForm">
+
+                    <span id="eSpan" >* Email</span>
+
+                    {{theApplicationForm.email}}
+
+
+                    <!--Valiadate emaile-->
+
+                    <script>
+
+                        //Lets add the class that will change the color
+
+                        //let aadInpClass = document.getElementById('id_email');
+                        //aadInpClass.classList.add('valid');
+
+                        //Adding event listener
+
+                        var email = document.getElementById('id_email').onkeydown = function() {validation()};
+
+
+                        function validation(){
+
+                            //Valiadate email
+
+                            var theemail = document.getElementById('id_email').value;
+
+                            let addClass = document.getElementById('id_email');
+
+                            let textSpan = document.getElementById('eSpan');
+
+                            var partten = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                            //Function to check validity
+
+                            if(theemail.match(partten)){
+
+                                addClass.style.borderColor = "rgb(17, 197, 107)";
+                                textSpan.style.color = "rgb(17, 197, 107)";
+
+                                //addClass.classList.add('valid')
+                                //addClass.classList.remove('invalid');
+
+                            }
+                            else{
+
+                                addClass.style.borderColor = "rgb(197, 17, 17)";
+                                textSpan.style.color = "rgb(197, 17, 17)";
+                                //addClass.classList.add('invalid');
+                                //addClass.classList.remove('valid');
+                            }
+
+                        }
+
+                        
+
+                    </script>
+
+                </div>
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="cSpn" >* County</span>
+
+                    {{theApplicationForm.county}}
+                </div>
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="boxSpan" >* PO Box</span>
+
+                    {{theApplicationForm.address}}
+                </div>
+
+                <!--Individual Inputs-->
+                <div class="inFoForm">
+
+                    <span class="inpSpan" id="psCodeSpan">* Postal Code</span>
+
+                    {{theApplicationForm.postal_code}}
+                </div>
+
+            </div>
+
+
+        </div>
+
+        
+        <div class="butt">
+
+            <div class="btContr">
+
+                <div class="flexContr">
+                     <!--This are the control buttons-->
+                    <div class="contIc1" onmouseover="rote()" onmouseout="rotestop()" onclick="resetForm()" >
+                        <div id="refresh">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                    </div>
+                
+
+                    <!--Refresh rotae button-->
+
+                    <script>
+
+                        //hover to add class rotate
+
+                        let classRote = document.querySelector('.contIc1');
+
+                        //Start Rotate 
+                        function rote(){
+
+                            classRote.classList.add('rotate')
+
+                        }
+
+                        //End Rotate
+                        function rotestop(){
+
+                            classRote.classList.remove('rotate')
+
+                        }
+
+                        //rotation animation
+
+                        $('#bikechain').on('mouseout', function () {
+                            $(this).css('-webkit-animation-play-state','paused');
+                            $(this).css('animation-play-state','paused');
+                        });
+                        
+                        $('#bikechain').on('mouseover', function () {
+                            $(this).css('-webkit-animation-play-state','running');
+                            $(this).css('animation-play-state','running');
+                        })
+
+
+                        //code for refresh
+                        function resetForm(){
+
+                            document.getElementById('eduForm').reset();
+
+                            let submitBtnMan = document.getElementById('subBtnIt');
+
+                            submitBtnMan.setAttribute("disabled","disabled");
+
+                            submitBtnMan.classList.remove('active');
+
+                            submitBtnMan.classList.add('inactive');
+
+                            //Return Color to normal
+                            //Inputs first
+                            let id_full_name = document.getElementById('id_full_name');
+                            let id_nat_id = document.getElementById('id_nat_id');
+                            let id_age = document.getElementById('id_age');
+                            let id_gender = document.getElementById('id_gender');
+                            let id_phone = document.getElementById('id_phone');
+                            let id_email = document.getElementById('id_email');
+                            let id_county = document.getElementById('id_county');
+                            let id_address = document.getElementById('id_address');
+                            let id_postal_code = document.getElementById('id_postal_code');
+                            //Spans
+                            let fNSpan = document.getElementById('fNSpan');
+                            let natIdSpan = document.getElementById('natIdSpan');
+                            let ageSpan = document.getElementById('ageSpan');
+                            let gendSpan = document.getElementById('gendSpan');
+                            let phoneSpan = document.getElementById('phoneSpan');
+                            let eSpan = document.getElementById('eSpan');
+                            let cSpn = document.getElementById('cSpn');
+                            let boxSpan = document.getElementById('boxSpan');
+                            let psCodeSpan = document.getElementById('psCodeSpan');
+
+                            //Input border change
+                            id_full_name.style.borderColor = '#013D1E';
+                            id_nat_id.style.borderColor = '#013D1E';
+                            id_age.style.borderColor = '#013D1E';
+                            id_gender.style.borderColor = '#013D1E';
+                            id_phone.style.borderColor = '#013D1E';
+                            id_email.style.borderColor = '#013D1E';
+                            id_county.style.borderColor = '#013D1E';
+                            id_address.style.borderColor = '#013D1E';
+                            id_postal_code.style.borderColor = '#013D1E';
+
+                            //Span color change
+                            fNSpan.style.color = '#013D1E';
+                            natIdSpan.style.color = '#013D1E';
+                            ageSpan.style.color = '#013D1E';
+                            gendSpan.style.color = '#013D1E';
+                            phoneSpan.style.color = '#013D1E';
+                            eSpan.style.color = '#013D1E';
+                            cSpn.style.color = '#013D1E';
+                            boxSpan.style.color = '#013D1E';
+                            psCodeSpan.style.color = '#013D1E';
+
+
+                        }
+
+                    </script>
+                
+
+                    <!--This are the control buttons-->
+                    <div class="contIc2">
+                        <div id="canc">
+                            <i class="fas fa-light fa-angle-left"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button type="submit" class="inactive " id="subBtnIt" disabled>Submit</button>
+
+        </div>
+
+    </form>
+
+</div>
+
+{% endblock %}
+
+<!--Scripts-->
+
+{% block js %}
+
+<script src="{% static '/Js/info.js'%}" charset="utf-8"></script>
+
+{% endblock %}

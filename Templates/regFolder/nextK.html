@@ -1,0 +1,324 @@
+{% extends "regFolder/inherReg.html" %}
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>E-Application :: - Next Of Kin</title>
+
+<link rel="stylesheet" href="{% static '/Css/nextK.css' %}">
+
+{% endblock %}
+
+
+<!--The rest of the contents will be replace here-->
+{% block content %}
+
+    <!--Personal Info Form-->
+
+    <div class="psDiv">
+        <h3>NEXT OF KIN</h3>
+    </div>
+
+    <!--Popup Message-->
+
+    {% for message in messages %}
+
+    <div class="suss">
+
+        <h5>{{message}}</h5>
+
+    </div>
+
+    {% endfor %}
+
+
+    <!--The Next Of Kin form-->
+
+    <div class="kFor">
+
+        <form method="POST" id="eduForm" >
+
+            {% csrf_token %}
+
+            <!--Full name-->
+            <div class="kinP">
+    
+                <span id="kinName" >* Full Name</span>
+
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                {{nextInfo.kin_name}}
+
+                 <!--Disabling Number typing-->
+
+                 <script>
+
+                    //To disable number inputs
+
+                    function testInput(event) {
+                        var value = String.fromCharCode(event.which);
+                        var pattern = new RegExp(/[a-zåäö ]/i);
+                        return pattern.test(value);
+                    }
+                     
+                    $('#id_kin_name').bind('keypress', testInput);  
+
+                </script>
+    
+            </div>
+    
+            <!--National ID-->
+            <div class="kinP">
+    
+                <span id="kinId" >* National ID</span>
+    
+                {{nextInfo.kin_nat_id}}
+
+                <script>
+
+
+                    var idNum = document.getElementById('id_kin_nat_id').onkeydown = function() {isNumbers(event)};
+
+                    function isNumbers(evt) {
+                        evt = (evt) ? evt : window.event;
+                        let charCode = (evt.which) ? evt.which : evt.keyCode;
+                        if ((charCode > 31 && (charCode < 48 || charCode > 57)) && charCode !== 46) {
+                        evt.preventDefault();
+                        } else {
+                        return true;
+                        }
+                    }
+
+                    //Adding eventlistener to check how many digits are in nat id
+
+                    let howManyNatId = document.getElementById('id_kin_nat_id').onkeyup = function() {howManyDigits()};
+
+                </script>
+
+    
+            </div>
+    
+            <!--Phone Number-->
+            <div class="kinP">
+    
+                <span id="kinPhone" >* Phone Number</span>
+    
+                {{nextInfo.kin_phone}}
+
+                <!--check if phone number is valid-->
+
+                <script>
+
+                    //Check Phone Number validity
+                    let phoneInp = document.getElementById('id_kin_phone').onkeydown = function() {validationPhone()};
+
+                    //The Fuction
+
+                    function validationPhone(){
+
+                        let phoneval = document.getElementById('id_kin_phone').value;
+
+                        let changePhone = document.getElementById('id_kin_phone');
+
+                        let phoneSpan = document.getElementById('kinPhone');
+
+                        let phonePtn = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s\./0-9]*$/g;
+
+                        if(phoneval.match(phonePtn)){
+
+                            changePhone.style.borderColor = 'rgb(17, 197, 107)';
+                            phoneSpan.style.color = 'rgb(17, 197, 107)';
+
+                        }
+                        else{
+
+                            changePhone.style.borderColor = 'rgb(197, 17, 17)';
+                            phoneSpan.style.color = 'rgb(197, 17, 17)';
+
+                        }
+
+                    }
+
+                </script>
+
+    
+            </div>
+    
+            <!--Email-->
+            <div class="kinP">
+    
+                <span id="eSpan" >Email</span>
+    
+                {{nextInfo.kin_email}}
+
+                <!--Valiadate emaile-->
+
+                <script>
+
+                    //Lets add the class that will change the color
+
+                    //let aadInpClass = document.getElementById('id_email');
+                    //aadInpClass.classList.add('valid');
+
+                    //Adding event listener
+
+                    var email = document.getElementById('id_kin_email').onkeydown = function() {validation()};
+
+
+                    function validation(){
+
+                        //Valiadate email
+
+                        var theemail = document.getElementById('id_kin_email').value;
+
+                        let addClass = document.getElementById('id_kin_email');
+
+                        let textSpan = document.getElementById('eSpan');
+
+                        var partten = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                        //Function to check validity
+
+                        if(theemail.match(partten)){
+
+                            addClass.style.borderColor = "rgb(17, 197, 107)";
+                            textSpan.style.color = "rgb(17, 197, 107)";
+
+                            //addClass.classList.add('valid')
+                            //addClass.classList.remove('invalid');
+
+                        }
+                        else{
+
+                            addClass.style.borderColor = "rgb(197, 17, 17)";
+                            textSpan.style.color = "rgb(197, 17, 17)";
+                            //addClass.classList.add('invalid');
+                            //addClass.classList.remove('valid');
+                        }
+
+                    }
+
+                    
+
+                </script>
+    
+            </div>
+
+            <!--Buttons-->
+            <div class="butt">
+
+                <div class="btContr">
+    
+                    <div class="flexContr">
+                         <!--This are the control buttons-->
+                        <div class="contIc1" onmouseover="rote()" onmouseout="rotestop()" onclick="resetForm()" >
+                            <div id="refresh">
+                                <i class="fas fa-redo"></i>
+                            </div>
+                        </div>
+
+                        <!--rEFRESH cODE-->
+
+                        <script>
+
+
+                            //hover to add class rotate
+
+                            let classRote = document.querySelector('.contIc1');
+
+                            //Start Rotate 
+                            function rote(){
+
+                                classRote.classList.add('rotate')
+
+                            }
+
+                            //End Rotate
+                            function rotestop(){
+
+                                classRote.classList.remove('rotate')
+
+                            }
+
+                            //rotation animation
+
+                            $('#bikechain').on('mouseout', function () {
+                                $(this).css('-webkit-animation-play-state','paused');
+                                $(this).css('animation-play-state','paused');
+                            });
+                            
+                            $('#bikechain').on('mouseover', function () {
+                                $(this).css('-webkit-animation-play-state','running');
+                                $(this).css('animation-play-state','running');
+                            })
+
+
+                            function resetForm(){
+
+                                document.getElementById('eduForm').reset();
+    
+                                let submitBtnMan = document.getElementById('subBtnIt');
+    
+                                submitBtnMan.setAttribute("disabled","disabled");
+    
+                                submitBtnMan.classList.remove('active');
+    
+                                submitBtnMan.classList.add('inactive');
+    
+                                //Return Color to normal
+                                //Inputs first
+                                let id_full_name = document.getElementById('id_kin_name');
+                                let id_nat_id = document.getElementById('id_kin_nat_id');
+                                let id_age = document.getElementById('id_kin_phone');
+                                let id_gender = document.getElementById('id_kin_email');
+                                
+                                //Spans
+                                let fNSpan = document.getElementById('kinName');
+                                let natIdSpan = document.getElementById('kinId');
+                                let ageSpan = document.getElementById('kinPhone');
+                                let gendSpan = document.getElementById('eSpan');
+    
+                                //Input border change
+                                id_full_name.style.borderColor = '#013D1E';
+                                id_nat_id.style.borderColor = '#013D1E';
+                                id_age.style.borderColor = '#013D1E';
+                                id_gender.style.borderColor = '#013D1E';
+
+    
+                                //Span color change
+                                fNSpan.style.color = '#013D1E';
+                                natIdSpan.style.color = '#013D1E';
+                                ageSpan.style.color = '#013D1E';
+                                gendSpan.style.color = '#013D1E';
+                                
+    
+                            }
+
+                        </script>
+                    
+                        <!--This are the control buttons-->
+                        <div class="contIc2">
+                            <div id="canc">
+                                <i class="fas fa-light fa-angle-left"></i>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <button type="submit" class="inactive " id="subBtnIt" disabled>Submit</button>
+    
+            </div>
+    
+        </form>
+    
+
+    </div>
+    
+{% endblock %}
+
+{% block js %}
+
+<script src="{% static '/Js/next.js'%}" charset="utf-8"></script>
+
+{% endblock %}

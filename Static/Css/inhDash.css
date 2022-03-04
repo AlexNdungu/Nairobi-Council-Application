@@ -1,0 +1,70 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Biggest Container */
+
+.allDash {
+    width: 100%;
+    height: 100vh;
+}
+
+/* Left Content */
+
+.dashNav {
+    width: 60px;
+    height: 100%;
+    border-right: 2px solid #dfdfdf;
+}
+
+  /* Individual Icons */
+
+.navIc {
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+} 
+
+#home,#Applicants,#Pending,#Verified,#Unverified {
+    font-size: 23px;
+    cursor: pointer;
+    transition: transform .6s;
+}
+
+#home:hover,#Applicants:hover,#Pending:hover,#Verified:hover,#Unverified:hover {
+    transform: scale(1.1);
+}
+
+/* Upper Content */
+.lableDash {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    border-bottom: 2px solid #dfdfdf;
+}
+
+
+/* lower */
+
+.lower {
+    width: 100%;
+    height: calc(100% - 100px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* The rest */
+
+.theRest {
+    width: calc(100% - 60px);
+    height: 100%;
+}

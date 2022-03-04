@@ -1,0 +1,154 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* All Of The Content */
+
+/* Dashborder icon */
+
+#home {
+    color: #013D1E;
+}
+
+/* All Content space  */
+
+.theRest {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    padding-top: 30px;
+}
+
+.numbDiv {
+    border: 4px solid #0F790D;
+}
+
+.numbDiv2 {
+    border: 4px solid rgb(109, 223, 223);
+}
+
+.numbDiv3 {
+    border: 4px solid #4D5BDD;
+}
+
+.numbDiv4 {
+    border: 4px solid #DD4D4D;
+}
+
+.numbDiv,.numbDiv2,.numbDiv3,.numbDiv4 {
+    width: 250px;
+    height: 250px;
+    border-radius: 20px;
+}
+
+/* cirlce icon */
+
+.dashIc,.dashIc2,.dashIc3,.dashIc4 {
+    width: 70px;
+    height: 70px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    margin-left: 15px;
+}
+
+.dashIc {
+    border: 2px solid #0F790D;
+}
+
+.dashIc2 {
+    border: 2px solid rgb(109, 223, 223);
+}
+
+.dashIc3 {
+    border: 2px solid #4D5BDD;
+}
+
+.dashIc4 {
+    border: 2px solid #DD4D4D;
+}
+
+
+
+#icHome,#icHome2,#icHome3,#icHome4 {
+    font-size: 36px;
+}
+
+#icHome {
+    color: #0F790D;
+}
+
+#icHome2 {
+    color: rgb(109, 223, 223);
+}
+
+#icHome3 {
+    color: #4D5BDD;
+}
+
+#icHome4 {
+    color: #DD4D4D;
+}
+
+
+
+/* Numbers And Lable */
+
+.divApp,.divApp2,.divApp3,.divApp4 {
+    width: 100%;
+    height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.divApp h5,.divApp2 h5,.divApp3 h5,.divApp4 h5 {
+    font-size: 20px;
+    margin-left: 20px;
+    font-weight: 600;
+}
+
+.divApp h5 {
+    color: #0F790D;
+}
+
+.divApp2 h5 {
+    color: rgb(109, 223, 223);
+}
+
+.divApp3 h5 {
+    color: #4D5BDD;
+}
+
+.divApp4 h5 {
+    color: #DD4D4D;
+}
+
+
+.divApp h1,.divApp2 h1,.divApp3 h1,.divApp4 h1 {
+    font-size: 45px;
+    margin-left: 20px;
+}
+
+.divApp h1 {
+    color: #0F790D;
+}
+
+.divApp2 h1 {
+    color: rgb(109, 223, 223);
+}
+
+.divApp3 h1 {
+    color: #4D5BDD;
+}
+
+.divApp4 h1 {
+    color: #DD4D4D;
+}

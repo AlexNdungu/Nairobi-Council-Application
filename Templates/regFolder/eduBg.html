@@ -1,0 +1,482 @@
+{% extends "regFolder/inherReg.html" %}
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>E-Application :: - Educational BackGround</title>
+
+<link rel="stylesheet" href="{% static '/Css/eduBg.css' %}">
+
+
+{% endblock %}
+
+<!--The Rest Of The content-->
+
+{% block content %}
+
+     <!--Personal Info Form-->
+
+     <div class="psDiv">
+        <h3>EDUCATIONAL BACKGROUND</h3>
+    </div>
+
+    <!--Education Form-->
+
+    <div class="eduForm">
+
+        <form enctype="multipart/form-data"  method="post" id="eduForm">
+
+            {% csrf_token %}
+
+            <!--all sections-->
+            <div class="allSec">
+
+                 <!--University -->
+                <div class="sec1">
+                    <h4>* Univerisity</h4>
+
+                    <div class="inpUn">
+
+                        <!--Institution-->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        {{university.institution}}
+
+                        <script>
+
+                            //To disable number inputs
+                            //let fulInput = document.getElementById('id_institution').onkeydown = function() {return alphaOnly(event)}
+    
+                            //function alphaOnly(event) {
+                                //var key = event.keyCode;`enter code here`
+                                //return ((key >= 65 && key <= 90) || key == 8);
+                              //};
+
+                            function testInput(event) {
+                                var value = String.fromCharCode(event.which);
+                                var pattern = new RegExp(/[a-zåäö ]/i);
+                                return pattern.test(value);
+                            }
+                             
+                            $('#id_institution').bind('keypress', testInput);  
+    
+                        </script>
+
+                        <!--Course-->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        {{university.course}}
+
+                        <script>
+
+                            //To disable number inputs
+                            function testInput(event) {
+                                var value = String.fromCharCode(event.which);
+                                var pattern = new RegExp(/[a-zåäö ]/i);
+                                return pattern.test(value);
+                            }
+                             
+                            $('#id_course').bind('keypress', testInput);
+
+                        </script>
+
+                        <!--Drop Down Menu-->
+                        <div class="dropForm">
+
+                            <span>* Level</span>
+
+                            {{university.level}}
+                        </div>
+
+                        <!--Start Date-->
+                        <div class="dateP">
+
+                            <span>* From</span>
+                            {{university.uni_start_date}}
+                        </div>
+
+                        <!--Finish Date-->
+                        <div class="dateP">
+
+                            <span>* To</span>
+                            {{university.uni_finish_date}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!--Secondary -->
+                <div class="sec1">
+                    <h4>* Secondary</h4>
+
+                    <div class="inpUn">
+
+                        <!--Institution-->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        {{secondary.institution_high}}
+
+                        <script>
+
+                            //To disable number inputs
+                            
+                            function testInput(event) {
+                                var value = String.fromCharCode(event.which);
+                                var pattern = new RegExp(/[a-zåäö ]/i);
+                                return pattern.test(value);
+                            }
+                             
+                            $('#id_institution_high').bind('keypress', testInput);
+                              
+    
+                        </script>
+
+                        <!--Individual Uploads 1-->
+                        <div class="fileUpl">
+
+                            <span>* KCSE Result Slip</span>
+
+                            
+                            <div class="TheBtUp">
+
+                                <!--This is where input will be put-->
+                                
+                                <div class="butUp" id="input" onclick="chooseFile()">
+
+                                    <span>Upload KCSE</span>
+
+                                    <div id="file">
+                                        <i class="fas fa-solid fa-file"></i>
+                                    </div>
+                                </div>
+                        
+                                <p class="cvBTN" id="kcseFileName" >File Name</p>
+
+                                {{secondary.kcse_file}}
+
+                            </div>
+
+                            <script>
+
+                                function chooseFile()
+                                {
+
+                                    let idFile = document.getElementById('id_kcse_file');
+                                    let nameFile = document.getElementById("kcseFileName");
+                                    idFile.click()
+                                }
+                               
+                                //Replace Name
+                                let idFile = document.getElementById('id_kcse_file');
+                                let nameFile = document.getElementById("kcseFileName");
+
+                                idFile.addEventListener('change', function(event){
+                                    let uploadFileName1 = event.target.files[0].name;
+                                    nameFile.textContent = uploadFileName1;
+
+                                    const submit = document.getElementById('submitBtn');
+    
+                                    //Checking file extension
+                                    const [extension, ...nameParts] = uploadFileName1.split('.').reverse();
+                                    console.log('extension:', extension);
+
+                                    if(extension != 'pdf' && extension != 'PDF'){
+                                        nameFile.style.color = 'rgb(197, 17, 17)';
+
+                                        
+
+                                        //disable button
+                                    }
+                                    else{
+                                        nameFile.style.color = 'rgb(17, 197, 107)';
+                                    
+                                    }
+
+                                })
+                            </script>
+
+                    
+                        </div>
+
+
+                        <!--Start Date-->
+                        <div class="dateP">
+
+                            <span>* From</span>
+                            {{secondary.sec_start_date}}
+                        </div>
+
+                        <!--Finish Date-->
+                        <div class="dateP">
+
+                            <span>* To</span>
+                            {{secondary.sec_finish_date}}
+                        </div>
+
+                    </div>
+
+                </div>
+
+                 <!--Primary -->
+                 <div class="sec1">
+                    <h4>* Primary</h4>
+
+                    <div class="inpUn">
+
+                        <!--Institution-->
+                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+                        {{primary.institution_pri}}
+
+                        <script>
+
+                            //To disable number inputs
+    
+                            function testInput(event) {
+                                var value = String.fromCharCode(event.which);
+                                var pattern = new RegExp(/[a-zåäö ]/i);
+                                return pattern.test(value);
+                            }
+                             
+                            $('#id_institution_pri').bind('keypress', testInput);
+
+                        </script>
+
+                        <!--Individual Uploads 1-->
+                        <div class="fileUpl">
+
+                            <span>* KCPE Result Slip</span>
+
+                            
+                            <div class="TheBtUp">
+
+                                <!--This is where input will be put-->
+                                
+                                <div class="butUp" id="input" onclick="chooseFilePe()">
+
+                                    <span>Upload KCPE</span>
+
+                                    <div id="file">
+                                        <i class="fas fa-solid fa-file"></i>
+                                    </div>
+                                </div>
+                        
+                                <p class="cvBTN" id="kcpeFileName" >File Name</p>
+
+                                {{primary.kcpe_file}}
+
+                            </div>
+
+                            <script>
+
+                                function chooseFilePe()
+                                {
+
+                                    let idFileK = document.getElementById('id_kcpe_file');
+                                    let nameFileK = document.getElementById("kcpeFileName");
+                                    idFileK.click()
+                                }
+                               
+                                //Replace Name
+                                let idFileK = document.getElementById('id_kcpe_file');
+                                let nameFileK = document.getElementById("kcpeFileName");
+
+                                idFileK.addEventListener('change', function(event){
+                                    let uploadFileName = event.target.files[0].name;
+                                    nameFileK.textContent = uploadFileName;
+
+                                    const submit = document.getElementById('submitBtn');
+    
+                                    //Checking file extension
+                                    const [extension, ...nameParts] = uploadFileName.split('.').reverse();
+                                    console.log('extension:', extension);
+
+                                    if(extension != 'pdf' && extension != 'PDF'){
+                                        nameFileK.style.color = 'rgb(197, 17, 17)';
+
+                                        
+
+                                        //disable button
+                                    }
+                                    else{
+                                        nameFileK.style.color = 'rgb(17, 197, 107)';
+                                    
+                                    }
+
+                                })
+
+                            </script>
+
+                    
+                        </div>
+
+
+                        <!--Start Date-->
+                        <div class="dateP">
+
+                            <span>* From</span>
+                            {{primary.start_date}}
+
+                           
+                        </div>
+
+                        <!--Finish Date-->
+                        <div class="dateP">
+
+                            <span>* To</span>
+
+                            {{primary.finish_date}}
+                        </div>
+
+                    </div>
+
+                </div>
+            
+
+            </div>
+
+
+            <div class="butt">
+
+                <div class="btContr">
+    
+                    <div class="flexContr">
+                         <!--This are the control buttons-->
+                        <div class="contIc1 " onmouseover="rote()" onmouseout="rotestop()" onclick="resetForm()" > 
+                            <div id="refresh">
+                                <i class="fas fa-redo"></i>
+                            </div>
+                        </div>
+
+                        <!--Refresh rotae button-->
+
+                        <script>
+
+                            //hover to add class rotate
+
+                            let classRote = document.querySelector('.contIc1');
+
+                            //Start Rotate 
+                            function rote(){
+
+                                classRote.classList.add('rotate')
+
+                            }
+
+                            //End Rotate
+                            function rotestop(){
+
+                                classRote.classList.remove('rotate')
+
+                            }
+
+                            //rotation animation
+
+                            $('#bikechain').on('mouseout', function () {
+                                $(this).css('-webkit-animation-play-state','paused');
+                                $(this).css('animation-play-state','paused');
+                            });
+                            
+                            $('#bikechain').on('mouseover', function () {
+                                $(this).css('-webkit-animation-play-state','running');
+                                $(this).css('animation-play-state','running');
+                            })
+
+                        </script>
+                    
+                        <!--This are the control buttons-->
+                        <div class="contIc2">
+                            <div id="canc">
+                                <i class="fas fa-light fa-angle-left"></i>
+                            </div>
+                        </div>
+                    </div>
+    
+                </div>
+    
+                <button type="submit" class="inactive " id="subBtnIt" disabled >Submit</button>
+    
+            </div>
+
+            <!--Reset button form-->
+
+            <script> 
+
+                //code for refresh
+                function resetForm(){
+
+                    document.getElementById('eduForm').reset();
+
+                    let delRef = document.getElementById('subBtnIt');
+                    delRef.classList.remove('active')
+                    delRef.classList.add('inactive');
+            
+                    delRef.disabled = true;
+                    
+
+                    //Return Color to normal
+                    //Inputs first
+                    let id_full_name = document.getElementById('id_institution');
+                    let id_nat_id = document.getElementById('id_course');
+                    let id_age = document.getElementById('id_uni_start_date');
+                    let id_gender = document.getElementById('id_level');
+                    let id_phone = document.getElementById('id_uni_finish_date');
+                    let id_email = document.getElementById('id_institution_high');
+                    let id_county = document.getElementById('id_sec_start_date');
+                    let id_address = document.getElementById('id_sec_finish_date');
+                    let id_postal_code = document.getElementById('id_institution_pri');
+                    let id_start_date = document.getElementById('id_start_date');
+                    let id_finish_date = document.getElementById('id_finish_date');
+                    //Spans
+                    let fNSpan = document.getElementById('kcseFileName');
+                    let natIdSpan = document.getElementById('kcpeFileName');
+
+                    //Input border change
+                    id_full_name.style.borderColor = '#013D1E';
+                    id_nat_id.style.borderColor = '#013D1E';
+                    id_age.style.borderColor = '#013D1E';
+                    id_gender.style.borderColor = '#013D1E';
+                    id_phone.style.borderColor = '#013D1E';
+                    id_email.style.borderColor = '#013D1E';
+                    id_county.style.borderColor = '#013D1E';
+                    id_address.style.borderColor = '#013D1E';
+                    id_postal_code.style.borderColor = '#013D1E';
+                    id_start_date.style.borderColor = '#013D1E';
+                    id_finish_date.style.borderColor = '#013D1E';
+
+                    //Span color change
+                    fNSpan.style.color = '#013D1E';
+                    fNSpan.textContent = "File Name";
+                    natIdSpan.style.color = '#013D1E';
+                    natIdSpan.textContent = "File Name";
+
+
+                }
+
+
+                //Date Field
+
+                document.getElementById('id_uni_start_date').type = 'date';
+                document.getElementById('id_uni_finish_date').type = 'date';
+                document.getElementById('id_sec_start_date').type = 'date';
+                document.getElementById('id_sec_finish_date').type = 'date';
+                document.getElementById('id_start_date').type = 'date';
+                document.getElementById('id_finish_date').type = 'date';
+
+
+            </script>
+    
+
+        </form>
+
+    </div>
+
+
+{% endblock %}
+
+<!--Js Section-->
+
+{% block js %}
+
+<script src="{% static '/Js/edu.js'%}" charset="utf-8"></script>
+
+{% endblock %}
+

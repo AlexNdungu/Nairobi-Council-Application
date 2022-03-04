@@ -1,0 +1,205 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+
+/* All Content */
+
+/* Serach Part */
+
+.serach {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.seInp {
+    width: 400px;
+    height: 50px;
+    border-radius: 10px;
+}
+
+.seInp form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.seInp input {
+    width: 300px;
+    height: 100%;
+    outline: none;
+    margin-left: 10px;
+    border-radius: 10px;
+    padding-left: 10px;
+    font-size: 16px;
+}
+
+
+/* Icon Buuton */
+
+.seInp button {
+    width: 50px;
+    height: 50px;
+    border-radius: 10px;
+    cursor: pointer;
+    background-color: white;
+    transition: transform .6s;
+}
+
+.seInp button:hover {
+    transform: scale(1.1);
+}
+
+#ser {
+    font-size: 20px;
+}
+
+/* All Individuals content */
+.allItem{
+    width: 100%;
+    height: calc(100% - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    overflow-x: scroll;
+
+}
+
+
+/* Individual Content */
+
+.indiv {
+    width: 350px;
+    height: 450px;
+    border-radius: 15px;
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 50px;
+
+}
+
+/* Picture section */
+
+.picIc {
+    width: 100%;
+    height: 170px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+/* The image */
+
+.tPic {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.tPic img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+/* Icon info */
+
+.info {
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#info {
+    font-size: 18px;
+}
+
+/* The Item Lables */
+
+.detail {
+    width: 90%;
+    height: 200px;
+    margin-left: 5%;
+    border-radius: 15px;
+    margin-top: 10px;
+}
+
+/* Specific item */
+
+.infItm {
+    width: 100%;
+    height: 33.3%;
+}
+
+.labIc {
+    width: 100%;
+    height: 60%;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.labIc h6 {
+    margin-left: 10px;
+    opacity: 0.5;
+    font-size: 15px;
+}
+
+.infItm h3 {
+    padding-left: 20px;
+}
+
+#labIc {
+    font-size: 18px;
+    opacity: 0.5;
+}
+
+
+/* View Details */
+
+.outBtn {
+    width: 100%;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btView {
+    width: 170px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    color: rgb(235, 235, 235);
+    border-radius: 40px;
+    transition: transform .6s;
+}
+
+.btView:hover {
+    transform: scale(1.1);
+}
+
+
+/* Paggation */
+
+.paggation {
+    width: 100%;
+    height: 100px;
+}

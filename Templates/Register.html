@@ -1,0 +1,242 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Application :: - Register</title>
+
+
+    <!--Font Import-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--Css Link-->
+
+    <link rel="stylesheet" href="{% static '/Css/Regist.css' %}">
+
+    <!--Font Awesome Link-->
+    <script src="https://kit.fontawesome.com/09e314988c.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    
+    <div class="Register">
+
+        <div class="Reg">
+
+            <!--Login with google-->
+            <div class="google">
+
+                <!--Google Logo-->
+
+                <a href="">
+
+                    <div class="gLog">
+
+                        <img src="{% static '/Images/icons/google.png' %}" alt="">
+    
+                    </div>
+
+                </a>
+               
+
+                <a href="">
+
+                    <div class="Gbtn">
+
+                        <span>Register Using Google</span>
+    
+                    </div>
+
+                </a>
+            
+
+            </div>
+
+            <!--Or-->
+            <div class="or">
+                <h4>OR</h4>
+            </div>
+
+            <!--Form Area-->
+            <div class="placeF">
+
+                <!--Form-->
+            
+                <form  method="POST">
+                    {% csrf_token %}
+                    <!--All Inputs-->
+                    <div class="inputReg">
+
+                        {{reg_form.username}}
+
+                        <!--Icon Input-->
+                        <div id="ic">
+                            <i class="fas fa-solid fa-user-graduate"></i>
+                        </div>
+
+                    </div>
+
+                    <!--All Inputs-->
+                    <div class="inputReg">
+
+                        {{reg_form.email}}
+                        <!--Icon Input-->
+                        <div id="ic">
+                            <i class="fas fa-solid fa-envelope"></i>
+                        </div>
+
+                    </div>
+
+                    <!--All Inputs-->
+                    <div class="inputReg">
+
+                        {{reg_form.password1}}
+                        <!--Icon Input-->
+                        <div id="ic">
+                            <i class="fas fa-solid fa-key"></i>
+                        </div>
+
+                    </div>
+
+                    <!--View Password-->
+                    <div class="vPs">
+                        <label class="container">
+                            <input type="checkbox" id="psMine" onclick="myFunction()" >
+                            <span class="checkmark"></span>
+                        </label>
+                        <span>Show Password</span>
+                    </div>
+
+                    <!--Show Password Scripts-->
+                    <script>
+
+                        function myFunction() {
+                          let x = document.getElementById("id_password1");
+                          if (x.type === "password") {
+                            x.type = "text";
+                          } else {
+                            x.type = "password";
+                          }
+                        }
+
+                    </script>
+
+                    <!--Custon check Box-->
+
+                    <style>
+
+                        /* The bigger container */
+
+                        .vPs {
+                            width: 350px;
+                            height: 30px;
+                            display: flex;
+                            font-size: 16px;
+                            color: #013D1E;
+                        }
+
+                        /* The container */
+                        .container {
+                          display: block;
+                          position: relative;
+                          padding-left: 35px;
+                          
+                          cursor: pointer;
+                          font-size: 22px;
+                          -webkit-user-select: none;
+                          -moz-user-select: none;
+                          -ms-user-select: none;
+                          user-select: none;
+                        }
+                        
+                        /* Hide the browser's default checkbox */
+                        .container input {
+                          position: absolute;
+                          opacity: 0;
+                          cursor: pointer;
+                          height: 0;
+                          width: 0;
+                        }
+                        
+                        /* Create a custom checkbox */
+                        .checkmark {
+                          position: absolute;
+                          top: 0;
+                          left: 0;
+                          height: 20px;
+                          width: 20px;
+                          background-color: #eee;
+                          border: 2px solid #013D1E;
+                          border-radius: 3px;
+                        }
+                        
+                        /* On mouse-over, add a grey background color */
+                        .container:hover input ~ .checkmark {
+                          background-color: #ccc;
+                        }
+                        
+                        /* When the checkbox is checked, add a blue background */
+                        .container input:checked ~ .checkmark {
+                          background-color: #013D1E;
+                        }
+                        
+                        /* Create the checkmark/indicator (hidden when not checked) */
+                        .checkmark:after {
+                          content: "";
+                          position: absolute;
+                          display: none;
+                        }
+                        
+                        /* Show the checkmark when checked */
+                        .container input:checked ~ .checkmark:after {
+                          display: block;
+                        }
+                        
+                        /* Style the checkmark/indicator */
+                        .container .checkmark:after {
+                          left: 5px;
+                          top: 2px;
+                          width: 3px;
+                          height: 8px;
+                          border: solid white;
+                          border-width: 0 3px 3px 0;
+                          -webkit-transform: rotate(45deg);
+                          -ms-transform: rotate(45deg);
+                          transform: rotate(45deg);
+                        }
+                    </style>
+
+                    <div class="butReg">
+
+                        <button>Register</button>
+
+                    </div>
+
+                    <script>
+
+                        //Appropriate place holders
+                        document.getElementById("id_username").placeholder = "Enter Your Username";
+                        document.getElementById("id_email").placeholder = "Enter Your Email";
+                        document.getElementById("id_password1").placeholder = "Enter Your Password";
+
+                    </script>
+
+                </form>
+
+                <div class="already">
+                    <span>Already Have An Account?</span>
+                    <a href=""><h6>Login</h6></a>
+                </div>
+            
+                
+            </div>
+            
+        </div>
+        
+    </div>
+
+</body>
+</html>

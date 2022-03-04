@@ -1,0 +1,125 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Name:: - Successfull Registration</title>
+
+     <!--Font Import-->
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+     <!--Css Link-->
+ 
+     <link rel="stylesheet" href="{% static '/Css/succ.css' %}">
+ 
+     <!--Font Awesome Link-->
+     <script src="https://kit.fontawesome.com/09e314988c.js" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    
+    <div class="allSuc">
+        
+        <!--LogOut And Satus-->
+        <div class="HED">
+
+            <!--Status-->
+            <div class="sts">
+
+                <span>Status :</span>
+                <h2> Pending </h2>
+
+            </div>
+
+            <!--Logout-->
+            <div class="logUt">
+
+                <a href="{% url 'logout' %}"> <span>LogOut</span>
+                    <div id="lg">
+                        <i class="fas fa-solid fa-power-off"></i>
+                    </div>
+                </a>
+
+            </div>
+
+
+        </div>
+
+        <!--Details-->
+        <div class="details">
+
+            <!--Detail Items Name-->
+            <div class="mDet">
+
+                <div class="detN">
+                    <div id="detIc">
+                        <i class="fas fa-solid fa-user"></i>
+                    </div>
+                    <h3>Name</h3>
+                </div>
+
+                <h2>{{request.user.application.full_name}}</h2>
+
+            </div>
+
+            <!--Detail Items Nat ID-->
+            <div class="mDet">
+
+                <div class="detN">
+                    <div id="detIc">
+                        <i class="fas fa-solid fa-id-card"></i>
+                    </div>
+                    <h3>National ID</h3>
+                </div>
+
+                <h2>{{request.user.application.nat_id}}</h2>
+
+            </div>
+
+            <!--Detail Items Institute-->
+            <div class="mDet">
+
+                <div class="detN">
+                    <div id="detIc">
+                        <i class="fas fa-solid fa-school"></i>
+                    </div>
+                    <h3>Institute</h3>
+                </div>
+
+                <h2>{{request.user.higher.institution}}</h2>
+
+            </div>
+
+            <!--Detail Items Corse-->
+            <div class="mDet">
+
+                <div class="detN">
+                    <div id="detIc">
+                        <i class="fas fa-solid fa-book"></i>
+                    </div>
+                    <h3>Course</h3>
+                </div>
+
+                <h2>{{request.user.higher.course}}</h2>
+
+            </div>
+
+        </div>
+
+        <!--Message Success-->
+        <div class="message">
+
+            <h1>SUCCESFFULL APPLICATION</h1>
+            <div id="succ">
+                <i class="fas fa-solid fa-thumbs-up"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

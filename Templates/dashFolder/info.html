@@ -1,0 +1,440 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Application :: - Infomation -- </title>
+
+    <!--Font Import-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--Css Link-->
+
+    <link rel="stylesheet" href="{% static '/Css/info.css' %}">
+
+    <!--Font Awesome Link-->
+    <script src="https://kit.fontawesome.com/09e314988c.js" crossorigin="anonymous"></script>
+
+
+</head>
+<body>
+
+    <!--Back-->
+
+    <div class="back">
+
+        <a href="">
+
+            <div class="backBTN">
+
+                <div id="backBTN">
+                    <i class="fas fa-solid fa-arrow-left"></i>
+                </div>
+    
+                <span>Back</span>
+    
+    
+            </div>
+    
+
+        </a>
+    </div>
+
+    <!--personal Info-->
+    <div class="psInfo">
+
+        <!--sTATIS will be changing-->
+        <h3>Pending</h3>
+
+        <div class="psPerson">
+
+            <!--Applicant pic-->
+            <div class="psPic">
+                <img src="{% static '/Images/imgs/user.jpg' %}" alt="">
+            </div>
+
+            <!--Words-->
+            <div class="thePsIn">
+
+                <!--Lable Name-->
+                <div class="psNmInf">
+
+                    <span>Name</span>
+
+                    <h3>Alex Meta</h3>
+
+                </div>
+
+                <!--Lable Nat Id-->
+                <div class="psNmInf">
+
+                    <span>National ID</span>
+
+                    <h3>90876543</h3>
+
+                </div>
+
+
+                <!--Lable Institute-->
+                <div class="psNmInf">
+
+                    <span>Attachment ID</span>
+
+                    <h3>AT0876543</h3>
+
+                </div>
+
+
+            </div>
+
+        </div>
+
+        <!--Change Status Btn-->
+        <div class="change">
+
+            <form action="">
+
+                <input type="checkbox" id="shortListCheck" name="shortListCheck" value="shortListCheckt">
+
+                <button 
+
+                onclick="document.getElementById('shortListCheck').checked=!document.getElementById('shortListCheck').checked;">Short List
+
+                <div id="shortListiCON">
+                    <i class="fas fa-solid fa-check"></i>
+                </div>
+
+                </button>
+
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <!--Information-->
+
+    <div class="extInf">
+        <h2>Information</h2>
+    </div>
+
+
+    <!--All Information-->
+
+    <div class="allInf">
+
+        <!--The div infomation-->
+        <div class="psInf">
+
+            <h4>Personal Information</h4>
+
+            <div class="scPs">
+
+                <!--Smaill scrolling gender-->
+                <div class="exact">
+
+                    <span>Gender</span>
+                    <span>:</span>
+                    <h3>Male</h3>
+
+                </div>
+
+                <!--Smaill scrolling Age-->
+                <div class="exact">
+
+                    <span>Age</span>
+                    <span>:</span>
+                    <h3>21</h3>
+
+                </div>
+
+                <!--Smaill scrolling County-->
+                <div class="exact">
+
+                    <span>County</span>
+                    <span>:</span>
+                    <h3>Nairobi</h3>
+
+                </div>
+
+                <!--Smaill scrolling Date-->
+                <div class="exact">
+
+                    <span>Date</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                 <!--Smaill scrolling Phone-->
+                 <div class="exact">
+
+                    <span>Phone</span>
+                    <span>:</span>
+                    <h3>0703663742</h3>
+
+                </div>
+
+                <!--Smaill scrolling Email-->
+                <div class="exact">
+
+                    <div class="em">
+                        <span>Email</span>
+                        <span>:</span>
+                        <h3>alexmeta517@gmail.com</h3>
+                    </div>
+
+                </div>
+
+                <!--Ujanja-->
+                <div class="space"></div>
+
+            </div>
+
+        </div>
+
+        <!--The div infomation-->
+        <div class="psInf">
+
+            <h4>Next Of Kin</h4>
+
+            <div class="scPs">
+
+                <!--Smaill scrolling Name-->
+                <div class="exact">
+
+                    <span>Name</span>
+                    <span>:</span>
+                    <h3>Lemmy</h3>
+
+                </div>
+
+                <!--Smaill scrolling National ID-->
+                <div class="exact">
+
+                    <span>National ID</span>
+                    <span>:</span>
+                    <h3>345627289</h3>
+
+                </div>
+
+                <!--Smaill scrolling Phone-->
+                <div class="exact">
+
+                    <span>Phone</span>
+                    <span>:</span>
+                    <h3>06767374636</h3>
+
+                </div>
+
+                <!--Smaill scrolling Email-->
+                <div class="exact">
+
+                    <div class="em">
+                        <span>Email</span>
+                        <span>:</span>
+                        <h3>lemmyjohn64@gmail.com</h3>
+                    </div>
+
+                </div>
+
+                <!--Ujanja-->
+                <div class="space"></div>
+
+                
+            </div>
+
+        </div>
+
+        <!--The div infomation-->
+        <div class="psInf">
+
+            <h4>Higher Education</h4>
+
+            <div class="scPs">
+
+                <!--Smaill scrolling gender-->
+                <div class="exact">
+
+                    <span>Institute</span>
+                    <span>:</span>
+                    <h3>Maseno University</h3>
+
+                </div>
+
+                <!--Smaill scrolling Age-->
+                <div class="exact">
+
+                    <span>Course</span>
+                    <span>:</span>
+                    <h3>Information Technology</h3>
+
+                </div>
+
+                <!--Smaill scrolling County-->
+                <div class="exact">
+
+                    <span>Level</span>
+                    <span>:</span>
+                    <h3>Diploma</h3>
+
+                </div>
+
+                <!--Smaill scrolling Date Begin-->
+                <div class="exact">
+
+                    <span>Begin</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                  <!--Smaill scrolling Date End-->
+                <div class="exact">
+
+                    <span>End</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                <!--Ujanja-->
+                <div class="space"></div>
+
+            </div>
+
+        </div>
+
+
+        <!--Secondary -->
+        <!--The div infomation-->
+        <div class="psInf">
+
+            <h4>Secondary Education</h4>
+
+            <div class="scPs">
+
+                <!--Smaill scrolling gender-->
+                <div class="exact">
+
+                    <span>Institute</span>
+                    <span>:</span>
+                    <h3>Maseno University</h3>
+
+                </div>
+
+                <!--Smaill scrolling Age-->
+                <div class="exact">
+
+                    <span>Course</span>
+                    <span>:</span>
+                    <h3>Information Technology</h3>
+
+                </div>
+
+                <!--Smaill scrolling County-->
+                <div class="exact">
+
+                    <span>Level</span>
+                    <span>:</span>
+                    <h3>Diploma</h3>
+
+                </div>
+
+                <!--Smaill scrolling Date Begin-->
+                <div class="exact">
+
+                    <span>Begin</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                  <!--Smaill scrolling Date End-->
+                <div class="exact">
+
+                    <span>End</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                <!--Ujanja-->
+                <div class="space"></div>
+
+            </div>
+
+        </div>
+
+
+        <!--Primary-->
+
+        <!--The div infomation-->
+        <div class="psInf">
+
+            <h4>Primary Education</h4>
+
+            <div class="scPs">
+
+                <!--Smaill scrolling gender-->
+                <div class="exact">
+
+                    <span>Institute</span>
+                    <span>:</span>
+                    <h3>Maseno University</h3>
+
+                </div>
+
+                <!--Smaill scrolling Age-->
+                <div class="exact">
+
+                    <span>Course</span>
+                    <span>:</span>
+                    <h3>Information Technology</h3>
+
+                </div>
+
+                <!--Smaill scrolling County-->
+                <div class="exact">
+
+                    <span>Level</span>
+                    <span>:</span>
+                    <h3>Diploma</h3>
+
+                </div>
+
+                <!--Smaill scrolling Date Begin-->
+                <div class="exact">
+
+                    <span>Begin</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                  <!--Smaill scrolling Date End-->
+                <div class="exact">
+
+                    <span>End</span>
+                    <span>:</span>
+                    <h3>15/2/2022</h3>
+
+                </div>
+
+                <!--Ujanja-->
+                <div class="space"></div>
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,355 @@
+{% extends "regFolder/inherReg.html" %}
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>E-Application :: - Upload Files</title>
+
+<link rel="stylesheet" href="{% static '/Css/upL.css' %}">
+
+{% endblock %}
+
+<!--The Rest Of The content-->
+
+{% block content %}
+
+<!--Personal Info Form-->
+
+<div class="UplDiv">
+    <h3>Upload Files</h3>
+    <span>* All Files Should Be In PDF Format *</span>
+</div>
+
+
+<!--tHE fORMS-->
+
+<div class="uplForm">
+
+    <!--Upload Form-->
+
+    <form  method="POST" enctype="multipart/form-data" id="eduForm" >
+
+        {% csrf_token %}
+        <!--All Upload Files-->
+
+        <div class="allUp">
+
+                <!--Individual Uploads 1-->
+                <div class="fileUpl" onclick="chooseCV()" >
+
+                    <span>* Curriculum Vitae</span>
+                    
+                    <div class="TheBtUp" id="lookCv">
+
+                        <div class="btFile">
+
+                            <p>Upload Cv</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-file"></i>
+                            </div>
+                        </div>
+                
+                        <p class="cvBTN" id="cvName" >File Name</p>
+
+                        {{allFiles.cv_file}}
+
+                    </div>
+
+            
+                </div>
+
+                <!--Individual Uploads 2-->
+                <div class="fileUpl" onclick="choseLetter()">
+
+                    <span>* Application Letter</span>
+                    
+                    <div class="TheBtUp">
+
+                        <div class="btFile">
+
+                            <p>Upload Letter</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-file"></i>
+                            </div>
+                        </div>
+
+                        {{allFiles.aP_file}}
+                        <p class="cvBTN" id="letterName" >File Name</p>
+
+                    </div>
+
+            
+                </div>
+
+
+                <!--Individual Uploads 3-->
+                <div class="fileUpl" onclick="choseGc()">
+
+                    <span>* Good Conduct</span>
+                    
+                    <div class="TheBtUp">
+
+                        <div class="btFile">
+
+                            <p>Upload Gc</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-file"></i>
+                            </div>
+                        </div>
+
+                        {{allFiles.gD_file}}
+                
+                        <p class="cvBTN" id="gcName" >File Name</p>
+
+                    </div>
+
+            
+                </div>
+
+
+                <!--Individual Uploads 4-->
+                <div class="fileUpl" onclick="choseScLetter()" >
+
+                    <span>* School Letter</span>
+                    
+                    <div class="TheBtUp">
+
+                        <div class="btFile">
+
+                            <p>Upload Sl</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-file"></i>
+                            </div>
+                        </div>
+
+                        {{allFiles.sL_file}}
+                
+                        <p class="cvBTN" id="schoolL" >File Name</p>
+
+                    </div>
+
+            
+                </div>
+
+
+                <!--Individual Uploads 5-->
+                <div class="fileUpl" onclick="natIdChoose()" >
+
+                    <span>* Upload National ID Image</span>
+                    
+                    <div class="TheBtUp">
+
+                        <div class="btFile">
+
+                            <p>Upload Nat Id</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-image"></i>
+                            </div>
+                        </div>
+
+                        {{allFiles.natID_file}}
+                        <p class="cvBTN" id="natIdImage" >File Name</p>
+
+                    </div>
+
+            
+                </div>
+
+
+                <!--Individual Uploads 6-->
+                <div class="fileUpl" onclick="choosePp()" >
+
+                    <span>* Upload Passport Image</span>
+                    
+                    <div class="TheBtUp">
+
+                        <div class="btFile">
+
+                            <p>Upload Pp</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-image"></i>
+                            </div>
+                        </div>
+
+                        {{allFiles.pP_file}}
+                        <p class="cvBTN" id="ppName" >File Name</p>
+
+                    </div>
+
+            
+                </div>
+
+
+                <!--Individual Uploads 7-->
+                <div class="fileUpl" onclick="chooeCover()" >
+
+                    <span>* Accidents Cover</span>
+                    
+                    <div class="TheBtUp">
+
+                        <div class="btFile">
+
+                            <p>Upload Cover</p>
+                            <div id="file">
+                                <i class="fas fa-solid fa-file"></i>
+                            </div>
+
+                        </div>
+
+                        {{allFiles.personalAcc_file}}
+            
+                    <p class="cvBTN" id="accCoverName" >File Name</p>
+
+                    </div>
+
+
+            
+                </div>
+
+
+
+        </div>
+
+
+        <div class="butt">
+
+            <div class="btContr">
+
+                <div class="flexContr">
+                     <!--This are the control buttons-->
+                    <div class="contIc1" onmouseover="rote()" onmouseout="rotestop()" onclick="resetForm()" >
+                        <div id="refresh">
+                            <i class="fas fa-redo"></i>
+                        </div>
+                    </div>
+
+                    <!--Refresh rotae button-->
+
+                    <script>
+
+                        //hover to add class rotate
+
+                        let classRote = document.querySelector('.contIc1');
+
+                        //Start Rotate 
+                        function rote(){
+
+                            classRote.classList.add('rotate')
+
+                        }
+
+                        //End Rotate
+                        function rotestop(){
+
+                            classRote.classList.remove('rotate')
+
+                        }
+
+                        //rotation animation
+
+                        $('#bikechain').on('mouseout', function () {
+                            $(this).css('-webkit-animation-play-state','paused');
+                            $(this).css('animation-play-state','paused');
+                        });
+                        
+                        $('#bikechain').on('mouseover', function () {
+                            $(this).css('-webkit-animation-play-state','running');
+                            $(this).css('animation-play-state','running');
+                        })
+
+
+                    </script>
+                
+                    <!--This are the control buttons-->
+                    <div class="contIc2">
+                        <div id="canc">
+                            <i class="fas fa-light fa-angle-left"></i>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <button id="submitBtn" class="submitBtn inactive" type="submit"  disabled>Submit</button>
+
+        </div>
+
+        <script>
+
+            function resetForm(){
+
+                //This is the intial submit button setting
+
+                const submit = document.getElementById('submitBtn');
+                //The popup div
+                let alert = document.getElementById('alert');
+
+                submit.classList.remove('active');
+                submit.classList.add('inactive');
+
+                submit.disabled = true;
+
+                
+
+                //document.getElementById('eduForm').reset();
+                document.getElementById('id_cv_file').value = null;
+                let cvName =  document.getElementById("cvName");
+                cvName.textContent = "File Name";
+                cvName.style.color = '#013D1E';
+
+                //Application letter logic
+                document.getElementById('id_aP_file').value = null;
+                let apFile = document.getElementById("letterName");
+                apFile.textContent = "File Name";
+                apFile.style.color = '#013D1E';
+
+                //Application Good Conduct logic
+                document.getElementById('id_gD_file').value = null;
+                let gdFile = document.getElementById("gcName");
+                gdFile.textContent = "File Name";
+                gdFile.style.color = '#013D1E';
+
+                //Application School Letter logic
+                document.getElementById('id_sL_file').value = null;
+                let slFile = document.getElementById("schoolL");
+                slFile.textContent = "File Name";
+                slFile.style.color = '#013D1E';
+
+                //Application National ID logic
+                document.getElementById('id_natID_file').value = null;
+                let natPic = document.getElementById("natIdImage");
+                natPic.textContent = "File Name";
+                natPic.style.color = '#013D1E';
+
+
+                document.getElementById('id_pP_file').value = null;
+                let ppPic = document.getElementById("ppName");
+                ppPic.textContent = "File Name";
+                ppPic.style.color = '#013D1E';
+
+                //Application Personal Accidental cover logic
+                document.getElementById('id_personalAcc_file').value = null;                
+                let pcFile = document.getElementById("accCoverName");
+                pcFile.textContent = "File Name";
+                pcFile.style.color = '#013D1E';
+
+            }
+
+        </script>
+
+        
+    </form>
+
+
+</div>
+
+{% endblock %}
+
+<!--Scripts-->
+
+{% block js %}
+
+<script src="{% static '/Js/upload.js'%}" charset="utf-8"></script>
+
+{% endblock %}

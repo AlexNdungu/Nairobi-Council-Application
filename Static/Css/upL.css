@@ -1,0 +1,236 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Tabs Color */
+
+.tab3 {
+    background-color: #013D1E;
+    color: white;
+}
+
+
+/* Head Section */
+
+.UplDiv {
+    width: 100%;
+    height: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.UplDiv h3 {
+    color: #013D1E;
+    font-size: 27px;
+}
+
+.UplDiv span {
+    color: #DD4D4D;
+    font-size: 18px;
+}
+
+
+/* Upload form */
+
+.uplForm {
+    width: 100%;
+    height: 530px;
+}
+
+.uplForm form {
+    width: 100%;
+    height: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: column;
+
+}
+
+.allUp {
+    width: 100%;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+
+/* Upload Button Style */
+
+.fileUpl {
+    width: 300px;
+    height: 120px;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+}
+
+.TheBtUp {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.TheBtUp .btFile {
+    min-width: 160px;
+    height: 50px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border: 2px solid #013D1E;
+    border-radius: 10px;
+    font-size: 17px;
+    color: #013D1E;
+    background-color: white;
+    cursor: pointer;
+    transition: transform .6s;
+}
+
+.TheBtUp .btFile:hover {
+    transform: scale(1.1);
+}
+
+
+/* File Icon */
+
+#file {
+    font-size: 24px;
+}
+
+/* File Name */
+
+.TheBtUp p {
+    margin-left: 10px;
+    color: #013D1E;
+}
+
+.fileUpl {
+    font-weight: 500;
+    font-size: 18px;
+    margin-left: 10px;
+    color: #013D1E;
+}
+
+
+/* When Active */
+
+.active {
+    width: 180px;
+    height: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 45px;
+    background-color: #013D1E;
+    color: antiquewhite;
+    cursor: pointer;
+    transition: transform .6s;
+    margin-top: 20px;
+}
+
+.active:hover {
+    transform: scale(1.1);
+}
+
+/* When Inactive */
+
+.inactive {
+    width: 180px;
+    height: 45px;
+    font-size: 18px;
+    outline: none;
+    border: none;
+    border-radius: 45px;
+    background-color: #d4d4d4;
+    color: antiquewhite;
+    margin-top: 20px;
+}
+
+/* The controls */
+
+.contIc1,.contIc2 {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    background-color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform .6s;
+}
+
+ .contIc2:hover {
+    transform: scale(1.3);
+}
+
+.contIc1 {
+    border: 3px solid #4D5BDD;
+}
+
+.contIc2 {
+    border: 3px solid #DD4D4D;
+}
+
+/* Icons themselves */
+#refresh,#canc {
+    font-size: 25px;
+}
+
+#refresh {
+    color: #4D5BDD;
+}
+
+#canc {
+    color: #DD4D4D;
+}
+ 
+.flexContr {
+    width: 180px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Custom Choose file buttons */
+
+#id_cv_file,#id_aP_file,#id_gD_file,#id_sL_file,#id_natID_file,#id_pP_file,#id_personalAcc_file {
+    display: none;
+}
+
+.rotate {
+    -webkit-animation:spin 0.5s linear infinite;
+    -moz-animation:spin 0.5s linear infinite;
+    animation:spin 0.5s linear infinite;
+}
+
+@-moz-keyframes spin {
+    100% {
+        -moz-transform: rotate(360deg);
+    }
+}
+@-webkit-keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+@keyframes spin {
+    100% {
+        -webkit-transform: rotate(360deg);
+        transform:rotate(360deg);
+    }
+}
+
+

@@ -1,0 +1,220 @@
+{% extends "dashFolder/inhDash.html" %}
+{% load static %}
+
+ <!--Head For Other Pages-->
+ {% block extra_head %}
+
+ <title>E-Application :: - ShortList</title>
+ 
+ <link rel="stylesheet" href="{% static '/Css/allApplicants.css' %}">
+
+ {% endblock %}
+
+<!--Dashboard Lable-->
+
+{% block dashHead %}
+
+            ShortList
+
+{% endblock %}
+
+
+
+<!-- The Rest of The Content -->
+
+{% block content %}
+
+<div class="serach">
+
+    <div class="seInp">
+
+        <form action="">
+
+            <input type="text" placeholder="Search National ID" > 
+
+            <button class="secBtn" ><div id="ser"><i class="fas fa-search"></i></div></button>
+        </form>
+
+    </div>
+
+</div>
+
+
+<!--aLL content-->
+
+<div class="allItem">
+
+    <!--Individual content-->
+
+    <div class="indiv">
+
+        <!--Picture and icon-->
+        <div class="picIc">
+
+            <div class="tPic">
+                <img src="{% static '/Images/imgs/user.jpg' %}" alt="">
+            </div>
+
+            <!--Icon info-->
+            <div class="info">
+                <div id="info">
+                    <i class="fas fa-solid fa-info"></i>
+                </div>
+            </div>
+
+        </div>
+
+        <!--Details-->
+        <div class="detail">
+
+
+            <!--Specific Item Name-->
+            <div class="infItm">
+
+                <!--Lable and Icon-->
+                <div class="labIc">
+                    <div id="labIc">
+                        <i class="fas fa-solid fa-user"></i>
+                    </div>
+                    <h6>Name</h6>
+                </div>
+
+                <h3>Alex Meta Ndung'u</h3>
+
+            </div>
+
+            <!--Specific Item National Id-->
+            <div class="infItm">
+
+                <!--Lable and Icon-->
+                <div class="labIc">
+                    <div id="labIc">
+                        <i class="fas fa-solid fa-user"></i>
+                    </div>
+                    <h6>National ID</h6>
+                </div>
+
+                <h3>45678754</h3>
+
+            </div>
+
+            <!--Specific Item Institution-->
+            <div class="infItm">
+
+                <!--Lable and Icon-->
+                <div class="labIc">
+                    <div id="labIc">
+                        <i class="fas fa-solid fa-user"></i>
+                    </div>
+                    <h6>Institute</h6>
+                </div>
+
+                <h3>Dedan Kimathi University</h3>
+
+            </div>
+
+        </div>
+
+        <!--View Details-->
+
+        <div class="outBtn">
+
+            <a href="">
+
+                <div class="btView">
+
+                    <span>View Details</span>
+                    <div id="view">
+                        <i class="fas fa-solid fa-eye"></i>
+                    </div>
+            
+                </div>
+
+            </a>
+
+        </div>
+
+
+    </div>
+
+    <!--Paggation-->
+    <div class="paggation">
+        
+    </div>
+
+
+</div>
+
+<!--Making our work easier-->
+<style>
+
+    /* Color change */
+    
+    /* Icon */
+    #Pending {
+        color: #1BBDB3;
+    }
+    
+    .seInp input {
+        border: 2px solid #1BBDB3;
+        color: #1BBDB3;
+    }
+    
+    .seInp input::placeholder {
+        color: #1BBDB3;
+        opacity: 0.5;
+    }
+    
+    /* Icon Buuton */
+    
+    .seInp button {
+        border: 2px solid #1BBDB3;
+    }
+    
+    #ser {
+        color: #1BBDB3;
+    }
+    
+    /* Individual Content */
+    
+    .indiv {
+        border: 2px solid #1BBDB3;
+    
+    }
+    
+    /* Icon info */
+    
+    .info {
+        border: 2px solid #1BBDB3;
+    }
+    
+    #info {
+        color: #1BBDB3;
+    }
+    
+    /* The Item Lables */
+    
+    .detail {
+        border: 2px solid #1BBDB3;
+    }
+    
+    .labIc h6 {
+        color: #1BBDB3;
+    }
+    
+    .infItm h3 {
+        color: #1BBDB3;
+    }
+    
+    #labIc {
+        color: #1BBDB3;
+    }
+    
+    .btView {
+        background-color: #1BBDB3;
+    }
+    
+    </style>
+
+
+{% endblock %}
