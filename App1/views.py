@@ -1,5 +1,6 @@
 from email.mime import application
 from multiprocessing import context
+from urllib import request
 from django.shortcuts import render,redirect
 from .forms import *
 from django.contrib import messages
@@ -8,6 +9,8 @@ from django.contrib.auth.models import Group,User
 from .models import *
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,admin_only,applicant_only
+from django.views.generic.detail import DetailView
+import urllib.request
 
 # Create your views here.
 
@@ -61,6 +64,11 @@ def Register(request):
                 user=user,
             )
 
+            #Create State Object
+            State.objects.create(
+                user=user,
+                state_pk = user.pk,
+            )
 
             #Auto Login
             username = reg_form.cleaned_data.get('username')
@@ -106,11 +114,13 @@ def logOutUser(request):
     logout(request)    
     return redirect('login')
 
+
 #This is the Inherit page Fuction 
 @login_required(login_url='login')
 @applicant_only
 def Inher(request):
     return render(request, 'regFolder/inherReg.html')   
+
 
 #This is thePersonal Info Page
 @login_required(login_url='login')
@@ -246,13 +256,29 @@ def InDash(request):
 @login_required(login_url='login')
 @admin_only
 def Numbers(request):
-    return render(request, 'dashFolder/numDash.html') 
+
+    #Getting the number of applicants
+    applicants_numbers = Application.objects.all()
+    allApps = applicants_numbers.count()
+
+    context = {'allApps':allApps}
+
+    return render(request, 'dashFolder/numDash.html',context) 
 
 #allApplicants
 @login_required(login_url='login')
 @admin_only
 def allApplicants(request):
-    return render(request, 'dashFolder/allApplicants.html') 
+
+    #allApplicant = Application.objects.all()
+    #allApplicant = User.objects.filter(groups_name='applicant')
+
+    group = Group.objects.get(name='applicant')
+    allApplicant = group.user_set.all()
+
+    context = {'allApplicant':allApplicant}
+
+    return render(request, 'dashFolder/allApplicants.html',context) 
 
 #Short List
 @login_required(login_url='login')
@@ -272,9 +298,50 @@ def Approved(request):
 def Unverified(request):
     return render(request, 'dashFolder/unverified.html')   
 
+#Applicatnt Details
+class userInfo(DetailView):
+    model = User
+    template_name = 'dashFolder/info.html'
+    context_object_name = 'appDetail'    
+    form_class = stateChange
 
-#Unverified
-@login_required(login_url='login')
-@admin_only
-def Information(request):
-    return render(request, 'dashFolder/info.html')                         
+    def get_form(self):
+
+        stateform = State.objects.get(pk=self.kwargs.get('pk'))
+        formstate = stateChange(instance=stateform)
+
+
+        return formstate
+
+
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        userview = User.objects.get(pk=self.kwargs.get('pk'))
+
+        context.update({
+            'update_state_form': self.get_form(),
+        })
+
+        return context
+
+    #Saving The data
+    #To submit with post in a class you need the post method
+
+    def post(self, request, *args, pk):
+
+        stateform = State.objects.get(pk=pk)
+        formstate = stateChange(instance=stateform)
+
+        if request.method == 'POST':
+            formstate = stateChange(request.POST, request.FILES,instance=stateform)
+            if formstate.is_valid():
+                print('Valid')
+                formstate.save()
+            else:
+                print(formstate.errors)
+                messages.info(request, 'FORM SUBMITTION FAILED!!') 
+
+        return self.get(request, *args, pk)
+    
+    

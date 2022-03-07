@@ -20,13 +20,13 @@
 
 
 </head>
-<body>
+<body onload="isChecked()" >
 
     <!--Back-->
 
     <div class="back">
 
-        <a href="">
+        <a href="{% url 'allApplicants' %}">
 
             <div class="backBTN">
 
@@ -43,17 +43,29 @@
         </a>
     </div>
 
+    <!--Show state change error-->
+    
+    {% for message in messages %}
+
+    <div class="stateErr">
+
+        <h5>{{message}}</h5>
+
+    </div>
+
+    {% endfor %}
+
     <!--personal Info-->
     <div class="psInfo">
 
         <!--sTATIS will be changing-->
-        <h3>Pending</h3>
+        <h3 id="stateSay" >Pending</h3>
 
         <div class="psPerson">
 
             <!--Applicant pic-->
             <div class="psPic">
-                <img src="{% static '/Images/imgs/user.jpg' %}" alt="">
+                <img src="{{appDetail.upload.image_url}}" alt="">
             </div>
 
             <!--Words-->
@@ -64,7 +76,7 @@
 
                     <span>Name</span>
 
-                    <h3>Alex Meta</h3>
+                    <h3>{{appDetail.application.full_name}}</h3>
 
                 </div>
 
@@ -73,7 +85,7 @@
 
                     <span>National ID</span>
 
-                    <h3>90876543</h3>
+                    <h3>{{appDetail.application.nat_id}}</h3>
 
                 </div>
 
@@ -83,7 +95,7 @@
 
                     <span>Attachment ID</span>
 
-                    <h3>AT0876543</h3>
+                    <h3>AT{{appDetail.application.nat_id}}</h3>
 
                 </div>
 
@@ -92,27 +104,11 @@
 
         </div>
 
-        <!--Change Status Btn-->
-        <div class="change">
+        <!--status Change Button-->
+        <button id="unchecked" class="unchecked" onclick="checkShortList();setTimeout(checkSubmit, 3000)"  >Short List <div class="tick1">
+            <i class="fas fa-solid fa-check"></i>
+        </div></button>
 
-            <form action="">
-
-                <input type="checkbox" id="shortListCheck" name="shortListCheck" value="shortListCheckt">
-
-                <button 
-
-                onclick="document.getElementById('shortListCheck').checked=!document.getElementById('shortListCheck').checked;">Short List
-
-                <div id="shortListiCON">
-                    <i class="fas fa-solid fa-check"></i>
-                </div>
-
-                </button>
-
-
-            </form>
-
-        </div>
 
     </div>
 
@@ -139,7 +135,7 @@
 
                     <span>Gender</span>
                     <span>:</span>
-                    <h3>Male</h3>
+                    <h3>{{appDetail.application.gender}}</h3>
 
                 </div>
 
@@ -148,7 +144,7 @@
 
                     <span>Age</span>
                     <span>:</span>
-                    <h3>21</h3>
+                    <h3>{{appDetail.application.age}}</h3>
 
                 </div>
 
@@ -157,7 +153,7 @@
 
                     <span>County</span>
                     <span>:</span>
-                    <h3>Nairobi</h3>
+                    <h3>{{appDetail.application.county}}</h3>
 
                 </div>
 
@@ -166,7 +162,7 @@
 
                     <span>Date</span>
                     <span>:</span>
-                    <h3>15/2/2022</h3>
+                    <h3>{{appDetail.application.date_register}}</h3>
 
                 </div>
 
@@ -175,7 +171,7 @@
 
                     <span>Phone</span>
                     <span>:</span>
-                    <h3>0703663742</h3>
+                    <h3>{{appDetail.application.phone}}</h3>
 
                 </div>
 
@@ -185,7 +181,7 @@
                     <div class="em">
                         <span>Email</span>
                         <span>:</span>
-                        <h3>alexmeta517@gmail.com</h3>
+                        <h3>{{appDetail.application.email}}</h3>
                     </div>
 
                 </div>
@@ -209,7 +205,7 @@
 
                     <span>Name</span>
                     <span>:</span>
-                    <h3>Lemmy</h3>
+                    <h3>{{appDetail.next.kin_name}}</h3>
 
                 </div>
 
@@ -218,7 +214,7 @@
 
                     <span>National ID</span>
                     <span>:</span>
-                    <h3>345627289</h3>
+                    <h3>{{appDetail.next.kin_nat_id}}</h3>
 
                 </div>
 
@@ -227,7 +223,7 @@
 
                     <span>Phone</span>
                     <span>:</span>
-                    <h3>06767374636</h3>
+                    <h3>{{appDetail.next.kin_phone}}</h3>
 
                 </div>
 
@@ -237,7 +233,7 @@
                     <div class="em">
                         <span>Email</span>
                         <span>:</span>
-                        <h3>lemmyjohn64@gmail.com</h3>
+                        <h3>{{appDetail.next.kin_email}}</h3>
                     </div>
 
                 </div>
@@ -262,7 +258,7 @@
 
                     <span>Institute</span>
                     <span>:</span>
-                    <h3>Maseno University</h3>
+                    <h3>{{appDetail.higher.institution}}</h3>
 
                 </div>
 
@@ -271,7 +267,7 @@
 
                     <span>Course</span>
                     <span>:</span>
-                    <h3>Information Technology</h3>
+                    <h3>{{appDetail.higher.course}}</h3>
 
                 </div>
 
@@ -280,7 +276,7 @@
 
                     <span>Level</span>
                     <span>:</span>
-                    <h3>Diploma</h3>
+                    <h3>{{appDetail.higher.level}}</h3>
 
                 </div>
 
@@ -289,7 +285,7 @@
 
                     <span>Begin</span>
                     <span>:</span>
-                    <h3>15/2/2022</h3>
+                    <h3>{{appDetail.higher.uni_start_date}}</h3>
 
                 </div>
 
@@ -298,7 +294,7 @@
 
                     <span>End</span>
                     <span>:</span>
-                    <h3>15/2/2022</h3>
+                    <h3>{{appDetail.higher.uni_finish_date}}</h3>
 
                 </div>
 
@@ -323,34 +319,17 @@
 
                     <span>Institute</span>
                     <span>:</span>
-                    <h3>Maseno University</h3>
+                    <h3>{{appDetail.secondary.institution_high}}</h3>
 
                 </div>
 
-                <!--Smaill scrolling Age-->
-                <div class="exact">
-
-                    <span>Course</span>
-                    <span>:</span>
-                    <h3>Information Technology</h3>
-
-                </div>
-
-                <!--Smaill scrolling County-->
-                <div class="exact">
-
-                    <span>Level</span>
-                    <span>:</span>
-                    <h3>Diploma</h3>
-
-                </div>
 
                 <!--Smaill scrolling Date Begin-->
                 <div class="exact">
 
                     <span>Begin</span>
                     <span>:</span>
-                    <h3>15/2/2022</h3>
+                    <h3>{{appDetail.secondary.sec_start_date}}</h3>
 
                 </div>
 
@@ -359,7 +338,7 @@
 
                     <span>End</span>
                     <span>:</span>
-                    <h3>15/2/2022</h3>
+                    <h3>{{appDetail.secondary.sec_finish_date}}</h3>
 
                 </div>
 
@@ -385,7 +364,7 @@
 
                     <span>Institute</span>
                     <span>:</span>
-                    <h3>Maseno University</h3>
+                    <h3>{{appDetail.primary.institution_pri}}</h3>
 
                 </div>
 
@@ -394,7 +373,7 @@
 
                     <span>Course</span>
                     <span>:</span>
-                    <h3>Information Technology</h3>
+                    <h3>{{appDetail.primary.start_date}}</h3>
 
                 </div>
 
@@ -403,27 +382,10 @@
 
                     <span>Level</span>
                     <span>:</span>
-                    <h3>Diploma</h3>
+                    <h3>{{appDetail.primary.finish_date}}</h3>
 
                 </div>
 
-                <!--Smaill scrolling Date Begin-->
-                <div class="exact">
-
-                    <span>Begin</span>
-                    <span>:</span>
-                    <h3>15/2/2022</h3>
-
-                </div>
-
-                  <!--Smaill scrolling Date End-->
-                <div class="exact">
-
-                    <span>End</span>
-                    <span>:</span>
-                    <h3>15/2/2022</h3>
-
-                </div>
 
                 <!--Ujanja-->
                 <div class="space"></div>
@@ -435,6 +397,146 @@
 
     </div>
 
+    <!--All Uploaded Files-->
+
+    <div class="allFiles">
+
+        <div class="allTheFll">
+
+             <!--individual Files-->
+            <a href="{{ MEDIA_URL }}{{appDetail.upload.cv_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} Curriculum Vitae</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.upload.gD_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} Good Conduct</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.upload.aP_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} Application Letter</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.upload.sL_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} School Letter</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.upload.personalAcc_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} Personal Accident Cover</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.upload.natID_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} ID Copies</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.secondary.kcse_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} KCSE</span>
+                </div>
+            </a>
+
+             <!--individual Files-->
+             <a href="{{ MEDIA_URL }}{{appDetail.primary.kcpe_file.url}}">
+                <div class="theFT">
+                    <span>{{appDetail.application.full_name}} KCPE</span>
+                </div>
+            </a>
+
+        </div>
+
+
+    </div>
+
+    <!--    <a href="{{ MEDIA_URL }}{{appDetail.upload.cv_file.url}}">Open Cv</a>
+-->
+
+    <!--Change User State-->
+    <div class="state">
+        <form method="post"  >
+
+            {% csrf_token %}
+
+            {{update_state_form}}
+
+            <button type="submit" id="subShort"> Submit </button>
+            <script>
+
+                //To check ShortListed
+
+                function checkShortList(){
+
+                    document.getElementById('id_shortlist').click()
+
+                }
+
+                function checkSubmit(){
+
+                    document.getElementById('subShort').click()
+                    console.log('timer working')
+                    
+
+                }
+
+                //Checking If checkbox is checked
+
+                function isChecked(){
+
+                    let checkShortL = document.getElementById('id_shortlist');
+                    let btChangeSt = document.getElementById('unchecked');
+                    let stateSay = document.getElementById('stateSay');
+
+                    if(checkShortL.checked == true){
+
+                        //Status Show Value
+                        stateSay.innerHTML = 'Short Listed'
+                        stateSay.style.color = '#1BBDB3'
+
+                        //Button Logic
+                        btChangeSt.classList.remove('unchecked');
+                        btChangeSt.classList.add('checked');
+                        btChangeSt.disabled = true;
+                        console.log('Checked')
+
+                    }
+                    else{
+
+                        //Status Show Value
+                        stateSay.innerHTML = 'Pending'
+                        stateSay.style.color = '#DD4D4D'
+
+                        //Button Logic
+                        console.log('Not Checked')
+                        btChangeSt.classList.add('unchecked');
+                        btChangeSt.classList.remove('checked');
+                        btChangeSt.disabled = false;
+                    }
+
+                }
+
+            </script>
+
+        </form>
+
+        <!--styling the status Button-->
+
+    </div>
     
 </body>
 </html>

@@ -79,4 +79,14 @@ class upFilesAll(forms.ModelForm):
         model = Upload
         fields = '__all__' 
         exclude = ['user']
+
+
+#State Model
+
+class stateChange(forms.ModelForm):
+
+    class Meta:
+        model = State
+        fields = ['shortlist']
+        exclude = ['user']        
     

@@ -1,6 +1,8 @@
 from unicodedata import name
 from django.urls import path
 from . import views
+from App1.views import userInfo
+
 
 #All Links
 
@@ -43,5 +45,5 @@ urlpatterns = [
     # This Is the Unverified Page
     path('Unverified/',views.Unverified, name='unverified'),
     # This Is the Information Page
-    path('Information/',views.Information, name='information'),
+    path('applicantInfo/<str:pk>/', userInfo.as_view(), name='applicantinfo'),
 ]

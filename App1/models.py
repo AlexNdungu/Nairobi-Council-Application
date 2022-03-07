@@ -72,8 +72,8 @@ class Next(models.Model):
 
 
     #Method str for rendering
-    #def __str__(self):
-        #return self.kin_nat_id
+    def __str__(self):
+        return  str(self.user)
 
 
 #Level of education model
@@ -99,8 +99,8 @@ class Higher(models.Model):
     uni_start_date = models.DateField(null=True, blank=True,verbose_name='Starting Date')
     uni_finish_date = models.DateField(null=True, blank=True,verbose_name='Finishing Date')
 
-    #def __str__(self):
-        #return self.institution
+    def __str__(self):
+        return  str(self.user)
 
 
 #Secondary Level
@@ -114,8 +114,8 @@ class Secondary(models.Model):
     sec_start_date = models.DateField(verbose_name='Starting Date',null=True, blank=True)
     sec_finish_date = models.DateField(verbose_name='Finishing Date',null=True, blank=True)
 
-    #def __str__(self):
-       # return self.institution_high
+    def __str__(self):
+        return  str(self.user)
 
 
 #Secondary Level
@@ -130,8 +130,8 @@ class Primary(models.Model):
     start_date = models.DateField(verbose_name='Starting Date',null=True, blank=True)
     finish_date = models.DateField(verbose_name='Finishing Date',null=True, blank=True)
 
-    #def __str__(self):
-        #return  str(self.institution_pri)
+    def __str__(self):
+        return  str(self.user)
 
 
 #Upload Details page
@@ -146,6 +146,28 @@ class Upload(models.Model):
     gD_file = models.FileField(upload_to='allFiles', verbose_name='Upload Good Conduct',null=True, blank=True)
     sL_file = models.FileField(upload_to='allFiles', verbose_name='Upload School Letter',null=True, blank=True)
     natID_file = models.ImageField(upload_to='allFiles', verbose_name='Upload National ID',null=True, blank=True)
-    pP_file = models.FileField(upload_to='allFiles', verbose_name='Upload PassPort',null=True, blank=True)
+    pP_file = models.ImageField(upload_to='allFiles', verbose_name='Upload PassPort',null=True, blank=True)
     personalAcc_file = models.FileField(upload_to='allFiles', verbose_name='Upload Personal Accidents Cover',null=True, blank=True)
 
+    def __str__(self):
+        return  str(self.user)
+
+    @property
+    def image_url(self):
+        if self.pP_file and hasattr(self.pP_file, 'url'):
+            return self.pP_file.url
+
+
+class State(models.Model):
+
+    #One to one with user
+    user = models.OneToOneField(User, on_delete = models.CASCADE)
+    #State primary key equal to user pk
+    state_pk = models.IntegerField(primary_key=True, verbose_name='State User ID')
+    #This are The Applicant States
+    unverified = models.BooleanField('Unverified',default=True)
+    shortlist = models.BooleanField('ShortList',default=False)
+    verified = models.BooleanField('Verified',default=False)
+
+    def __str__(self):
+        return  str(self.user)

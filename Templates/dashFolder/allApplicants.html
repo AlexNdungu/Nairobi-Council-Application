@@ -30,10 +30,49 @@
 
         <form action="">
 
-            <input type="text" placeholder="Search National ID" > 
+            <input type="text" placeholder="Search National ID" id="sechInp" onkeyup="myFunction()" > 
 
-            <button class="secBtn" ><div id="ser"><i class="fas fa-search"></i></div></button>
+
         </form>
+
+        <!--Filtering with id-->
+
+        <script>
+
+            //Using Id as filter
+            function myFunction(){
+
+                let allDivs = document.getElementsByClassName('searchIDUs');
+                let textValue;
+                let theInId = document.getElementById('sechInp').value;
+
+                let filterIt = document.getElementsByClassName('filterIt');
+
+                for (let i = 0; i < allDivs.length; i++) {
+                    console.log(allDivs[i].innerHTML);
+                    //You can use innerHTML or textContent according to your need
+
+                    textValue = allDivs[i].innerHTML  || allDivs[i].textContent
+
+                    if(textValue.indexOf(theInId) > -1){
+
+                        filterIt[i].style.display = "";
+
+                    }
+                    else{
+
+                        filterIt[i].style.display = "none";
+
+                    }
+
+                }
+
+            }
+
+            
+
+
+        </script>
 
     </div>
 
@@ -46,7 +85,9 @@
 
     <!--Individual content-->
 
-    <div class="indiv">
+    {% for applicants in allApplicant %}
+
+    <div class="indiv filterIt"  >
 
         <!--Picture and icon-->
         <div class="picIc">
@@ -79,22 +120,22 @@
                     <h6>Name</h6>
                 </div>
 
-                <h3>Alex Meta Ndung'u</h3>
+                <h3>{{applicants.application.full_name}}</h3>
 
             </div>
 
             <!--Specific Item National Id-->
-            <div class="infItm">
+            <div class="infItm" >
 
                 <!--Lable and Icon-->
                 <div class="labIc">
                     <div id="labIc">
-                        <i class="fas fa-solid fa-user"></i>
+                        <i class="fas fa-solid fa-id-card"></i>
                     </div>
                     <h6>National ID</h6>
                 </div>
 
-                <h3>45678754</h3>
+                <h3 class="searchIDUs" >{{applicants.application.nat_id}}</h3>
 
             </div>
 
@@ -104,12 +145,12 @@
                 <!--Lable and Icon-->
                 <div class="labIc">
                     <div id="labIc">
-                        <i class="fas fa-solid fa-user"></i>
+                        <i class="fas fa-solid fa-envelope"></i>
                     </div>
-                    <h6>Institute</h6>
+                    <h6>Email</h6>
                 </div>
 
-                <h3>Dedan Kimathi University</h3>
+                <h3>{{applicants.application.email}}</h3>
 
             </div>
 
@@ -119,7 +160,7 @@
 
         <div class="outBtn">
 
-            <a href="">
+            <a href="{% url 'applicantinfo' applicants.pk %}">
 
                 <div class="btView">
 
@@ -137,6 +178,7 @@
 
     </div>
 
+    {% endfor %}
     <!--Paggation-->
     <div class="paggation">
         
