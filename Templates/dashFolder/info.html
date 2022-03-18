@@ -24,9 +24,9 @@
 
     <!--Back-->
 
-    <div class="back">
+    <div class="back" >
 
-        <a href="{% url 'allApplicants' %}">
+        <a href="javascript:history.go(-1)">
 
             <div class="backBTN">
 
@@ -38,10 +38,10 @@
     
     
             </div>
-    
 
         </a>
     </div>
+
 
     <!--Show state change error-->
     
@@ -104,9 +104,15 @@
 
         </div>
 
+        <!--setTimeout(checkSubmit, 1000)-->
+
         <!--status Change Button-->
-        <button id="unchecked" class="unchecked" onclick="checkShortList();setTimeout(checkSubmit, 3000)"  >Short List <div class="tick1">
+        <button id="shortlist" class="unchecked" onclick="checkShortList();setTimeout(checkSubmit, 1000)"  >Short List <div class="tick1">
             <i class="fas fa-solid fa-check"></i>
+        </div></button>
+
+        <button id="verify" class="unverified" onclick="checkVerified();setTimeout(checkSubmit, 1000)">Verify <div class="tick1">
+            <i class="fas fa-solid fa-check-double"></i>
         </div></button>
 
 
@@ -486,6 +492,12 @@
 
                 }
 
+                function checkVerified(){
+
+                    document.getElementById('id_verified').click()
+
+                }
+
                 function checkSubmit(){
 
                     document.getElementById('subShort').click()
@@ -494,40 +506,67 @@
 
                 }
 
+                
+
                 //Checking If checkbox is checked
 
                 function isChecked(){
 
                     let checkShortL = document.getElementById('id_shortlist');
-                    let btChangeSt = document.getElementById('unchecked');
+                    let checkVerified = document.getElementById('id_verified');
+                    let btChangeShort = document.getElementById('shortlist');
+                    let btChangeVerify = document.getElementById('verify');
                     let stateSay = document.getElementById('stateSay');
 
-                    if(checkShortL.checked == true){
+                    if(checkShortL.checked == true && checkVerified.checked == false){
 
                         //Status Show Value
                         stateSay.innerHTML = 'Short Listed'
                         stateSay.style.color = '#1BBDB3'
 
-                        //Button Logic
-                        btChangeSt.classList.remove('unchecked');
-                        btChangeSt.classList.add('checked');
-                        btChangeSt.disabled = true;
-                        console.log('Checked')
+    
+                        btChangeShort.disabled = true;
+                        btChangeShort.style.display = 'none'
+
+                        btChangeVerify.style.display = 'flex'
+                        btChangeVerify.disabled = false;
+
+                        console.log('Short Listed')
 
                     }
-                    else{
 
-                        //Status Show Value
+                    else if(checkShortL.checked == true && checkVerified.checked == true){
+
+                        stateSay.innerHTML = 'Verified'
+                        stateSay.style.color = '#4D5BDD'
+
+                        btChangeShort.disabled = true;
+                        btChangeShort.style.display = 'none'
+
+                        btChangeVerify.disabled = true;
+                        btChangeVerify.classList.add('checked');
+                        btChangeVerify.classList.remove('unverified')
+
+                        console.log('Verified')
+
+                    }
+
+                    else if(checkShortL.checked == false && checkVerified.checked == false){
+
                         stateSay.innerHTML = 'Pending'
                         stateSay.style.color = '#DD4D4D'
 
-                        //Button Logic
-                        console.log('Not Checked')
-                        btChangeSt.classList.add('unchecked');
-                        btChangeSt.classList.remove('checked');
-                        btChangeSt.disabled = false;
-                    }
+    
+                        btChangeShort.disabled = false;
+                        btChangeShort.style.display = 'flex'
 
+                        btChangeVerify.style.display = 'none'
+                        btChangeVerify.disabled = true;
+
+                        console.log('unverified')
+
+                    }
+                    
                 }
 
             </script>

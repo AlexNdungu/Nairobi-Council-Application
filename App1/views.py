@@ -1,6 +1,7 @@
 from email.mime import application
 from multiprocessing import context
-from urllib import request
+from re import template
+from urllib import request, response
 from django.shortcuts import render,redirect
 from .forms import *
 from django.contrib import messages
@@ -11,12 +12,78 @@ from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,admin_only,applicant_only
 from django.views.generic.detail import DetailView
 import urllib.request
+from django.http import HttpResponse
+from django.views.generic import View
+from .utils import render_to_pdf
+from django.template.loader import get_template
+from io import BytesIO
+from xhtml2pdf import pisa
 
-# Create your views here.
+# Create your views here
+#from social_django import UserSocialAuth
+# select_related for performance.
+#google_logins = UserSocialAuth.objects.select_related("user").filter(provider="google-oauth2")
+#for google_login in google_logins:
+   # print(google_login.user.pk, google_login.user.email)
+ 
 
+
+#The Google Register Logic
+from django.db.models.signals import post_save
+from django.dispatch import receiver
+
+@receiver(post_save, sender=User)
+def handle_new_job(sender, **kwargs):
+    if kwargs.get('created', False):
+        user = kwargs.get('instance')
+        g = Group.objects.get(name='applicant')
+        user.groups.add(g)
+
+        Application.objects.create(
+            user=user,
+            full_name = user.username,
+            email = user.email,
+        )
+
+         #Create Next Of Kin Object
+        Next.objects.create(
+            user=user,
+            kin_email=user.email
+        )
+
+        #Create Upload Object
+        Upload.objects.create(
+            user=user,
+        )
+
+        #Create University Object
+        Higher.objects.create(
+            user=user,
+        )
+
+        #Create Secondary Object
+        Secondary.objects.create(
+            user=user,
+        )
+
+        #Create Primary Object
+        Primary.objects.create(
+            user=user,
+        )
+
+        #Create State Object
+        State.objects.create(
+            user=user,
+            state_pk = user.pk,
+        )
+
+        ###
+            
 #Register Function
 @unauthenticated_user
 def Register(request):
+
+    allusers = User.objects.all()
 
     #Register Fuctionality
     reg_form = createUserForm()
@@ -24,62 +91,27 @@ def Register(request):
     if request.method == 'POST':
         reg_form = createUserForm(request.POST)
         if reg_form.is_valid():
-            user = reg_form.save()
-            #username = reg_form.cleaned_data.get('username')
 
-            #Adding To Group(Customers)
-            group = Group.objects.get(name='applicant')
-            user.groups.add(group)
+            U_Email = reg_form.cleaned_data.get('email')
+            if User.objects.filter(email=U_Email).exists():
+                messages.warning(request, "Email already exists")   
+            else:    
+                reg_form.save()
 
-            #Creating an Applicant
-            Application.objects.create(
-               user=user,
-               full_name = user.username,
-               email = user.email,
-            )
+                #Auto Login
+                username = reg_form.cleaned_data.get('username')
+                password = reg_form.cleaned_data.get('password1')
 
-            #Create Next Of Kin Object
-            Next.objects.create(
-                user=user,
-                kin_email=user.email
-            )
+                userreg = authenticate(username=username, password=password)
+                login(request, userreg)
+                return redirect('personal_info')
 
-            #Create Upload Object
-            Upload.objects.create(
-                user=user,
-            )
-
-            #Create University Object
-            Higher.objects.create(
-                user=user,
-            )
-
-            #Create Secondary Object
-            Secondary.objects.create(
-                user=user,
-            )
-
-            #Create Primary Object
-            Primary.objects.create(
-                user=user,
-            )
-
-            #Create State Object
-            State.objects.create(
-                user=user,
-                state_pk = user.pk,
-            )
-
-            #Auto Login
-            username = reg_form.cleaned_data.get('username')
-            password = reg_form.cleaned_data.get('password1')
-
-            userreg = authenticate(username=username, password=password)
-            login(request, userreg)
-            return redirect('personal_info')
+        else:
+            print(reg_form.errors)
+            messages.info(request, 'Username Already Exits!!!') 
 
 
-    context = {'reg_form':reg_form}
+    context = {'reg_form':reg_form,'allusers':allusers}
 
     return render(request, 'Register.html',context)
 
@@ -244,7 +276,52 @@ def EduBg(request):
 @login_required(login_url='login')
 @applicant_only
 def Success(request):
-    return render(request, 'regFolder/regSuc.html')     
+    return render(request, 'regFolder/regSuc.html')   
+
+#Then After Being Verified, the applicant will get the pdf below
+
+#PDF Template  
+class GeneratePdf(View):
+    def get(self, request, *args, **kwargs):
+
+        #Add A context dict to contain all the neccesary items
+
+        context = {
+            'userPic': request.user.upload.get_image_path,
+            'full_name': request.user.application.full_name,
+            'nat_id': request.user.application.nat_id,
+            'institute': request.user.higher.institution,
+            'course': request.user.higher.course,
+            'email': request.user.application.email,
+            'phone': request.user.application.phone,
+        }
+
+        pdf = render_to_pdf('extras/pdf.html',context)
+        return HttpResponse(pdf, content_type='application/pdf')
+
+#Download pdf
+class DownloadPDF(View):
+    def get(self, request, *args, **kwargs):
+
+        context = {
+            'userPic': request.user.upload.get_image_path,
+            'full_name': request.user.application.full_name,
+            'nat_id': request.user.application.nat_id,
+            'institute': request.user.higher.institution,
+            'course': request.user.higher.course,
+            'email': request.user.application.email,
+            'phone': request.user.application.phone,
+        }
+
+        nat_id = request.user.application.nat_id
+		
+        pdf = render_to_pdf('extras/pdf.html',context)
+        response = HttpResponse(pdf, content_type='application/pdf')
+        filename = "AT_%s.pdf" %(nat_id)
+        content = "attachment; filename= %s" %(filename)
+        response['Content-Disposition'] = content
+        return response
+
 
 #Inherit Dashboard
 @login_required(login_url='login')
@@ -261,7 +338,20 @@ def Numbers(request):
     applicants_numbers = Application.objects.all()
     allApps = applicants_numbers.count()
 
-    context = {'allApps':allApps}
+    #Getting the number of verified users
+    ver = User.objects.filter(state__verified=True)
+    verA = ver.count()
+
+
+    #Getting Unverifed People
+    pend = User.objects.filter(state__shortlist=False)
+    pendAll = pend.count()
+
+    #Number Of Short Listed Users
+    allU = User.objects.filter(state__shortlist=True).exclude(state__verified=True)
+    shortListNum = allU.count()
+
+    context = {'allApps':allApps,'shortListNum':shortListNum,'verA':verA,'pendAll':pendAll}
 
     return render(request, 'dashFolder/numDash.html',context) 
 
@@ -270,11 +360,8 @@ def Numbers(request):
 @admin_only
 def allApplicants(request):
 
-    #allApplicant = Application.objects.all()
-    #allApplicant = User.objects.filter(groups_name='applicant')
-
-    group = Group.objects.get(name='applicant')
-    allApplicant = group.user_set.all()
+    #group = Group.objects.get(name='applicant')
+    allApplicant = User.objects.filter(state__unverified=True)
 
     context = {'allApplicant':allApplicant}
 
@@ -284,32 +371,50 @@ def allApplicants(request):
 @login_required(login_url='login')
 @admin_only
 def ShortList(request):
-    return render(request, 'dashFolder/shortList.html') 
+
+    #group = Group.objects.get(name='applicant')
+    allShorts = User.objects.filter(state__shortlist=True).exclude(state__verified=True)
+
+    context = {'allShorts':allShorts}
+
+    return render(request, 'dashFolder/shortList.html',context) 
 
 #Approved
 @login_required(login_url='login')
 @admin_only
 def Approved(request):
-    return render(request, 'dashFolder/approved.html')
+
+    #group = Group.objects.get(name='applicant')
+    allShorts = User.objects.filter(state__verified=True)
+
+    context = {'allShorts':allShorts}
+
+    return render(request, 'dashFolder/approved.html',context)
 
 #Unverified
 @login_required(login_url='login')
 @admin_only
 def Unverified(request):
-    return render(request, 'dashFolder/unverified.html')   
+
+    #group = Group.objects.get(name='applicant')
+    allShorts = User.objects.filter(state__shortlist=False)
+
+    context = {'allShorts':allShorts}
+
+
+    return render(request, 'dashFolder/unverified.html',context)   
 
 #Applicatnt Details
 class userInfo(DetailView):
     model = User
     template_name = 'dashFolder/info.html'
     context_object_name = 'appDetail'    
-    form_class = stateChange
+    form_class = shortChange
 
     def get_form(self):
 
         stateform = State.objects.get(pk=self.kwargs.get('pk'))
-        formstate = stateChange(instance=stateform)
-
+        formstate = shortChange(instance=stateform)
 
         return formstate
 
@@ -331,10 +436,10 @@ class userInfo(DetailView):
     def post(self, request, *args, pk):
 
         stateform = State.objects.get(pk=pk)
-        formstate = stateChange(instance=stateform)
+        formstate = shortChange(instance=stateform)
 
         if request.method == 'POST':
-            formstate = stateChange(request.POST, request.FILES,instance=stateform)
+            formstate = shortChange(request.POST, request.FILES,instance=stateform)
             if formstate.is_valid():
                 print('Valid')
                 formstate.save()
@@ -345,3 +450,19 @@ class userInfo(DetailView):
         return self.get(request, *args, pk)
     
     
+
+ #Email Template
+def Email(request):
+    return render(request, 'extras/email.html')   
+
+
+#Error Handling
+""" 
+def pageError(request,exception):
+    return render(request, 'errors/404.html')
+
+def pageError1(request,exception):
+    return render(request, 'errors/403.html')  
+
+def pageError2(request,exception=None):
+    return render(request, 'errors/500.html')         """

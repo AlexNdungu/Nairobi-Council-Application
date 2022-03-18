@@ -57,6 +57,8 @@ class UniversityForm(forms.ModelForm):
 
 class SecondaryForm(forms.ModelForm):
 
+    kcse_file = forms.FileField(widget=forms.FileInput,)
+
     class Meta:
         model = Secondary 
         fields = '__all__'   
@@ -65,6 +67,8 @@ class SecondaryForm(forms.ModelForm):
 #Primary_Education Background form
 
 class PrimaryForm(forms.ModelForm):
+
+    kcpe_file = forms.FileField(widget=forms.FileInput,)
 
     class Meta:
         model = Primary
@@ -75,6 +79,15 @@ class PrimaryForm(forms.ModelForm):
 
 class upFilesAll(forms.ModelForm):
 
+    pP_file = forms.ImageField(widget=forms.FileInput,)
+    natID_file = forms.ImageField(widget=forms.FileInput,)
+
+    cv_file = forms.FileField(widget=forms.FileInput,)
+    aP_file = forms.FileField(widget=forms.FileInput,)
+    gD_file = forms.FileField(widget=forms.FileInput,)
+    sL_file = forms.FileField(widget=forms.FileInput,)
+    personalAcc_file = forms.FileField(widget=forms.FileInput,)
+
     class Meta:
         model = Upload
         fields = '__all__' 
@@ -83,10 +96,10 @@ class upFilesAll(forms.ModelForm):
 
 #State Model
 
-class stateChange(forms.ModelForm):
+class shortChange(forms.ModelForm):
 
     class Meta:
         model = State
-        fields = ['shortlist']
+        fields = ['shortlist','verified']
         exclude = ['user']        
     

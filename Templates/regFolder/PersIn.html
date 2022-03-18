@@ -12,7 +12,34 @@
 
 <!--The rest of the contents will be replace here-->
 {% block content %}
+<!-- 
+<span id="seeID" >{{request.user.application.nat_id}}</span>
+<a  id="goSucc" href="{% url 'success' %}"></a>
 
+<style>
+
+    #seeID,#goSucc {
+        display: none;
+    }
+
+</style>
+
+<script>
+
+    let seeID = document.getElementById('seeID');
+
+    function redSuc(){
+
+        if(seeID.innerHTML != "None"){
+
+            document.getElementById('goSucc').click();
+
+        }
+
+    }
+
+</script>
+ -->
 <!--Personal Info Form-->
 
 <div class="psDiv">

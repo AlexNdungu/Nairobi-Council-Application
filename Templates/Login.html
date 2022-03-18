@@ -21,6 +21,13 @@
 
 </head>
 <body>
+
+    {% for message in messages %}
+    <div class="logReg">
+        <p>{{message}}</p>
+    </div>
+    {% endfor %}
+
     
     <div class="Register">
 
@@ -31,7 +38,7 @@
 
                 <!--Google Logo-->
 
-                <a href="">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
 
                     <div class="gLog">
 
@@ -42,11 +49,11 @@
                 </a>
                
 
-                <a href="">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
 
                     <div class="Gbtn">
 
-                        <span>Register Using Google</span>
+                        <span>Login Using Google</span>
     
                     </div>
 
@@ -129,6 +136,41 @@
                             color: #013D1E;
                         }
 
+                        @media screen and (max-width: 412px){
+                            
+                            .vPs {
+                                width: 320px;
+                                height: 30px;
+                               
+                            }
+
+                        }
+
+                        @media screen and (max-width: 360px){
+                            
+                            .vPs {
+                                width: 300px;
+                                height: 30px;
+                               
+                            }
+
+                        }
+
+                        @media screen and (max-width: 280px){
+                            
+                            .vPs {
+                                width: 230px;
+                                height: 30px;
+                               
+                            }
+
+                            .vPs span {
+                                font-size: 14px;
+                            }
+
+                        }
+
+
                         /* The container */
                         .container {
                           display: block;
@@ -200,12 +242,6 @@
                         }
                     </style>
 
-                    <!--Login Error-->
-                    {% for message in messages %}
-                        <div class="logErr">
-                            <p>{{message}}</p>
-                        </div>
-                    {% endfor %}
 
                     <div class="butReg">
 
@@ -217,7 +253,7 @@
 
                 <div class="already">
                     <span>I Dont Have An Account</span>
-                    <a href=""><h6>Register</h6></a>
+                    <a href="{% url 'register' %}"><h6>Register</h6></a>
                 </div>
             
                 

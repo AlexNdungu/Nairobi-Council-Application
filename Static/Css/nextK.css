@@ -212,3 +212,13 @@ input[type=text],input[type=email] ,input[type=number] {
         transform:rotate(360deg);
     }
 }
+/*RESPONSIVENESS*/
+
+@media screen and (max-width: 280px){
+
+    .kinP {
+        width: 260px;
+    }
+
+
+}

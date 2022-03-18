@@ -49,7 +49,7 @@
 /* Form Section */
 .dFm {
     width: 100%;
-    height: 700px;
+    height: inherit;
 }
 
 .dFm form {
@@ -64,7 +64,7 @@
 
 .bigSec {
     width: 100%;
-    height: 520px;
+    height: inherit;
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -307,4 +307,76 @@ input[type=number] {
         -webkit-transform: rotate(360deg);
         transform:rotate(360deg);
     }
+}
+
+
+/* Responsiveness */
+
+
+@media screen and (max-width: 1000px){
+    .bigSec {
+        flex-direction: column;
+    }
+
+    .secFm {
+        width: 100%;
+    }
+
+
+    
+}
+
+@media screen and (max-width: 450px){
+
+    .psDiv h3 {
+        font-size: 22px;
+    }
+
+    .dropForm, .dropForm select {
+        width: 270px;
+    }
+
+    .inFoForm, .inFoForm select {
+        width: 270px;
+    }
+
+    .emailDiv {
+        width: 270px;
+    }
+
+
+}
+
+@media screen and (max-width: 400px){
+
+    .secFm {
+        width: 360px ;
+    }
+
+
+}
+
+@media screen and (max-width: 280px){
+
+    .psDiv h3 {
+        font-size: 20px;
+    }
+
+    .dropForm, .dropForm select {
+        width: 260px;
+    }
+
+    .inFoForm, .inFoForm select {
+        width: 260px;
+    }
+
+    .secFm {
+        width: 100%;
+    }
+
+    .emailDiv {
+        width: 260px;
+    }
+
+
 }

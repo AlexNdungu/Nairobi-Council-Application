@@ -26,7 +26,7 @@
 /* Status  */
 
 .sts {
-    width: 200px;
+    width: 250px;
     height: 70px;
     display: flex;
     align-items: center;
@@ -106,6 +106,73 @@
     color: #013D1E;
 }
 
+/* PDF Instructions */
+
+.inst {
+    width: 100%;
+    height: 220px;
+}
+
+.theIn {
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.inNum {
+    width: 500px;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+/* Pdf Section */
+
+.pdfPl {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #e7e7e7;
+}
+
+.view,.download {
+    width: 170px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 50px;
+    margin: 30px;
+    
+}
+
+.download {
+    border: 2px solid #0F790D;
+    color: #0F790D;
+}
+
+.view {
+    border: 2px solid #0D5F79;
+    color: #0D5F79;
+}
+
+.view span,.download span {
+    font-size: 18px;
+    font-weight: 500;
+}
+
+#down,#down1 {
+    font-size: 20px;
+}
+
+
+
 /* Success Message */
 
 .message {
@@ -121,4 +188,60 @@
 
 #succ {
     font-size: 40px;
+}
+
+/*RESPONSIVENESS*/
+
+@media screen and (max-width: 700px){
+
+    .HED {
+        height: 180px;
+        flex-direction:column-reverse;
+    }
+    
+    .detN {
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+
+    }
+
+    .mDet {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        display: flex;
+
+    }
+
+    .message {
+        height: 200px;
+    }
+
+    #succ {
+        font-size: 60px;
+    }
+
+    .message h1{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .mDet h2{
+        font-size: 20px;
+    }
+}
+
+@media screen and (max-width: 300px){
+
+    .message h1{
+        font-size: 18px;
+    }
+
+    .mDet h2{
+        font-size: 16px;
+    }
+
 }

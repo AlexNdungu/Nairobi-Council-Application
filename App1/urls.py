@@ -2,6 +2,10 @@ from unicodedata import name
 from django.urls import path
 from . import views
 from App1.views import userInfo
+from App1.views import GeneratePdf
+from App1.views import DownloadPDF
+
+
 
 
 #All Links
@@ -32,6 +36,13 @@ urlpatterns = [
     path('Upload Files/',views.Uploads, name='upload_Files'),
     # This Is the Success Register Page
     path('Success/',views.Success, name='success'),
+
+    #Generate Pdf from user
+    path('genPDF/',GeneratePdf.as_view(), name= 'genpdf'),
+
+    #Generate Pdf from user
+    path('downloadPDF/',DownloadPDF.as_view(), name= 'downloadpdf'),
+
     # This Is the Inherit Dashboard Page
     path('InDash/',views.InDash, name='dash inherit'),
     # This Is the Numbers Page
@@ -46,4 +57,11 @@ urlpatterns = [
     path('Unverified/',views.Unverified, name='unverified'),
     # This Is the Information Page
     path('applicantInfo/<str:pk>/', userInfo.as_view(), name='applicantinfo'),
+
+    # This Is the Email Template
+    path('Email/', views.Email, name='email'),
+
+    #Error Pages
+    #path('Error/', views.pageError, name='pageerror'),    
+
 ]

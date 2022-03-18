@@ -152,3 +152,43 @@
 .divApp4 h1 {
     color: #DD4D4D;
 }
+
+/* RESPONSIVENESS */
+
+@media screen and (max-width: 1025px){
+    .theRest{
+        justify-content: flex-start;
+    }
+
+    .numbDiv, .numbDiv2, .numbDiv3, .numbDiv4 {
+        margin: 5px;
+    }
+}
+
+
+@media screen and (max-width: 920px){
+    .theRest{
+        justify-content: flex-start;
+    }
+
+    .numbDiv, .numbDiv2, .numbDiv3, .numbDiv4 {
+        margin: 5px;
+    }
+}
+
+@media screen and (max-width: 550px){
+    .theRest{
+        justify-content: center;
+    }
+
+}
+
+@media screen and (max-width: 300px){
+    .repNa {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        height: 170px;
+    }
+
+}

@@ -6,6 +6,46 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+/* Scroll Bar */
+
+::-webkit-scrollbar {
+    width: 13px;
+}
+
+
+
+/* Refresh Button */
+
+.refBtn {
+    width: 170px;
+    height: 50px;
+    position: absolute;
+    right: 100px;
+    top: 110px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 50px;
+    cursor: pointer;
+    color: aliceblue;
+    transition: 0.3s ease;
+}
+
+.refBtn:hover {
+    transform: scale(1.1);
+}
+
+.refBtn span {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+#ref {
+    font-size: 20px;
+}
+
 /* Biggest Container */
 
 .allDash {
@@ -19,6 +59,23 @@
     width: 60px;
     height: 100%;
     border-right: 2px solid #dfdfdf;
+}
+
+/* Nav responsive */
+
+.repNa {
+    width: 100%;
+    height: 100px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid #dfdfdf;
+}
+
+/**/
+
+.dashNav a {
+    color: #013D1E;
 }
 
   /* Individual Icons */
@@ -68,3 +125,98 @@
     width: calc(100% - 60px);
     height: 100%;
 }
+
+
+
+
+@media screen and (max-width: 920px){
+
+    .refBtn {
+        width: 40px;
+        height: 40px;
+        top: 120px;
+
+    }
+
+    .refBtn span {
+        display: none;
+    }
+
+    .dashNav {
+        display: none;
+    }
+
+    .repNa {
+        display: flex;
+    }
+
+    #home,#Applicants,#Pending,#Verified,#Unverified {
+        font-size: 30px;
+    }
+    
+    .navIc {
+        margin: 10px;
+    }
+
+    .lower {
+        height: 600px;
+    }
+
+}
+
+@media screen and (max-width: 660px){
+
+    .refBtn {
+        right: 15px;
+    }
+
+}
+
+@media screen and (max-width: 430px){
+
+    .refBtn {
+        width: 40px;
+        height: 40px;
+        top: 220px;
+        right: 10px;
+
+    }
+
+}
+
+@media screen and (max-width: 420px){
+    .navIc {
+        margin: 5px;
+    }
+
+    .lableDash {
+        flex-direction: column;
+        height: 170px;
+    }
+
+    .refBtn {
+        width: 40px;
+        height: 40px;
+        top: 120px;
+        right: 20px;
+
+    }
+
+}
+
+@media screen and (max-width: 280px){
+
+    .repNa {
+        height: 170px;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .refBtn {
+        right: 15px;
+        top: 270px;
+    }
+
+}
+
+

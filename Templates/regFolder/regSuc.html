@@ -19,7 +19,10 @@
      <script src="https://kit.fontawesome.com/09e314988c.js" crossorigin="anonymous"></script>
 
 </head>
-<body>
+<body >
+
+    <span style="display: none;" id="short" >{{request.user.state.shortlist}}</span>
+    <span style="display: none;" id="ver" >{{request.user.state.verified}}</span>
     
     <div class="allSuc">
         
@@ -30,9 +33,42 @@
             <div class="sts">
 
                 <span>Status :</span>
-                <h2> Pending </h2>
+                <h2 id="theStateVV" > Pending </h2>
 
             </div>
+
+            <script>
+
+                let shortL1 = document.getElementById('short').innerHTML;
+                let verS1 = document.getElementById('ver').innerHTML;
+                
+
+                console.log(theStateVV.innerHTML)
+    
+                //console.log(shortL);
+    
+                if(shortL1 == 'True' && verS1 == 'True'){
+    
+                    document.getElementById('theStateVV').innerHTML = 'Verified';
+                    document.getElementById('theStateVV').style.color = '#4D5BDD';
+    
+                }
+                else if(shortL1 == 'True' && verS1 == 'False'){
+    
+                    document.getElementById('theStateVV').innerHTML = 'ShortListed';
+                    document.getElementById('theStateVV').style.color = '#1BBDB3';
+    
+                }
+                else{
+    
+                    document.getElementById('theStateVV').innerHTML = 'Pending';
+                    document.getElementById('theStateVV').style.color = '#DD4D4D'
+    
+                }
+    
+                    
+
+            </script>
 
             <!--Logout-->
             <div class="logUt">
@@ -108,6 +144,74 @@
             </div>
 
         </div>
+
+        <!--This Are The PDF Instructions-->
+
+        <span style="display: none;" id="short" >{{request.user.state.shortlist}}</span>
+        <span style="display: none;" id="ver" >{{request.user.state.verified}}</span>
+
+        <div class="evPDf">
+
+            <div class="showPDfI">
+                <div class="inst" style="color:#DD4D4D;">
+                    <h2 style="text-align: center;padding:15px;" >PDF Instructions</h2>
+                    <div class="theIn">
+                        <h4>* The PDF Below Contains *</h4>
+                        <div class="inNum">
+                            <span>1. The Report Date</span>
+                            <span>2. The Report Venue</span>
+                            <span>3. Applicants Attachment ID</span>
+                        </div>
+                        <h4>* Print A Colored Copy As Verification Evidence On Report Date *</h4>
+                    </div>
+                </div>
+            </div>
+    
+    
+            <!--View And Download PDF-->
+    
+            <div class="pdfPl">
+                <a href="{% url 'genpdf' %}">
+                    <div class="view">
+                        <span>Open</span>
+                        <div id="down"><i class="fas fa-solid fa-eye"></i></div>
+                    </div>
+                </a>
+                <a href="{% url 'downloadpdf' %}">
+                    <div class="download">
+                        <span>Download</span>
+                        <div id="down1"><i class="fas fa-solid fa-download"></i></div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+
+        
+
+        <script>
+
+           
+            let shortL = document.getElementById('short').innerHTML;
+            let verS = document.getElementById('ver').innerHTML;
+            let instV = document.querySelector('.evPDf');
+
+            console.log(shortL);
+
+            if(verS == 'True' && shortL == 'True'){
+
+                instV.style.display = '';
+
+            }
+            else{
+
+                instV.style.display = 'none';
+
+            }
+
+
+        </script>
+
 
         <!--Message Success-->
         <div class="message">

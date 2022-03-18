@@ -4,7 +4,7 @@
  <!--Head For Other Pages-->
  {% block extra_head %}
 
- <title>E-Application :: - Approved</title>
+ <title>E-Application :: - ShortList</title>
  
  <link rel="stylesheet" href="{% static '/Css/allApplicants.css' %}">
 
@@ -14,7 +14,7 @@
 
 {% block dashHead %}
 
-            Approved
+            Verified
 
 {% endblock %}
 
@@ -30,10 +30,48 @@
 
         <form action="">
 
-            <input type="text" placeholder="Search National ID" > 
+            <input type="text" placeholder="Search National ID" id="sechInp" onkeyup="myFunction()" > 
 
-            <button class="secBtn" ><div id="ser"><i class="fas fa-search"></i></div></button>
         </form>
+
+        <script>
+
+            //Using Id as filter
+            function myFunction(){
+
+                let allDivs = document.getElementsByClassName('searchIDUs');
+                let textValue;
+                let theInId = document.getElementById('sechInp').value;
+
+                let filterIt = document.getElementsByClassName('filterIt');
+
+                //let Individual = document.querySelectorAll('.indiv');
+                //let state = document.querySelectorAll('.shortState');
+
+                for (let i = 0; i < allDivs.length; i++) {
+                    console.log(allDivs[i].innerHTML);
+                    //You can use innerHTML or textContent according to your need
+
+                    textValue = allDivs[i].innerHTML  || allDivs[i].textContent
+
+                    //textState = state[i].innerHTML;
+
+                    if(textValue.indexOf(theInId) > -1){
+
+                        filterIt[i].style.display = "";
+
+                    }
+                    else{
+
+                        filterIt[i].style.display = "none";
+
+                    }
+
+                }
+
+            }
+
+        </script>
 
     </div>
 
@@ -42,17 +80,24 @@
 
 <!--aLL content-->
 
-<div class="allItem">
+<div class="allItem ">
 
     <!--Individual content-->
 
-    <div class="indiv">
+    {% for allShort in allShorts %}
 
+    <div class="indiv filterIt">
+
+        <span style="display: none;" class="shortState" >{{allShort.state.verified}}</span>
+
+        <!--State Logic-->
+
+    
         <!--Picture and icon-->
         <div class="picIc">
 
             <div class="tPic">
-                <img src="{% static '/Images/imgs/user.jpg' %}" alt="">
+                <img src="{{allShort.upload.image_url}}" alt="">
             </div>
 
             <!--Icon info-->
@@ -79,7 +124,7 @@
                     <h6>Name</h6>
                 </div>
 
-                <h3>Alex Meta Ndung'u</h3>
+                <h3>{{allShort.application.full_name}}</h3>
 
             </div>
 
@@ -89,12 +134,12 @@
                 <!--Lable and Icon-->
                 <div class="labIc">
                     <div id="labIc">
-                        <i class="fas fa-solid fa-user"></i>
+                        <i class="fas fa-solid fa-id-card"></i>
                     </div>
                     <h6>National ID</h6>
                 </div>
 
-                <h3>45678754</h3>
+                <h3 class="searchIDUs" >{{allShort.application.nat_id}}</h3>
 
             </div>
 
@@ -104,12 +149,12 @@
                 <!--Lable and Icon-->
                 <div class="labIc">
                     <div id="labIc">
-                        <i class="fas fa-solid fa-user"></i>
+                        <i class="fas fa-solid fa-envelope"></i>
                     </div>
-                    <h6>Institute</h6>
+                    <h6>Email</h6>
                 </div>
 
-                <h3>Dedan Kimathi University</h3>
+                <h3>{{allShort.application.email}}</h3>
 
             </div>
 
@@ -119,7 +164,7 @@
 
         <div class="outBtn">
 
-            <a href="">
+            <a href="{% url 'applicantinfo' allShort.pk %}">
 
                 <div class="btView">
 
@@ -137,13 +182,133 @@
 
     </div>
 
+    {% endfor %}
+
     <!--Paggation-->
-    <div class="paggation">
-        
+    <div class="pagination" id="pagination">
+        <li class="page-item previous-page disable" ><a class="page-link" href="">Prev</a></li>
+        <li class="page-item current-page active" ><a class="page-link" href="">1</a></li>
+        <li class="page-item dots" ><a class="page-link" href="">...</a></li>
+        <li class="page-item current-page" ><a class="page-link" href="">5</a></li>
+        <li class="page-item current-page" ><a class="page-link" href="">6</a></li>
+        <li class="page-item dots" ><a class="page-link" href="">...</a></li>
+        <li class="page-item current-page" ><a class="page-link" href="">10</a></li>
+        <li class="page-item next-page" ><a class="page-link" href="">Next</a></li>
     </div>
+
+    <script>
+
+        //Pagination 
+
+        function getPageList(totalPages,page,maxLength){
+
+            function range(start,end){
+
+                return Array.from(Array(end - start + 1),(_, i)=> i + start);
+
+            }
+
+            var sideWidth = maxLength < 9 ? 1 : 2;
+            var leftWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+            var rightWidth = (maxLength - sideWidth * 2 - 3) >> 1;
+
+            if(totalPages <= maxLength){
+                return range(1, totalPages);
+            }
+
+            if(page <= maxLength - sideWidth - 1 - rightWidth){
+                return range(1, maxLength - sideWidth - 1).concat(0,range(totalPages - sideWidth + 1, totalPages));
+
+            }
+
+            if(page >= totalPages - sideWidth - 1 - rightWidth){
+
+                return range(1, sideWidth).concat(0, range(totalPages - sideWidth - 1 - rightWidth - leftWidth, totalPages));
+            }
+
+            return range(1, sideWidth).concat(0, range(page - leftWidth, page + rightWidth), 0, range(totalPages - sideWidth + 1, totalPages));
+
+
+        }
+
+        $(function(){
+            var numberOfItems = $(".allItem .indiv").length;
+            var limitPerPage = 3; //Items Per Page
+            var totalPages = Math.ceil(numberOfItems / limitPerPage);
+            var paginationSize = 7; //How many pages visible
+
+            var currentPage;
+
+            function showPage(whichPage){
+
+                if(whichPage < 1 || whichPage > totalPages) return false;
+
+                currentPage = whichPage;
+
+                $(".allItem .indiv").hide().slice((currentPage - 1) * limitPerPage, currentPage * limitPerPage).show();
+
+                $(".pagination li").slice(1,-1).remove();
+
+                getPageList(totalPages, currentPage, paginationSize).forEach(item => {
+                    $("<li>").addClass("page-item")
+                        .addClass(item ? "current-page":"dots")
+                        .toggleClass("active", item === currentPage)
+                        .append($("<a>").addClass("page-link")
+                        .attr({href: "javascript:void(0)"}).text(item || "...")).insertBefore(".next-page");
+                });
+
+                $(".previous-page").toggleClass("disable", currentPage === 1);
+
+                $(".next-page").toggleClass("disable", currentPage === totalPages);
+
+                return true;
+
+            }
+
+            $(".pagination").append(
+                $("<li>").addClass("page-item")
+                    .addClass("previous-page")
+                    .append($("<a>").addClass("page-link")
+                    .attr({href: "javascript:void(0)"}).text("Prev")),
+
+                $("<li>").addClass("page-item")
+                    .addClass("next-page")
+                    .append($("<a>").addClass("page-link")
+                    .attr({href: "javascript:void(0)"}).text("Next"))
+            );
+
+            $(".allItem").show();
+            showPage(1);
+
+            $(document).on("click", ".pagination li.current-page:not(.active)", function(){
+                return showPage(+$(this).text());
+            });
+
+            $(".next-page").on("click", function(){
+                return showPage(currentPage + 1);
+            });
+
+            $(".previous-page").on("click", function(){
+                return showPage(currentPage - 1);
+            });
+
+        });
+
+        //Check If there is a class indivs
+        var isPer = document.querySelectorAll('.indiv');
+        if (isPer.length >= 1) {
+            document.getElementById('pagination').style.display = '';
+        }
+        else{
+            document.getElementById('pagination').style.display = 'none';
+        }
+
+    </script>
+
 
 
 </div>
+
 
 <!--Making our work easier-->
 <style>
@@ -214,6 +379,47 @@
         background-color: #4D5BDD;
     }
     
+
+    /* Pagination */
+    
+    .previous-page,.next-page {
+        background-color: #4D5BDD;
+    }
+    
+    .dots,.current-page {
+        background-color: #a9b0ee;
+    }
+    
+    .active {
+        background-color: #4D5BDD;
+    }
+    
+    .disable {
+        background-color: #a9b0ee;
+    }
+
+    .refBtn {
+        background-color: #4D5BDD;
+    }
+
+    /* Scroll */
+
+    ::-webkit-scrollbar-track {
+        background-color: #d7dbff;
+        border-radius: 30px;
+
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: #4D5BDD;
+        border-radius: 30px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #4D5BDD;
+    }
+
+
     </style>
 
 

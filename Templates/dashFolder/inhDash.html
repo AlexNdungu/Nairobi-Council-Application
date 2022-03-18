@@ -7,6 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
     <!--Font Import-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 
@@ -24,7 +26,23 @@
      <title>E-Application :: - Inherit Dash</title>
 
 </head>
-<body>
+<body onload="showShortList();" >
+
+    <script>
+
+        function showShortList(){
+            console.log('Cool')
+        }
+
+        
+    </script>
+
+    <!--Refresh Button-->
+
+    <div class="refBtn" onClick="window.location.reload();" >
+        <span>Refresh</span>
+        <div id="ref"><i class="fas fa-redo"></i></div>
+    </div>
     
     <!--Every Content-->
     <div class="allDash">
@@ -55,6 +73,57 @@
 
         </div>
 
+        <!--Respond Navigaton-->
+
+        <div class="repNa">
+            <!--Individual Navigation home-->
+            <a href="{% url 'numbers' %}">
+                <div class="navIc">
+                    <div id="home">
+                        <i class="fas fa-solid fa-house-user"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!--Individual Navigation All Applicants-->
+            <a href="{% url 'allApplicants' %}">
+                <div class="navIc">
+                    <div id="Applicants">
+                        <i class="fas fa-solid fa-users"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!--Individual Navigation Pending-->
+            <a href="{% url 'shortList' %}">
+                <div class="navIc">
+                    <div id="Pending">
+                        <i class="fas fa-solid fa-check"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!--Individual Navigation Verified-->
+            <a href="{% url 'Approved' %}">
+                <div class="navIc">
+                    <div id="Verified">
+                        <i class="fas fa-solid fa-check-double"></i>
+                    </div>
+                </div>
+            </a>
+
+            <!--Individual Navigation Unverified-->
+            <a href="{% url 'unverified' %}">
+                <div class="navIc">
+                    <div id="Unverified">
+                        <i class="fas fa-solid fa-question"></i>
+                    </div>
+                </div>
+            </a>
+            
+        </div>
+        
+
         <!--Lower part-->
 
         <div class="lower">
@@ -64,41 +133,53 @@
             <div class="dashNav">
 
                 <!--Individual Navigation home-->
-                <div class="navIc">
-                    <div id="home">
-                        <i class="fas fa-solid fa-house-user"></i>
+                <a href="{% url 'numbers' %}">
+                    <div class="navIc">
+                        <div id="home">
+                            <i class="fas fa-solid fa-house-user"></i>
+                        </div>
                     </div>
-                </div>
-
+                </a>
+    
                 <!--Individual Navigation All Applicants-->
-                <div class="navIc">
-                    <div id="Applicants">
-                        <i class="fas fa-solid fa-users"></i>
+                <a href="{% url 'allApplicants' %}">
+                    <div class="navIc">
+                        <div id="Applicants">
+                            <i class="fas fa-solid fa-users"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!--Individual Navigation Pending-->
-                <div class="navIc">
-                    <div id="Pending">
-                        <i class="fas fa-solid fa-check"></i>
+                <a href="{% url 'shortList' %}">
+                    <div class="navIc">
+                        <div id="Pending">
+                            <i class="fas fa-solid fa-check"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!--Individual Navigation Verified-->
-                <div class="navIc">
-                    <div id="Verified">
-                        <i class="fas fa-solid fa-check-double"></i>
+                <a href="{% url 'Approved' %}">
+                    <div class="navIc">
+                        <div id="Verified">
+                            <i class="fas fa-solid fa-check-double"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!--Individual Navigation Unverified-->
-                <div class="navIc">
-                    <div id="Unverified">
-                        <i class="fas fa-solid fa-question"></i>
+                <a href="{% url 'unverified' %}">
+                    <div class="navIc">
+                        <div id="Unverified">
+                            <i class="fas fa-solid fa-question"></i>
+                        </div>
                     </div>
-                </div>
+                </a>
+                
 
             </div>
+
             
 
             <!--All Contents-->

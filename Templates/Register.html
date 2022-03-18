@@ -1,4 +1,6 @@
 {% load static %}
+{% load socialaccount %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -21,6 +23,14 @@
 
 </head>
 <body>
+
+    {% for message in messages %}
+        <div class="logReg">
+            <p>{{message}}</p>
+        </div>
+    {% endfor %}
+
+    
     
     <div class="Register">
 
@@ -31,7 +41,7 @@
 
                 <!--Google Logo-->
 
-                <a href="">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
 
                     <div class="gLog">
 
@@ -42,7 +52,7 @@
                 </a>
                
 
-                <a href="">
+                <a href="{% url 'social:begin' 'google-oauth2' %}">
 
                     <div class="Gbtn">
 
@@ -68,30 +78,145 @@
                 <form  method="POST">
                     {% csrf_token %}
                     <!--All Inputs-->
-                    <div class="inputReg">
+                    <div id="regUser" >
 
                         {{reg_form.username}}
 
                         <!--Icon Input-->
-                        <div id="ic">
+                        <div id="ic1"  >
                             <i class="fas fa-solid fa-user-graduate"></i>
                         </div>
 
+                        
                     </div>
 
+                    <!--Tell User If UserName Is Long-->
+                    <div id="useLe">
+                        <span id="telUser" >Username Too Short</span>
+                    </div>
+
+                    <script>
+
+                        //Check Length of UserName
+                        let userCont = document.getElementById('regUser');
+                        let theUs = document.getElementById('id_username');
+
+                        let telAbUsN =  document.getElementById('useLe');
+
+                        //theUs.addEventListener('keydown', lengthName)
+
+                        theUs.addEventListener('keyup',() => {    
+                            lengthName();
+                            actButnn();    
+                       });
+                        
+                        
+                        function lengthName(){
+
+                            document.getElementById('strength').style.display = '';
+
+                            if(theUs.value != ""){
+
+                                telAbUsN.style.display = 'flex';
+
+
+                                if(theUs.value.length <= 5){
+    
+                                    userCont.style.borderColor = 'rgb(221, 77, 77)';
+                                    telAbUsN.style.backgroundColor = 'rgb(221, 77, 77)';
+                                    document.getElementById('ic1').style.color = 'rgb(221, 77, 77)';
+    
+                                }
+                                else {
+    
+                                    userCont.style.borderColor = 'rgb(17, 197, 107)';
+                                    telAbUsN.style.backgroundColor = 'rgb(17, 197, 107)';
+                                    document.getElementById('ic1').style.color = 'rgb(17, 197, 107)';
+                                    document.getElementById("telUser").innerHTML = 'Username Is Long Enough';
+    
+                                }
+    
+                            }
+                            else{
+                                telAbUsN.style.display = '';
+                                userCont.style.borderColor = '#013D1E';
+                                document.getElementById('ic1').style.color = '#013D1E';
+                            }
+
+                        }
+
+
+
+                    </script>
+                   
+
                     <!--All Inputs-->
-                    <div class="inputReg">
+                    <div id="emSee">
 
                         {{reg_form.email}}
                         <!--Icon Input-->
-                        <div id="ic">
+                        <div id="ic2">
                             <i class="fas fa-solid fa-envelope"></i>
                         </div>
+
+                        <script>
+
+                            //Email Veridfication
+
+                            var email = document.getElementById('id_email').onkeydown = function() {validation();actButnn();};
+
+
+                            function validation(){
+
+                                document.getElementById('useLe').style.display = '';
+
+                                document.getElementById('strength').style.display = '';
+
+                                //Valiadate email
+
+                                var theemail = document.getElementById('id_email').value;
+
+                                let addClass = document.getElementById('emSee');
+
+                                let emIc = document.getElementById('ic2');
+
+                                var partten = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+
+                                //Function to check validity
+
+                                if(theemail != ""){
+
+                                    if(theemail.match(partten)){
+
+                                        addClass.style.borderColor = "rgb(17, 197, 107)";
+                                        emIc.style.color = "rgb(17, 197, 107)";
+    
+                                    }
+                                    else{
+    
+                                        addClass.style.borderColor = "rgb(197, 17, 17)";
+                                        emIc.style.color = "rgb(197, 17, 17)";
+                                        
+                                    }
+
+                                }
+
+                                else{
+
+                                    addClass.style.borderColor = "#013D1E";
+                                    emIc.style.color = "#013D1E";
+
+                                }     
+
+                            }
+
+
+                        </script>
 
                     </div>
 
                     <!--All Inputs-->
-                    <div class="inputReg">
+                    <div  id="psSee">
 
                         {{reg_form.password1}}
                         <!--Icon Input-->
@@ -100,6 +225,148 @@
                         </div>
 
                     </div>
+
+                    <!--Password Strength indiate-->
+                    <div id="strength">
+                        <span id="str" >Password is weak</span>
+                    </div>
+
+                    <style>
+
+                        #strength,#useLe {
+                            display: none;
+                            width: 350px;
+                            height: 30px;
+                            align-items: center;
+                            padding-left: 10px;
+                            border-radius: 5px;
+                            color: #eee;
+                        }
+
+                        @media screen and (max-width: 412px){
+
+                            #strength,#useLe {
+                                width: 320px;
+                         
+                            }
+
+                        }
+
+                        
+
+                        @media screen and (max-width: 360px){
+
+                            #strength,#useLe {
+                                width: 300px;
+                         
+                            }
+
+                        }
+
+                        @media screen and (max-width: 280px){
+
+                            #strength,#useLe {
+                                width: 230px;
+                                font-size: 14px;
+                         
+                            }
+
+                        }
+
+                    </style>
+
+                    <script>
+
+                        //Check Passowrd Strength
+                        let myPass = document.getElementById('id_password1');
+                        let showStr = document.getElementById('str');
+                        let viewItSrt = document.getElementById('strength');
+
+                        let keyIc = document.getElementById('ic');
+
+                        let borderPass = document.getElementById('psSee');
+
+                        //myPass.addEventListener('keyup', strenthPs);
+
+                        myPass.addEventListener('keyup',() => {    
+                            strenthPs();
+                            actButnn();    
+                       });
+
+                        //This will check the strength
+                        let regExpWeak = /[a-z]/;
+                        let regExpMedium = /\d+/;
+                        let regExpStrong = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+
+                        function strenthPs(){
+
+                            document.getElementById('useLe').style.display = '';
+
+                            if(myPass.value != ""){
+
+                                viewItSrt.style.display = "flex";
+                                
+
+                                if(myPass.value.length <= 4){
+
+                                    viewItSrt.style.backgroundColor = '#DD4D4D';
+                                    showStr.innerHTML = 'This Password Is Too Short';
+                                    borderPass.style.borderColor = '#DD4D4D';
+                                    keyIc.style.color = "#DD4D4D";
+
+                                }
+
+                                if(myPass.value.length <= 6 &&  myPass.value.match(regExpWeak)){
+
+                                   // console.log('weak');
+                                    viewItSrt.style.backgroundColor = '#DD4D4D';
+                                    showStr.innerHTML = 'This Password Is Very Weak';
+                                    borderPass.style.borderColor = '#DD4D4D';
+                                    keyIc.style.color = "#DD4D4D";
+
+                                }
+                                if(myPass.value.length >= 7 &&  myPass.value.match(regExpWeak)){
+
+                                   // console.log('weak');
+                                    viewItSrt.style.backgroundColor = '#FF4200';
+                                    showStr.innerHTML = 'This Password Is Relatively Weak'
+                                    borderPass.style.borderColor = '#FF4200';
+                                    keyIc.style.color = "#FF4200";
+
+                                }
+                                if(myPass.value.length >= 7 &&  myPass.value.match(regExpMedium)){
+
+                                    //console.log('weak');
+                                    viewItSrt.style.backgroundColor = 'orange';
+                                    showStr.innerHTML = 'This Password Is Of Medium Strength'
+                                    borderPass.style.borderColor = 'orange';
+                                    keyIc.style.color = "orange";
+
+                                }
+                                if(myPass.value.length >= 7 &&  myPass.value.match(regExpStrong)){
+
+                                    //console.log('weak');
+                                    viewItSrt.style.backgroundColor = 'rgb(17, 197, 107)';
+                                    showStr.innerHTML = 'This Password Is Strong'
+                                    borderPass.style.borderColor = 'rgb(17, 197, 107)';
+                                    keyIc.style.color = "rgb(17, 197, 107)";
+
+                                }
+
+                            }
+                            else{
+
+                                viewItSrt.style.display = "";
+                                borderPass.style.borderColor = '#013D1E';
+                                keyIc.style.color = "#013D1E";
+
+                            }
+
+                        }
+
+
+                    </script>
+
 
                     <!--View Password-->
                     <div class="vPs">
@@ -136,6 +403,40 @@
                             display: flex;
                             font-size: 16px;
                             color: #013D1E;
+                        }
+
+                        @media screen and (max-width: 412px){
+                            
+                            .vPs {
+                                width: 320px;
+                                height: 30px;
+                               
+                            }
+
+                        }
+
+                        @media screen and (max-width: 360px){
+                            
+                            .vPs {
+                                width: 300px;
+                                height: 30px;
+                               
+                            }
+
+                        }
+
+                        @media screen and (max-width: 280px){
+                            
+                            .vPs {
+                                width: 230px;
+                                height: 30px;
+                               
+                            }
+
+                            .vPs span {
+                                font-size: 14px;
+                            }
+
                         }
 
                         /* The container */
@@ -209,9 +510,9 @@
                         }
                     </style>
 
-                    <div class="butReg">
+                    <div  id="regSeeBt" class="inactive">
 
-                        <button>Register</button>
+                        <button type="submit" >Register</button>
 
                     </div>
 
@@ -222,13 +523,48 @@
                         document.getElementById("id_email").placeholder = "Enter Your Email";
                         document.getElementById("id_password1").placeholder = "Enter Your Password";
 
+                        
+                        //Activate The Submit Button
+
+                        //Password
+                        
+
+
+                        function actButnn(){
+
+                            let theII = document.getElementById('regSeeBt');
+
+                                let regExpStrong1 = /.[!,@,#,$,%,^,&,*,?,_,~,-,(,)]/;
+                            let partten1 = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                            var theemail1 = document.getElementById('id_email').value;
+                            let myPass1 = document.getElementById('id_password1');
+                            let theUs1 = document.getElementById('id_username');
+
+                            if(myPass1.value.length >= 7 &&  myPass1.value.match(regExpStrong1) &&  theemail1.match(partten1) && theUs1.value.length > 5){
+
+                                theII.classList.remove('inactive');
+                                theII.classList.add('butReg');
+    
+    
+                            }
+                            else{
+    
+                                theII.classList.add('inactive');
+                                theII.classList.remove('butReg');
+    
+                            }
+
+                        }
+                        
+
+                       
                     </script>
 
                 </form>
 
                 <div class="already">
                     <span>Already Have An Account?</span>
-                    <a href=""><h6>Login</h6></a>
+                    <a href="{% url 'login' %}"><h6>Login</h6></a>
                 </div>
             
                 

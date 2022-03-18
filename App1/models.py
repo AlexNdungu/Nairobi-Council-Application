@@ -1,7 +1,8 @@
 from tkinter import CASCADE
 from django.db import models
 from django.contrib.auth.models import User
-
+import os
+from django.conf import settings
 # Create your models here.
 
 #The Table Gender
@@ -156,6 +157,12 @@ class Upload(models.Model):
     def image_url(self):
         if self.pP_file and hasattr(self.pP_file, 'url'):
             return self.pP_file.url
+
+    @property
+    def get_image_path(self):
+        if self.pP_file:
+            return os.path.join(settings.MEDIA_ROOT, self.pP_file.path)
+        return ''        
 
 
 class State(models.Model):

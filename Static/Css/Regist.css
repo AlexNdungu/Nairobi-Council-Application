@@ -103,18 +103,19 @@
 
 /* Inputs */
 
-.inputReg {
+#regUser,#psSee,#emSee,.inputReg {
     width: 350px;
     height: 50px;
     background-color: white;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     border: 2px solid #013D1E;
+    justify-content: space-between;
     border-radius: 10px;
 }
 
-.inputReg input {
+
+.inputReg input,#psSee input,#emSee input,#regUser input,.inputReg input {
     width: 280px;
     height: 100%;
     border: none;
@@ -126,14 +127,14 @@
     font-weight: 400;
 }
 
-.inputReg input::placeholder {
+.inputReg input::placeholder, #psSee input::placeholder,#emSee input::placeholder,#regUser input::placeholder,.inputReg input::placeholder {
     color: #013D1E;
     opacity: 0.7;
 }
 
 /* Input Icons */
 
-#ic {
+#ic,#ic1,#ic2 {
     font-size: 22px;
     margin-right: 15px;
     color: #013D1E;
@@ -142,16 +143,20 @@
 
 /* Error if login Error*/
 
-.logErr {
-    width: 350px;
-    height: 50px;
-    background-color: #DD4D4D;
+ .logReg {
+    width: 100%;
+    height: 70px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: rgb(230, 230, 230);
-    border-radius: 10px;
+    background-color: #DD4D4D;
 }
+
+.logReg p {
+    font-size: 18px;
+    color: #eee;
+}
+
 
 /* Register Button */
 
@@ -162,6 +167,7 @@
     border: none;
     outline: none;
     cursor: pointer;
+    pointer-events: all;
     font-size: 18px;
     font-weight: 600;
     color: rgb(223, 223, 223);
@@ -172,6 +178,21 @@
 
 .butReg button:hover {
     transform: scale(1.1);
+}
+
+/* Innactive */
+
+.inactive button {
+    width: 350px;
+    height: 50px;
+    border-radius: 50px;
+    border: none;
+    outline: none;
+    pointer-events: none;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: #d4d4d4;
+    color: antiquewhite;
 }
 
 /* Aready Have an account */
@@ -194,4 +215,294 @@
 
 .already span {
     color: #373737;
+}
+
+
+/* RESPONSIVENESS TYLING */
+
+@media screen and (max-width: 1368px){
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+
+}
+
+
+@media screen and (max-width: 1280px){
+
+    .Register {
+        height: 1000px;
+        width: 100%;
+    }
+
+
+}
+
+@media screen and (max-width: 916px){
+
+    .Register {
+        height: 600px;
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 912px){
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 896px){
+
+    .Register {
+        height: 700px;
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 820px){
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 813px){
+
+    .Register {
+        height: 550px;
+        width: 100%;
+    }
+
+}
+
+
+@media screen and (max-width: 800px){
+
+    .Register {
+        height: 600px;
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 670px){
+
+    .Register {
+        height: 670px;
+        width: 100%;
+    }
+
+}
+
+@media screen and (max-width: 540px){
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+}
+
+
+
+@media screen and (max-width: 375px){
+
+    .Reg {
+        width: 350px;
+    }
+
+
+}
+
+@media screen and (max-width: 415px){
+
+    /* The Background */
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+    /* Where the form is */
+
+    .Reg {
+        width: 380px;
+        height: 500px;
+    }
+
+    #regUser,#psSee,#emSee,.inputReg {
+        width: 320px;
+        height: 50px;
+    }
+
+   
+
+    .butReg button {
+        width: 320px;
+        height: 50px;
+    }
+
+    /* Innactive */
+
+    .inactive button {
+        width: 320px;
+        height: 50px;
+
+    }
+
+
+}
+
+
+@media screen and (max-width: 430px){
+
+    .Reg {
+        width: 400px;
+    }
+
+}
+
+
+@media screen and (max-width: 393px){
+
+    .Reg {
+        width: 360px;
+    }
+
+}
+
+@media screen and (max-width: 360px){
+
+    #strength,#useLe {
+        width: 300px;
+ 
+    }
+
+}
+
+@media screen and (max-width: 360px){
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .Reg {
+        width: 330px;
+    }
+
+    #regUser,#psSee,#emSee,.inputReg {
+        width: 300px;
+        height: 50px;
+    }
+
+    .inputReg input,#psSee input,#emSee input,#regUser input,.inputReg input {
+        width: 170px;
+        height: 100%;
+        font-size: 16px;
+    }
+
+    #ic,#ic1,#ic2 {
+        font-size: 19px;
+        margin-right: 15px;
+    }
+
+    .butReg button {
+        width: 300px;
+        height: 50px;
+    }
+
+    /* Innactive */
+
+    .inactive button {
+        width: 300px;
+        height: 50px;
+
+    }
+
+}
+
+@media screen and (max-width: 280px){
+
+    /* The Background */
+
+    .Register {
+        height: 100vh;
+        width: 100%;
+    }
+
+    .or {
+        height: 40px;
+    }
+
+    /* Google logo */
+
+    .gLog {
+        width: 30px;
+        height: 30px;
+    }
+    /* The Button */
+    .Gbtn {
+        width: 180px;
+        height: 30px;
+        font-size: 12px;
+    }
+
+    /* Where the form is */
+
+    .Reg {
+        width: 250px;
+        height: 500px;
+    }
+
+    #regUser,#psSee,#emSee,.inputReg {
+        width: 230px;
+        height: 50px;
+    }
+
+    .inputReg input,#psSee input,#emSee input,#regUser input,.inputReg input {
+        width: 170px;
+        height: 100%;
+        font-size: 14px;
+    }
+
+    #ic,#ic1,#ic2 {
+        font-size: 17px;
+        margin-right: 15px;
+    }
+
+    .butReg button {
+        width: 230px;
+        height: 50px;
+    }
+
+    /* Innactive */
+
+    .inactive button {
+        width: 230px;
+        height: 50px;
+
+    }
+
+    .already span {
+        font-size: 13px;
+    }
+
+    .already h6 {
+        font-size: 18px;
+        margin-left: 10px;
+    }
+
 }

@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
-
+from secret_settings import *
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -21,7 +21,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-5f3f)3p4$o+ox777i62(!u$su$ur@b-924ibyu-fr6)u+y@@xw'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,8 +39,20 @@ INSTALLED_APPS = [
     'livereload',
     'django.contrib.staticfiles',
     'bootstrap_datepicker_plus',
+    'allauth.socialaccount.providers.google',
     'App1',
+
+    'social_django',
+    'django_extensions',
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
 ]
+
+SITE_ID = 1
+
+LOGIN_REDIRECT_URL = 'Success/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -87,6 +98,12 @@ DATABASES = {
         'HOST': 'localhost'
     }
 }
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'allauth.account.auth_backends.AuthenticationBackend',
+    'social_core.backends.google.GoogleOAuth2',
+]
 
 
 # Password validation
@@ -144,3 +161,4 @@ MEDIA_ROOT = os.path.join(BASE_DIR,'allFiles')
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+

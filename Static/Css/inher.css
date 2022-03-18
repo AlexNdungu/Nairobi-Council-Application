@@ -6,6 +6,8 @@
     font-family: 'Poppins', sans-serif;
 }
 
+
+
 /* Tab Section */
 
 .headTabs {
@@ -65,4 +67,17 @@
     height: 2px;
     background-color: #013D1E;
     opacity: 0.5;
+}
+
+
+/* Responsiveness */
+
+
+@media screen and (max-width: 1050px){
+
+    .headTabs {
+        height: 300px;
+        flex-direction: column;
+    }
+    
 }
