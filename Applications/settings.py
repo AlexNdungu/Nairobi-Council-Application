@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'bootstrap_datepicker_plus',
     'allauth.socialaccount.providers.google',
     'App1',
-
     'social_django',
     'django_extensions',
     'django.contrib.sites',
@@ -52,7 +51,7 @@ INSTALLED_APPS = [
 
 SITE_ID = 1
 
-LOGIN_REDIRECT_URL = 'Success/'
+LOGIN_REDIRECT_URL = '/Success/'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -140,7 +139,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
