@@ -13,34 +13,7 @@
 
 <!--The rest of the contents will be replace here-->
 {% block content %}
-<!-- 
-<span id="seeID" >{{request.user.next.kin_nat_id}}</span>
-<a  id="goSucc" href="{% url 'success' %}"></a>
 
-<style>
-
-    #seeID,#goSucc {
-        display: none;
-    }
-
-</style>
-
-<script>
-
-    let seeID = document.getElementById('seeID');
-
-    function redSuc(){
-
-        if(seeID.innerHTML != "None"){
-
-            document.getElementById('goSucc').click();
-
-        }
-
-    }
-
-</script>
- -->
     <!--Personal Info Form-->
 
     <div class="psDiv">
@@ -64,7 +37,7 @@
 
     <div class="kFor">
 
-        <form method="POST" id="eduForm" >
+        <form method="POST" id="eduForm" autocomplete="off">
 
             {% csrf_token %}
 
@@ -89,6 +62,28 @@
                     }
                      
                     $('#id_kin_name').bind('keypress', testInput);  
+
+
+                    function FullName(){
+
+                        let id_kin_name = document.getElementById('id_kin_name').value;
+                    
+                        if(id_kin_name != null && id_kin_name != ""){
+                    
+                            kinNameSpan.style.color = 'rgb(17, 197, 107)';
+                            kinFullname.style.borderColor = 'rgb(17, 197, 107)';
+                    
+                        }
+                        else{
+                    
+                            kinNameSpan.style.color = 'rgb(197, 17, 17)';
+                            kinFullname.style.borderColor = 'rgb(197, 17, 17)';
+                    
+                        }
+                    
+                    }
+
+                    $('#id_kin_name').bind('input', FullName);
 
                 </script>
     
@@ -119,6 +114,29 @@
                     //Adding eventlistener to check how many digits are in nat id
 
                     let howManyNatId = document.getElementById('id_kin_nat_id').onkeyup = function() {howManyDigits()};
+
+
+                    function IdCheck(){
+
+                        let kinIdInput = document.getElementById('id_kin_nat_id').value;
+                    
+                        if(kinIdInput != null && kinIdInput != ""){
+                    
+                            kinId.style.color = 'rgb(17, 197, 107)';
+                            kinNatId.style.borderColor = 'rgb(17, 197, 107)';
+                    
+                        }
+                        else{
+                    
+                            kinId.style.color = 'rgb(197, 17, 17)';
+                            kinNatId.style.borderColor = 'rgb(197, 17, 17)';
+                    
+                        }
+                    
+                    
+                    }
+
+                    $('#id_kin_nat_id').bind('input', IdCheck);
 
                 </script>
 
@@ -281,54 +299,20 @@
 
 
                             function resetForm(){
-
-                                document.getElementById('eduForm').reset();
-    
-                                let submitBtnMan = document.getElementById('subBtnIt');
-    
-                                submitBtnMan.setAttribute("disabled","disabled");
-    
-                                submitBtnMan.classList.remove('active');
-    
-                                submitBtnMan.classList.add('inactive');
-    
-                                //Return Color to normal
-                                //Inputs first
-                                let id_full_name = document.getElementById('id_kin_name');
-                                let id_nat_id = document.getElementById('id_kin_nat_id');
-                                let id_age = document.getElementById('id_kin_phone');
-                                let id_gender = document.getElementById('id_kin_email');
-                                
-                                //Spans
-                                let fNSpan = document.getElementById('kinName');
-                                let natIdSpan = document.getElementById('kinId');
-                                let ageSpan = document.getElementById('kinPhone');
-                                let gendSpan = document.getElementById('eSpan');
-    
-                                //Input border change
-                                id_full_name.style.borderColor = '#013D1E';
-                                id_nat_id.style.borderColor = '#013D1E';
-                                id_age.style.borderColor = '#013D1E';
-                                id_gender.style.borderColor = '#013D1E';
-
-    
-                                //Span color change
-                                fNSpan.style.color = '#013D1E';
-                                natIdSpan.style.color = '#013D1E';
-                                ageSpan.style.color = '#013D1E';
-                                gendSpan.style.color = '#013D1E';
-                                
-    
+                                window.location.reload();
                             }
 
                         </script>
                     
                         <!--This are the control buttons-->
-                        <div class="contIc2">
-                            <div id="canc">
-                                <i class="fas fa-light fa-angle-left"></i>
+                        <a href="{% url 'kinpsInfo' %}">
+                            <div class="contIc2">
+                                <div id="canc">
+                                    <i class="fas fa-light fa-angle-left"></i>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+                        
                     </div>
     
                 </div>

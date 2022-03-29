@@ -12,34 +12,7 @@
 
 <!--The rest of the contents will be replace here-->
 {% block content %}
-<!-- 
-<span id="seeID" >{{request.user.application.nat_id}}</span>
-<a  id="goSucc" href="{% url 'success' %}"></a>
 
-<style>
-
-    #seeID,#goSucc {
-        display: none;
-    }
-
-</style>
-
-<script>
-
-    let seeID = document.getElementById('seeID');
-
-    function redSuc(){
-
-        if(seeID.innerHTML != "None"){
-
-            document.getElementById('goSucc').click();
-
-        }
-
-    }
-
-</script>
- -->
 <!--Personal Info Form-->
 
 <div class="psDiv">
@@ -49,7 +22,7 @@
 
 <!--Success popup-->
 
- {% for message in messages %}
+{% for message in messages %}
 
 <div class="suss">
 
@@ -65,7 +38,7 @@
 <div class="dFm">
 
 
-    <form method="POST" enctype="multipart/form-data" id="eduForm" >
+    <form method="POST" enctype="multipart/form-data" id="eduForm" autocomplete="off">
         {% csrf_token %}
         
         <div class="bigSec">
@@ -86,12 +59,6 @@
                     <script>
 
                         //To disable number inputs
-                        //let fulInput = document.getElementById('id_full_name').onkeydown = function() {return alphaOnly(event)}
-
-                        //function alphaOnly(event) {
-                            //var key = event.keyCode;`enter code here`
-                            //return ((key >= 65 && key <= 90) || key == 8);
-                          //};
 
                         function testInput(event) {
                             var value = String.fromCharCode(event.which);
@@ -100,6 +67,29 @@
                          }
                          
                          $('#id_full_name').bind('keypress', testInput);
+
+                         //Green On Typing
+
+                         function FullName(){
+
+                            let fullNameValue = document.getElementById('id_full_name').value;
+                        
+                            if(fullNameValue != null && fullNameValue != ""){
+                        
+                                fNSpan.style.color = 'rgb(17, 197, 107)';
+                                fullNameInPT.style.borderColor = 'rgb(17, 197, 107)';
+                        
+                            }
+                            else{
+                        
+                                fNSpan.style.color = 'rgb(197, 17, 17)';
+                                fullNameInPT.style.borderColor = 'rgb(197, 17, 17)';
+                        
+                            }
+                        
+                        }
+
+                        $('#id_full_name').bind('input', FullName);
 
                     </script>
                     
@@ -130,6 +120,27 @@
                         //Adding eventlistener to check how many digits are in nat id
 
                         let howManyNatId = document.getElementById('id_nat_id').onkeyup = function() {howManyDigits()};
+
+                        function NatId(){
+
+                            let natIdValue = document.getElementById('id_nat_id').value;
+                        
+                            if(natIdValue != null && natIdValue != ""){
+                        
+                                natIdSpan.style.color = 'rgb(17, 197, 107)';
+                                natIdPress.style.borderColor = 'rgb(17, 197, 107)';
+                        
+                            }
+                            else{
+                        
+                                natIdSpan.style.color = 'rgb(197, 17, 17)';
+                                natIdPress.style.borderColor = 'rgb(197, 17, 17)';
+                        
+                            }
+                        
+                        }
+
+                        $('#id_nat_id').bind('input', NatId);
 
                     </script>
 
@@ -295,6 +306,34 @@
                     <span class="inpSpan" id="boxSpan" >* PO Box</span>
 
                     {{theApplicationForm.address}}
+
+                    <script>
+
+                        //Check Address
+
+                        function POBox(){
+
+                            let valAddress = document.getElementById('id_address').value;
+                        
+                            if(valAddress != null && valAddress != ""){
+                        
+                                id_address.style.borderColor = 'rgb(17, 197, 107)';
+                                boxSpan.style.color = 'rgb(17, 197, 107)';
+                        
+                            }
+                            else{
+                        
+                                id_address.style.borderColor = 'rgb(197, 17, 17)';
+                                boxSpan.style.color = 'rgb(197, 17, 17)';
+                        
+                            }
+                        
+                        }
+
+                        $('#id_address').bind('input', POBox);
+
+                    </script>
+
                 </div>
 
                 <!--Individual Inputs-->
@@ -361,73 +400,21 @@
 
                         //code for refresh
                         function resetForm(){
-
-                            document.getElementById('eduForm').reset();
-
-                            let submitBtnMan = document.getElementById('subBtnIt');
-
-                            submitBtnMan.setAttribute("disabled","disabled");
-
-                            submitBtnMan.classList.remove('active');
-
-                            submitBtnMan.classList.add('inactive');
-
-                            //Return Color to normal
-                            //Inputs first
-                            let id_full_name = document.getElementById('id_full_name');
-                            let id_nat_id = document.getElementById('id_nat_id');
-                            let id_age = document.getElementById('id_age');
-                            let id_gender = document.getElementById('id_gender');
-                            let id_phone = document.getElementById('id_phone');
-                            let id_email = document.getElementById('id_email');
-                            let id_county = document.getElementById('id_county');
-                            let id_address = document.getElementById('id_address');
-                            let id_postal_code = document.getElementById('id_postal_code');
-                            //Spans
-                            let fNSpan = document.getElementById('fNSpan');
-                            let natIdSpan = document.getElementById('natIdSpan');
-                            let ageSpan = document.getElementById('ageSpan');
-                            let gendSpan = document.getElementById('gendSpan');
-                            let phoneSpan = document.getElementById('phoneSpan');
-                            let eSpan = document.getElementById('eSpan');
-                            let cSpn = document.getElementById('cSpn');
-                            let boxSpan = document.getElementById('boxSpan');
-                            let psCodeSpan = document.getElementById('psCodeSpan');
-
-                            //Input border change
-                            id_full_name.style.borderColor = '#013D1E';
-                            id_nat_id.style.borderColor = '#013D1E';
-                            id_age.style.borderColor = '#013D1E';
-                            id_gender.style.borderColor = '#013D1E';
-                            id_phone.style.borderColor = '#013D1E';
-                            id_email.style.borderColor = '#013D1E';
-                            id_county.style.borderColor = '#013D1E';
-                            id_address.style.borderColor = '#013D1E';
-                            id_postal_code.style.borderColor = '#013D1E';
-
-                            //Span color change
-                            fNSpan.style.color = '#013D1E';
-                            natIdSpan.style.color = '#013D1E';
-                            ageSpan.style.color = '#013D1E';
-                            gendSpan.style.color = '#013D1E';
-                            phoneSpan.style.color = '#013D1E';
-                            eSpan.style.color = '#013D1E';
-                            cSpn.style.color = '#013D1E';
-                            boxSpan.style.color = '#013D1E';
-                            psCodeSpan.style.color = '#013D1E';
-
-
+                            window.location.reload();
                         }
 
                     </script>
                 
 
                     <!--This are the control buttons-->
-                    <div class="contIc2">
-                        <div id="canc">
-                            <i class="fas fa-light fa-angle-left"></i>
+                    <a href="{% url 'apppsinfo' %}">
+                        <div class="contIc2">
+                            <div id="canc">
+                                <i class="fas fa-light fa-angle-left"></i>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    
                 </div>
 
             </div>

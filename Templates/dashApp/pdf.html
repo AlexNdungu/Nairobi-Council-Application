@@ -1,0 +1,52 @@
+{% extends "dashApp/appIn.html" %}
+
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>{{request.user.username}} :: - PDF Page</title>
+
+<!--Css Link-->
+
+<link rel="stylesheet" href="{% static '/Css/pdf.css' %}">
+
+{% endblock %}
+
+<!--This Is the Heading Infomation Titel-->
+
+{% block head %}PDF Instructions{% endblock %}
+
+<!--the Content-->
+{% block content %}
+
+<div class="theIn">
+    <h4>* The PDF Below Contains *</h4>
+    <div class="inNum">
+        <span>1. The Report Date</span>
+        <span>2. The Report Venue</span>
+        <span>3. Applicants Attachment ID</span>
+    </div>
+    <h4>* Print A Colored Copy As Verification Evidence On Report Date *</h4>
+
+    <div class="pdfPl">
+        <a href="{% url 'genpdf' %}">
+            <div class="view">
+                <span>Open</span>
+                <div id="down"><i class="fas fa-solid fa-eye"></i></div>
+            </div>
+        </a>
+        <a href="{% url 'downloadpdf' %}">
+            <div class="download">
+                <span>Download</span>
+                <div id="down1"><i class="fas fa-solid fa-download"></i></div>
+            </div>
+        </a>
+    </div>
+
+</div>
+
+<!--View And Download PDF-->
+    
+
+{% endblock %}

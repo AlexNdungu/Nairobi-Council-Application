@@ -65,7 +65,11 @@
 
             <!--Applicant pic-->
             <div class="psPic">
-                <img src="{{appDetail.upload.image_url}}" alt="">
+                {% if appDetail.upload.image_url %}
+                    <img src="{{appDetail.upload.image_url}}" alt="">
+                {% else %}
+                    <img src="{% static '/Images/imgs/profile.png' %}" alt="">
+                {% endif %}
             </div>
 
             <!--Words-->
@@ -377,7 +381,7 @@
                 <!--Smaill scrolling Age-->
                 <div class="exact">
 
-                    <span>Course</span>
+                    <span>Begin</span>
                     <span>:</span>
                     <h3>{{appDetail.primary.start_date}}</h3>
 
@@ -386,7 +390,7 @@
                 <!--Smaill scrolling County-->
                 <div class="exact">
 
-                    <span>Level</span>
+                    <span>End</span>
                     <span>:</span>
                     <h3>{{appDetail.primary.finish_date}}</h3>
 
@@ -410,68 +414,85 @@
         <div class="allTheFll">
 
              <!--individual Files-->
+            {% if appDetail.upload.cv_file %}
             <a href="{{ MEDIA_URL }}{{appDetail.upload.cv_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} Curriculum Vitae</span>
                 </div>
             </a>
+            {% endif %}
 
+
+            {% if appDetail.upload.gD_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.upload.gD_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} Good Conduct</span>
                 </div>
             </a>
+            {% endif %}
 
+            {% if appDetail.upload.aP_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.upload.aP_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} Application Letter</span>
                 </div>
             </a>
+            {% endif %}
 
+
+            {% if appDetail.upload.sL_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.upload.sL_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} School Letter</span>
                 </div>
             </a>
+            {% endif %}
 
+
+            {% if appDetail.upload.personalAcc_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.upload.personalAcc_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} Personal Accident Cover</span>
                 </div>
             </a>
+            {% endif %}
 
+
+            {% if appDetail.upload.natID_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.upload.natID_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} ID Copies</span>
                 </div>
             </a>
+            {% endif %}
 
+            {% if appDetail.secondary.kcse_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.secondary.kcse_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} KCSE</span>
                 </div>
             </a>
+            {% endif %}
 
+            {% if appDetail.primary.kcpe_file %}
              <!--individual Files-->
              <a href="{{ MEDIA_URL }}{{appDetail.primary.kcpe_file.url}}">
                 <div class="theFT">
                     <span>{{appDetail.application.full_name}} KCPE</span>
                 </div>
             </a>
+            {% endif %}
 
         </div>
 
 
     </div>
-
-    <!--    <a href="{{ MEDIA_URL }}{{appDetail.upload.cv_file.url}}">Open Cv</a>
--->
 
     <!--Change User State-->
     <div class="state">

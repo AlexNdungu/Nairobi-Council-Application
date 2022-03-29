@@ -1,8 +1,5 @@
-from email.mime import application
-from multiprocessing import context
-from re import template
-from urllib import request, response
 from django.shortcuts import render,redirect
+from flask import request
 from .forms import *
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
@@ -11,15 +8,12 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 from .decorators import unauthenticated_user,admin_only,applicant_only
 from django.views.generic.detail import DetailView
-import urllib.request
 from django.http import HttpResponse
 from django.views.generic import View
 from .utils import render_to_pdf
-from django.template.loader import get_template
-from io import BytesIO
-from xhtml2pdf import pisa
+import datetime
 
-# Create your views here
+# Create your views here 
 #from social_django import UserSocialAuth
 # select_related for performance.
 #google_logins = UserSocialAuth.objects.select_related("user").filter(provider="google-oauth2")
@@ -29,53 +23,68 @@ from xhtml2pdf import pisa
 
 
 #The Google Register Logic
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save,pre_save
 from django.dispatch import receiver
+from django.http import HttpResponseRedirect
+""" 
+#Reject user registraion if user already exist
+@receiver(pre_save, sender=User)
+def see_email(sender,instance,**kwargs):
+    emailUser = instance.email
+    #userEmail = kwargs.get('instance').email
+    if User.objects.filter(email=emailUser).exists():
+       print('f')     """
+            
 
 @receiver(post_save, sender=User)
 def handle_new_job(sender, **kwargs):
     if kwargs.get('created', False):
         user = kwargs.get('instance')
-        g = Group.objects.get(name='applicant')
-        user.groups.add(g)
+        if user.is_superuser:
+            print('super')
+            g = Group.objects.get(name='admin')
+            user.groups.add(g)
+        else:    
+            g = Group.objects.get(name='applicant')
+            user.groups.add(g)
 
-        Application.objects.create(
-            user=user,
-            full_name = user.username,
-            email = user.email,
-        )
+            Application.objects.create(
+                user=user,
+                full_name = user.username,
+                email = user.email,
+            )
 
-         #Create Next Of Kin Object
-        Next.objects.create(
-            user=user,
-            kin_email=user.email
-        )
+            #Create Next Of Kin Object
+            Next.objects.create(
+                user=user,
+                kin_email=user.email
+            )
 
-        #Create Upload Object
-        Upload.objects.create(
-            user=user,
-        )
+            #Create Upload Object
+            Upload.objects.create(
+                user=user,
+            )
 
-        #Create University Object
-        Higher.objects.create(
-            user=user,
-        )
+            #Create University Object
+            Higher.objects.create(
+                user=user,
+            )
 
-        #Create Secondary Object
-        Secondary.objects.create(
-            user=user,
-        )
+            #Create Secondary Object
+            Secondary.objects.create(
+                user=user,
+            )
 
-        #Create Primary Object
-        Primary.objects.create(
-            user=user,
-        )
+            #Create Primary Object
+            Primary.objects.create(
+                user=user,
+            )
 
-        #Create State Object
-        State.objects.create(
-            user=user,
-            state_pk = user.pk,
-        )
+            #Create State Object
+            State.objects.create(
+                user=user,
+                state_pk = user.pk,
+            )
 
         ###
             
@@ -104,7 +113,7 @@ def Register(request):
 
                 userreg = authenticate(username=username, password=password)
                 login(request, userreg)
-                return redirect('personal_info')
+                return redirect('apppsinfo')
 
         else:
             print(reg_form.errors)
@@ -284,6 +293,15 @@ def Success(request):
 class GeneratePdf(View):
     def get(self, request, *args, **kwargs):
 
+        #Calculate Nextweeks Monday
+
+        import datetime
+        date = request.user.state.state_date
+        start_week = date - datetime.timedelta(date.weekday())
+        
+        #update_date = request.user.state.state_date
+        new_date = start_week + datetime.timedelta(14)
+
         #Add A context dict to contain all the neccesary items
 
         context = {
@@ -294,6 +312,7 @@ class GeneratePdf(View):
             'course': request.user.higher.course,
             'email': request.user.application.email,
             'phone': request.user.application.phone,
+            'today':new_date
         }
 
         pdf = render_to_pdf('extras/pdf.html',context)
@@ -303,6 +322,13 @@ class GeneratePdf(View):
 class DownloadPDF(View):
     def get(self, request, *args, **kwargs):
 
+        import datetime
+        date = request.user.state.state_date
+        start_week = date - datetime.timedelta(date.weekday())
+        
+        #update_date = request.user.state.state_date
+        new_date = start_week + datetime.timedelta(14)
+
         context = {
             'userPic': request.user.upload.get_image_path,
             'full_name': request.user.application.full_name,
@@ -311,6 +337,7 @@ class DownloadPDF(View):
             'course': request.user.higher.course,
             'email': request.user.application.email,
             'phone': request.user.application.phone,
+            'today':new_date
         }
 
         nat_id = request.user.application.nat_id
@@ -451,10 +478,48 @@ class userInfo(DetailView):
     
     
 
- #Email Template
+#Email Template
 def Email(request):
     return render(request, 'extras/email.html')   
 
+
+#This Is The Applicant Panel
+def AppIn(request):
+    return render(request, 'dashApp/appIn.html')
+
+#dashboard Ps Info 
+@login_required(login_url='login')
+@applicant_only
+def AppPsInfo(request):
+    return render(request, 'dashApp/psIn.html')
+
+#dashboard Kin Info 
+@login_required(login_url='login')
+@applicant_only
+def KinPsInfo(request):
+    return render(request, 'dashApp/nextA.html') 
+
+#dashboard Kin Info 
+@login_required(login_url='login')
+@applicant_only
+def UplPsInfo(request):
+    return render(request, 'dashApp/upApp.html')           
+
+
+#dashboard Education Info 
+@login_required(login_url='login')
+@applicant_only
+def EduPsInfo(request):
+    return render(request, 'dashApp/eduApp.html')  
+
+#dashboard Education Info 
+@login_required(login_url='login')
+@applicant_only
+def AppPdf(request):
+    return render(request, 'dashApp/pdf.html')             
+
+
+#Fogot Password
 
 #Error Handling
 """ 

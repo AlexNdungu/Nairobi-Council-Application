@@ -28,36 +28,48 @@
     <div class="headTabs">
 
         <!--Individual tabs-->
-        <div class="tab1">
-            <span>Personal Info</span>
-            <div id="tabIc">
-                <i class="fas fa-info-circle"></i>
+        <a href="{% url 'personal_info' %}">
+            <div class="tab1">
+                <span>Personal Info</span>
+                <div id="tabIc">
+                    <i class="fas fa-info-circle"></i>
+                </div>
             </div>
-        </div>
+        </a>
+        
 
         <!--Individual tabs-->
-        <div class="tab2" >
-            <span>Next Of Kin</span>
-            <div id="tabIc">
-                <i class="fas fa-regular fa-crown"></i>
+        <a href="{% url 'next_of_kin' %}">
+            <div class="tab2" >
+                <span>Next Of Kin</span>
+                <div id="tabIc">
+                    <i class="fas fa-regular fa-crown"></i>
+                </div>
             </div>
-        </div>
+        </a>
+        
 
         <!--Individual tabs-->
-        <div class="tab3">
-            <span>Upload Files</span>
-            <div id="tabIc">
-                <i class="fas fa-solid fa-file"></i>
+        <a href="{% url 'upload_Files' %}">
+            <div class="tab3">
+                <span>Upload Files</span>
+                <div id="tabIc">
+                    <i class="fas fa-solid fa-file"></i>
+                </div>
             </div>
-        </div>
+        </a>
+        
 
         <!--Individual tabs-->
-        <div class="tab4">
-            <span>Educational BG</span>
-            <div id="tabIc">
-                <i class="fas fa-regular fa-graduation-cap"></i>
+        <a href="{% url 'education' %}">
+            <div class="tab4">
+                <span>Educational BG</span>
+                <div id="tabIc">
+                    <i class="fas fa-regular fa-graduation-cap"></i>
+                </div>
             </div>
-        </div>
+        </a>
+        
         
 
     </div>

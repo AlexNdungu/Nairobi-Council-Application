@@ -4,6 +4,7 @@ from . import views
 from App1.views import userInfo
 from App1.views import GeneratePdf
 from App1.views import DownloadPDF
+from django.contrib.auth import views as auth_views
 
 
 
@@ -63,5 +64,24 @@ urlpatterns = [
 
     #Error Pages
     #path('Error/', views.pageError, name='pageerror'),    
+
+    #This is the Applicants Panel
+    path('AppIn/', views.AppIn, name='appin'),
+    #The ps Info
+    path('Infomation View/', views.AppPsInfo, name='apppsinfo'),
+    #The Kin Info
+    path('Kin View/', views.KinPsInfo, name='kinpsInfo'),
+    #The Upload Info
+    path('Upload View/', views.UplPsInfo, name='uplpsInfo'),
+    #The Education Info
+    path('Education View/', views.EduPsInfo, name='edupsInfo'),
+    #The PDF PAge
+    path('PDF Page/', views.AppPdf, name='pdfPgA'),
+
+    #PASSWORD RESET
+    path('reset_password/', auth_views.PasswordResetView.as_view(), name='reset_password'),
+    path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
+    path('reset/<uidb64>/<token>/', auth_views.PasswordResetConfirmView.as_view(), name='password_reset_confirm'),
+    path('reset_password_complete/', auth_views.PasswordResetCompleteView.as_view(), name='password_reset_complete'),
 
 ]

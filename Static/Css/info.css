@@ -9,24 +9,23 @@
 /* Scroll */
 
 ::-webkit-scrollbar {
-    width: 13px;
+    width: 8px;
 }
 
 ::-webkit-scrollbar-track {
     background-color: #d4fcd2;
-    border-radius: 30px;
+    border-radius: 10px;
 
 }
 
 ::-webkit-scrollbar-thumb {
     background-color: #0F790D;
-    border-radius: 30px;
+    border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
     background-color: #0F790D;
 }
-
 
 /* back Button */
 
@@ -255,6 +254,8 @@
     overflow: auto;
     
 }
+
+
 
 .em {
     width: 100%;

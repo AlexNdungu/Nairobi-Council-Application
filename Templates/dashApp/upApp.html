@@ -1,0 +1,125 @@
+{% extends "dashApp/appIn.html" %}
+
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>{{request.user.username}} :: - Uploads</title>
+
+<!--Css Link-->
+
+<link rel="stylesheet" href="{% static '/Css/appUl.css' %}">
+
+{% endblock %}
+
+<!--This Is the Heading Infomation Titel-->
+
+{% block head %}Uploads{% endblock %}
+
+<!--the Content-->
+{% block content %}
+
+<div class="allUps">
+
+    <!--All Uploads-->
+    <div class="AllindUp">
+
+        <!--Individual Uploads-->
+        <div class="indUppA">
+            <div class="hedP"><span>Curriculum Vitae</span></div>
+            {% if request.user.upload.cv_file %}
+            <a href="{{ MEDIA_URL }}{{request.user.upload.cv_file.url}}">
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            </a>
+            {% else %}    
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            {% endif %}
+            
+        </div>
+
+        <!--Individual Uploads-->
+        <div class="indUppA">
+            <div class="hedP"><span>Application Letter</span></div>
+            {% if request.user.upload.aP_file %}
+                <a href="{{ MEDIA_URL }}{{request.user.upload.aP_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                </a>
+            {% else %}    
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            {% endif %}
+            
+        </div>
+
+        <!--Individual Uploads-->
+        <div class="indUppA">
+            <div class="hedP"><span>Good Conduct</span></div>
+            {% if request.user.upload.gD_file %}
+                <a href="{{ MEDIA_URL }}{{request.user.upload.gD_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                </a>
+            {% else %}    
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            {% endif %}
+        </div>
+
+        <!--Individual Uploads-->
+        <div class="indUppA">
+            <div class="hedP"><span>School Letter</span></div>
+            {% if request.user.upload.sL_file %}
+                <a href="{{ MEDIA_URL }}{{request.user.upload.sL_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                </a>
+            {% else %}    
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            {% endif %}
+
+        </div>
+
+        <!--Individual Uploads-->
+        <div class="indUppA">
+            <div class="hedP"><span>National ID</span></div>
+            {% if request.user.upload.natID_file %}
+                <a href="{{ MEDIA_URL }}{{request.user.upload.natID_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                </a>
+            {% else %}    
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            {% endif %}
+
+        </div>
+
+        <!--Individual Uploads-->
+        <div class="indUppA">
+            <div class="hedP"><span>Accidents Cover</span></div>
+            {% if request.user.upload.personalAcc_file %}
+                <a href="{{ MEDIA_URL }}{{request.user.upload.personalAcc_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                </a>
+            {% else %}    
+                <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+            {% endif %}
+            
+        </div>
+
+
+    </div>
+
+    <!--The Pen Section-->
+
+    <div class="pSec">
+
+        <a href="{% url 'upload_Files' %}">
+            <div class="pen">
+                <div id="pen">
+                    <i class="fas fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </a>
+       
+
+    </div>
+
+</div>
+
+{% endblock %}

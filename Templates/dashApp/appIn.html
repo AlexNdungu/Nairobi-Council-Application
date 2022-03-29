@@ -1,0 +1,263 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!--Head For Other Pages-->
+    {% block extra_head %}{% endblock %}
+
+    <title>E-Application :: - AppInherit</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+
+    <!--Font Import-->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+
+    <!--Font Awesome Link-->
+    <script src="https://kit.fontawesome.com/09e314988c.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="{% static '/Css/appin.css' %}">
+
+
+</head>
+<body>
+
+
+    <!--The Biggest Div-->
+
+    <div class="allIn">
+
+        <!--The Navigation-->
+        <div class="navAp">
+
+            <div class="apIc">
+
+                <!--Personal Info-->
+                <a href="{% url 'apppsinfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </a>
+
+                <!--Nest Of Kin-->
+                <a href="{% url 'kinpsInfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-regular fa-crown"></i>
+                    </div>
+                </a>
+
+                <!--Upload Page-->
+                <a href="{% url 'uplpsInfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-solid fa-file"></i>
+                    </div>
+                </a>
+
+                <!--Education Backround-->
+                <a href="{% url 'edupsInfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-regular fa-graduation-cap"></i>
+                    </div>
+                </a>
+
+                <!--The pdf-->
+
+                
+                {% if request.user.state.verified == True %}
+                    <a href="{% url 'pdfPgA' %}">
+                        <div id="appIc">
+                            <i class="fas fa-solid fa-file-pdf"></i>
+                        </div>
+                    </a>
+                {% endif %}
+                
+
+            </div>
+
+        </div>
+
+        <!--The rest Of the Parts-->
+        <div class="theReApp">
+
+            <!--The Head Part-->
+            <div class="head">
+
+                <!--UserName-->
+                <h4>{{request.user.username}}</h4>
+
+                <span  style="display: none;" id="short" >{{request.user.state.shortlist}}</span>
+                <span  style="display: none;" id="ver" >{{request.user.state.verified}}</span>
+
+                <!--Status -->
+                <div id="stt1" class="stt">
+                    <span>Status : </span>
+                    <h2 id="theStateVV" >Pending</h2>
+                </div>
+
+                <script>
+
+
+                    let shortL1 = document.getElementById('short').innerHTML;
+                    let verS1 = document.getElementById('ver').innerHTML;
+                    
+
+                    console.log(theStateVV.innerHTML)
+        
+                    //console.log(shortL);
+        
+                    if(shortL1 == 'True' && verS1 == 'True'){
+        
+                        document.getElementById('theStateVV').innerHTML = 'Verified';
+                        document.getElementById('theStateVV').style.color = '#4D5BDD';
+                        document.getElementById('stt1').style.borderColor = '#4D5BDD';
+
+        
+                    }
+                    else if(shortL1 == 'True' && verS1 == 'False'){
+        
+                        document.getElementById('theStateVV').innerHTML = 'ShortListed';
+                        document.getElementById('theStateVV').style.color = '#1BBDB3';
+                        document.getElementById('stt1').style.borderColor = '#1BBDB3';
+        
+                    }
+                    else{
+        
+                        document.getElementById('theStateVV').innerHTML = 'Pending';
+                        document.getElementById('theStateVV').style.color = '#DD4D4D'
+                        document.getElementById('stt1').style.borderColor = '#DD4D4D';
+        
+                    }
+
+                </script>
+
+
+
+                <!--LogOut-->
+                <a href="{% url 'logout' %}">
+                    <div class="logg">
+                        <span>LogOut</span>
+                        <div id="log">
+                            <i class="fas fa-solid fa-power-off"></i>
+                        </div>
+                    </div>
+                </a>
+
+
+            </div>
+
+            <!--Respons Navigation-->
+            <div class="newNav">
+
+                <!--Personal Info-->
+                <a href="{% url 'apppsinfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-info-circle"></i>
+                    </div>
+                </a>
+
+                <!--Nest Of Kin-->
+                <a href="{% url 'kinpsInfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-regular fa-crown"></i>
+                    </div>
+                </a>
+
+                <!--Upload Page-->
+                <a href="{% url 'uplpsInfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-solid fa-file"></i>
+                    </div>
+                </a>
+
+                <!--Education Backround-->
+                <a href="{% url 'edupsInfo' %}">
+                    <div id="appIc">
+                        <i class="fas fa-regular fa-graduation-cap"></i>
+                    </div>
+                </a>
+
+                <!--The pdf-->
+
+                
+                {% if request.user.state.verified == True %}
+                    <a href="{% url 'pdfPgA' %}">
+                        <div id="appIc">
+                            <i class="fas fa-solid fa-file-pdf"></i>
+                        </div>
+                    </a>
+                {% endif %}
+                
+
+            </div>
+
+
+            <!--The rest Of The Part Part-->
+            <div class="pppart">
+
+                <div class="lable">
+                    <h2>{% block head %}{% endblock %}</h2>
+
+                    {% if request.user.state.verified == True %}
+
+                    <div id="pdfS1">
+                        <div id="pdfs">
+                            <i class="fas fa-solid fa-info"></i>
+                        </div>
+                    </div>
+
+                    <!--This Is The PDF Show-->
+                    <div id="message">
+                        <p>You Can Now Download The PDF</p>
+                    </div>
+
+                    {% endif %}
+
+                    <script>
+
+                        //The message dispay
+                        let message = document.getElementById('pdfS1');
+                        let themessage = document.getElementById('message');
+                        let mesShow = false;
+
+                        message.addEventListener("click", function() {
+
+  
+                            if( mesShow == false ){
+
+                                document.getElementById('message').style.display = 'flex';
+                                mesShow = true;
+
+                            }
+
+                            else if( mesShow == true ){
+
+                                document.getElementById('message').style.display = 'none';
+                                mesShow = false;
+
+                            }
+                            
+                        });
+
+
+                    </script>
+
+                </div>
+
+                {% block content %}
+
+
+                {% endblock %}
+
+            </div>
+
+        </div>
+
+    </div>
+    
+</body>
+</html>

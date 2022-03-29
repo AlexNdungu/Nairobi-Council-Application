@@ -15,34 +15,7 @@
 
 {% block content %}
 
-<!-- 
-<span id="seeID" >{{request.user.higher.institution}}</span>
-<a  id="goSucc" href="{% url 'success' %}"></a>
 
-<style>
-
-    #seeID,#goSucc {
-        display: none;
-    }
-
-</style>
-
-<script>
-
-    let seeID = document.getElementById('seeID');
-
-    function redSuc(){
-
-        if(seeID.innerHTML != "None"){
-
-            document.getElementById('goSucc').click();
-
-        }
-
-    }
-
-</script>
- -->
      <!--Personal Info Form-->
 
      <div class="psDiv">
@@ -53,7 +26,7 @@
 
     <div class="eduForm">
 
-        <form enctype="multipart/form-data"  method="post" id="eduForm">
+        <form enctype="multipart/form-data"  method="post" id="eduForm" autocomplete="off">
 
             {% csrf_token %}
 
@@ -87,6 +60,27 @@
                             }
                              
                             $('#id_institution').bind('keypress', testInput);  
+
+                            function Univ(){
+
+                                let uniValue = document.getElementById('id_institution').value;
+                            
+                                if(uniValue != null && uniValue != ''){
+                            
+                                    theUbiv.style.borderColor = 'rgb(17, 197, 107)';
+                            
+                                }
+                                else{
+                            
+                                   
+                                    theUbiv.style.borderColor = 'rgb(197, 17, 17)';
+                            
+                            
+                                }
+                            
+                            }
+
+                            $('#id_institution').bind('input', Univ); 
     
                         </script>
 
@@ -105,6 +99,27 @@
                              
                             $('#id_course').bind('keypress', testInput);
 
+                            function Course(){
+
+                                let courseValue = document.getElementById('id_course').value;
+                            
+                                if(courseValue != null && courseValue != ''){
+                            
+                                    theCourse.style.borderColor = 'rgb(17, 197, 107)';
+                            
+                                }
+                                else{
+                            
+                                   
+                                    theCourse.style.borderColor = 'rgb(197, 17, 17)';
+                            
+                            
+                                }
+                            
+                            }
+
+                            $('#id_course').bind('input', Course);
+
                         </script>
 
                         <!--Drop Down Menu-->
@@ -120,6 +135,57 @@
 
                             <span>* From</span>
                             {{university.uni_start_date}}
+
+                            <script>
+
+                                $(function(){
+                                    var dtToday = new Date();
+                                
+                                    var month = dtToday.getMonth() + 1;
+                                    var day = dtToday.getDate();
+                                    var year = dtToday.getFullYear();
+                                
+                                    if(month < 10)
+                                        month = '0' + month.toString();
+                                    if(day < 10)
+                                        day = '0' + day.toString();
+                                
+                                    var maxDate = year + '-' + month + '-' + day;    
+                                    $('#id_uni_start_date').attr('max', maxDate);
+                                });
+
+                                //cHECK iNPUT
+                                function UStarDate(){
+
+                                    let startDateUni = document.getElementById('id_uni_start_date').value;
+                                
+                                    if(startDateUni != null && startDateUni != ''){
+                                
+                                        uniStart.style.borderColor = 'rgb(17, 197, 107)';
+                                
+                                
+                                    }
+                                    else{
+                                
+                                       
+                                        uniStart.style.borderColor = 'rgb(197, 17, 17)';
+                                
+                                
+                                    }
+                                
+                                }
+
+                                $('#id_uni_start_date').bind('input', UStarDate);
+
+                                //Disable Keydown Date Input
+
+                                document.getElementById('id_uni_start_date').onkeydown = function(){
+                                    return false
+                                };
+
+                            </script>
+
+
                         </div>
 
                         <!--Finish Date-->
@@ -127,6 +193,40 @@
 
                             <span>* To</span>
                             {{university.uni_finish_date}}
+
+                            <script>
+
+                                function UniEnd(){
+
+                                    let endUniDate = document.getElementById('id_uni_finish_date').value;
+                                
+                                    if(endUniDate != null && endUniDate != ''){
+                                
+                                        uniEnd.style.borderColor = 'rgb(17, 197, 107)';
+                                
+                                
+                                    }
+                                    else{
+                                
+                                       
+                                        uniEnd.style.borderColor = 'rgb(197, 17, 17)';
+                                
+                                
+                                    }
+                                
+                                
+                                }
+
+                                $('#id_uni_finish_date').bind('input', UniEnd);
+
+                                //Disable Keydown Date Input
+
+                                document.getElementById('id_uni_finish_date').onkeydown = function(){
+                                    return false
+                                };
+
+                            </script>
+
                         </div>
 
                     </div>
@@ -154,6 +254,28 @@
                             }
                              
                             $('#id_institution_high').bind('keypress', testInput);
+
+                            function SecName(){
+
+                                let highSchool = document.getElementById('id_institution_high').value;
+                            
+                                if(highSchool != null && highSchool != ''){
+                            
+                                    highName.style.borderColor = 'rgb(17, 197, 107)';
+                            
+                            
+                                }
+                                else{
+                            
+                                   
+                                    highName.style.borderColor = 'rgb(197, 17, 17)';
+                            
+                            
+                                }
+                            
+                            }
+
+                            $('#id_institution_high').bind('input', SecName);
                               
     
                         </script>
@@ -209,7 +331,7 @@
 
                                     if(extension != 'pdf' && extension != 'PDF'){
                                         nameFile.style.color = 'rgb(197, 17, 17)';
-
+                                        idFile.value = null;
                                         
 
                                         //disable button
@@ -231,6 +353,58 @@
 
                             <span>* From</span>
                             {{secondary.sec_start_date}}
+
+                            <script>
+
+                                //Restrict Future Dates
+
+                                $(function(){
+                                    var dtToday = new Date();
+                                
+                                    var month = dtToday.getMonth() + 1;
+                                    var day = dtToday.getDate();
+                                    var year = dtToday.getFullYear();
+                                
+                                    if(month < 10)
+                                        month = '0' + month.toString();
+                                    if(day < 10)
+                                        day = '0' + day.toString();
+                                
+                                    var maxDate = year + '-' + month + '-' + day;    
+                                    $('#id_sec_start_date').attr('max', maxDate);
+                                });
+
+                                function SecStart(){
+
+                                    let secStartValue = document.getElementById('id_sec_start_date').value;
+                                
+                                    if(secStartValue != null && secStartValue != ''){
+                                
+                                        secStartDate.style.borderColor = 'rgb(17, 197, 107)';
+                                
+                                
+                                    }
+                                    else{
+                                
+                                       
+                                        secStartDate.style.borderColor = 'rgb(197, 17, 17)';
+                                
+                                
+                                    }
+                                
+                                }
+
+                                $('#id_sec_start_date').bind('input', SecStart);
+
+                                //Disable Keydown Date Input
+
+                                 document.getElementById('id_sec_start_date').onkeydown = function(){
+                                    return false
+                                };
+                                
+                                
+                            </script>
+
                         </div>
 
                         <!--Finish Date-->
@@ -238,6 +412,58 @@
 
                             <span>* To</span>
                             {{secondary.sec_finish_date}}
+
+                            <script>
+
+                                //Restrict Future Dates
+
+                                $(function(){
+                                    var dtToday = new Date();
+                                
+                                    var month = dtToday.getMonth() + 1;
+                                    var day = dtToday.getDate();
+                                    var year = dtToday.getFullYear();
+                                
+                                    if(month < 10)
+                                        month = '0' + month.toString();
+                                    if(day < 10)
+                                        day = '0' + day.toString();
+                                
+                                    var maxDate = year + '-' + month + '-' + day;    
+                                    $('#id_sec_finish_date').attr('max', maxDate);
+                                });
+
+
+                                function SecEndValue(){
+
+                                    let borderEndSec = document.getElementById('id_sec_finish_date').value;
+                                
+                                    if(borderEndSec != null && borderEndSec != ''){
+                                
+                                        kcseFinsh.style.borderColor = 'rgb(17, 197, 107)';
+                                
+                                
+                                    }
+                                    else{
+                                
+                                       
+                                        kcseFinsh.style.borderColor = 'rgb(197, 17, 17)';
+                                
+                                
+                                    }
+                                
+                                }
+
+                                $('#id_sec_finish_date').bind('input', SecEndValue);
+
+                                //Disable Keydown Date Input
+
+                                document.getElementById('id_sec_finish_date').onkeydown = function(){
+                                    return false
+                                };
+                                
+                            </script>
+
                         </div>
 
                     </div>
@@ -265,6 +491,25 @@
                             }
                              
                             $('#id_institution_pri').bind('keypress', testInput);
+
+                            function Priname(){
+
+                                let priInName = document.getElementById('id_institution_pri').value;
+                            
+                                if(priInName != null && priInName != ''){
+                            
+                                    priNameput.style.borderColor = 'rgb(17, 197, 107)';
+                            
+                                }
+                                else{
+                            
+                                    priNameput.style.borderColor = 'rgb(197, 17, 17)';
+                            
+                                }
+                            
+                            }
+
+                            $('#id_institution_pri').bind('input', Priname);
 
                         </script>
 
@@ -311,7 +556,7 @@
                                     let uploadFileName = event.target.files[0].name;
                                     nameFileK.textContent = uploadFileName;
 
-                                    const submit = document.getElementById('submitBtn');
+                                    //const submit = document.getElementById('submitBtn');
     
                                     //Checking file extension
                                     const [extension, ...nameParts] = uploadFileName.split('.').reverse();
@@ -320,6 +565,9 @@
                                     if(extension != 'pdf' && extension != 'PDF'){
                                         nameFileK.style.color = 'rgb(197, 17, 17)';
 
+                                        idFileK.value = null;
+
+                                        console.log('null')
                                         
 
                                         //disable button
@@ -343,6 +591,52 @@
                             <span>* From</span>
                             {{primary.start_date}}
 
+                            <script>
+
+                                //Restrict Future Dates
+
+                                $(function(){
+                                    var dtToday = new Date();
+                                
+                                    var month = dtToday.getMonth() + 1;
+                                    var day = dtToday.getDate();
+                                    var year = dtToday.getFullYear();
+                                
+                                    if(month < 10)
+                                        month = '0' + month.toString();
+                                    if(day < 10)
+                                        day = '0' + day.toString();
+                                
+                                    var maxDate = year + '-' + month + '-' + day;    
+                                    $('#id_start_date').attr('max', maxDate);
+                                });
+
+                                function StartPri(){
+
+                                    let kpeStart = document.getElementById('id_start_date').value;
+                                
+                                    if(kpeStart != null && kpeStart != ''){
+                                
+                                        kcpeDateStart.style.borderColor = 'rgb(17, 197, 107)';
+                                
+                                    }
+                                    else{
+                                
+                                        kcpeDateStart.style.borderColor = 'rgb(197, 17, 17)';
+                                
+                                    }
+                                
+                                }
+
+                                $('#id_start_date').bind('input', StartPri);
+
+                                //Disable Keydown Date Input
+
+                                document.getElementById('id_start_date').onkeydown = function(){
+                                    return false
+                                };
+                                
+                            </script>
                            
                         </div>
 
@@ -352,6 +646,55 @@
                             <span>* To</span>
 
                             {{primary.finish_date}}
+
+                            <script>
+
+                                //Restrict Future Dates
+
+                                $(function(){
+                                    var dtToday = new Date();
+                                
+                                    var month = dtToday.getMonth() + 1;
+                                    var day = dtToday.getDate();
+                                    var year = dtToday.getFullYear();
+                                
+                                    if(month < 10)
+                                        month = '0' + month.toString();
+                                    if(day < 10)
+                                        day = '0' + day.toString();
+                                
+                                    var maxDate = year + '-' + month + '-' + day;    
+                                    $('#id_finish_date').attr('max', maxDate);
+                                });
+                                
+
+                                function EndPri(){
+
+                                    let kpeStartEnd = document.getElementById('id_finish_date').value;
+                                
+                                    if(kpeStartEnd != null && kpeStartEnd != ''){
+                                
+                                        kcpeEndDate.style.borderColor = 'rgb(17, 197, 107)';
+                                
+                                    }
+                                    else{
+                                
+                                        kcpeEndDate.style.borderColor = 'rgb(197, 17, 17)';
+                                
+                                    }
+                                
+                                }
+
+                                $('#id_finish_date').bind('input', EndPri);
+
+                                //Disable Keydown Date Input
+
+                                document.getElementById('id_finish_date').onkeydown = function(){
+                                    return false
+                                };
+
+                            </script>
+
                         </div>
 
                     </div>
@@ -411,11 +754,14 @@
                         </script>
                     
                         <!--This are the control buttons-->
-                        <div class="contIc2">
-                            <div id="canc">
-                                <i class="fas fa-light fa-angle-left"></i>
+                        <a href="{% url 'edupsInfo' %}">
+                            <div class="contIc2">
+                                <div id="canc">
+                                    <i class="fas fa-light fa-angle-left"></i>
+                                </div>
                             </div>
-                        </div>
+                        </a>
+                        
                     </div>
     
                 </div>
@@ -431,51 +777,7 @@
                 //code for refresh
                 function resetForm(){
 
-                    document.getElementById('eduForm').reset();
-
-                    let delRef = document.getElementById('subBtnIt');
-                    delRef.classList.remove('active')
-                    delRef.classList.add('inactive');
-            
-                    delRef.disabled = true;
-                    
-
-                    //Return Color to normal
-                    //Inputs first
-                    let id_full_name = document.getElementById('id_institution');
-                    let id_nat_id = document.getElementById('id_course');
-                    let id_age = document.getElementById('id_uni_start_date');
-                    let id_gender = document.getElementById('id_level');
-                    let id_phone = document.getElementById('id_uni_finish_date');
-                    let id_email = document.getElementById('id_institution_high');
-                    let id_county = document.getElementById('id_sec_start_date');
-                    let id_address = document.getElementById('id_sec_finish_date');
-                    let id_postal_code = document.getElementById('id_institution_pri');
-                    let id_start_date = document.getElementById('id_start_date');
-                    let id_finish_date = document.getElementById('id_finish_date');
-                    //Spans
-                    let fNSpan = document.getElementById('kcseFileName');
-                    let natIdSpan = document.getElementById('kcpeFileName');
-
-                    //Input border change
-                    id_full_name.style.borderColor = '#013D1E';
-                    id_nat_id.style.borderColor = '#013D1E';
-                    id_age.style.borderColor = '#013D1E';
-                    id_gender.style.borderColor = '#013D1E';
-                    id_phone.style.borderColor = '#013D1E';
-                    id_email.style.borderColor = '#013D1E';
-                    id_county.style.borderColor = '#013D1E';
-                    id_address.style.borderColor = '#013D1E';
-                    id_postal_code.style.borderColor = '#013D1E';
-                    id_start_date.style.borderColor = '#013D1E';
-                    id_finish_date.style.borderColor = '#013D1E';
-
-                    //Span color change
-                    fNSpan.style.color = '#013D1E';
-                    fNSpan.textContent = "File Name";
-                    natIdSpan.style.color = '#013D1E';
-                    natIdSpan.textContent = "File Name";
-
+                    window.location.reload();
 
                 }
 
@@ -488,6 +790,12 @@
                 document.getElementById('id_sec_finish_date').type = 'date';
                 document.getElementById('id_start_date').type = 'date';
                 document.getElementById('id_finish_date').type = 'date';
+
+                //Appropriate place holders
+                document.getElementById("id_institution").placeholder = "Enter Institute";
+                document.getElementById("id_course").placeholder = "Enter Your Course";
+                document.getElementById("id_institution_high").placeholder = "Enter School";
+                document.getElementById("id_institution_pri").placeholder = "Enter School";
 
 
             </script>

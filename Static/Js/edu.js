@@ -323,7 +323,7 @@ function checkStartPri(){
 
 let uplBtn = document.getElementById('subBtnIt');
 
-document.addEventListener('input', function(e) {
+document.addEventListener('change', function(e) {
     if (!e.target.matches('#id_institution, #id_course, #id_uni_start_date, #id_uni_finish_date,#id_institution_high,#id_kcse_file,#id_sec_start_date,#id_sec_finish_date,#id_institution_pri,#id_kcpe_file,#id_start_date,#id_finish_date')) return;
     //your code here
 
@@ -350,10 +350,7 @@ document.addEventListener('input', function(e) {
         uplBtn.disabled = false;
 
         console.log('test');
-
    }
-
-
     else{
 
         uplBtn.classList.remove('active')

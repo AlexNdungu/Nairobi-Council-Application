@@ -154,7 +154,7 @@ function ageLimit(){
 
     let ageLim = document.getElementById('id_age').value;
 
-    if(ageLim >= 25){
+    if(ageLim >= 60){
 
         theAge.style.borderColor = 'rgb(197, 17, 17)';
         ageSpan.style.color = 'rgb(197, 17, 17)';

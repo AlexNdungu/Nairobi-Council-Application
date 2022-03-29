@@ -175,6 +175,7 @@ class State(models.Model):
     unverified = models.BooleanField('Unverified',default=True)
     shortlist = models.BooleanField('ShortList',default=False)
     verified = models.BooleanField('Verified',default=False)
+    state_date = models.DateField(verbose_name='Verification Date', auto_now=True)
 
     def __str__(self):
         return  str(self.user)

@@ -1,0 +1,231 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+/* the Info Itels */
+
+.theItInf {
+    width: 100%;
+    height: calc(100% - 100px);
+    overflow: auto;
+}
+
+/* The passport Image */
+
+.bhIm {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;    
+    margin-top: 10px;
+}
+
+.ppI {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+}
+
+.ppI img {
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    object-fit: cover;
+}
+
+
+/* The bigger container */
+
+.theIIn {
+    width: 100%;
+    height: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* The @ All Individulas */
+
+.theISec {
+    width: 330px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+/* Individial Separate Detail */
+
+.ininD,.ininD5,.ininD1,.ininD2,.ininD4 {
+    display: flex;
+    align-items: center;
+    background-color: #EAFFEA;
+    color: #0F790D;
+    border: 2px solid #5fc25d;
+    height: 50px;
+    width: 100%;
+    padding-left: 15px;
+    cursor: grab;
+    overflow: auto;
+}
+
+.ininD span,.ininD5 span,.ininD1 span,.ininD2 span,.ininD4 span {
+    margin: 5px;
+}
+
+.ininD::-webkit-scrollbar,.ininD5::-webkit-scrollbar,.ininD1::-webkit-scrollbar,.ininD2::-webkit-scrollbar,.ininD4::-webkit-scrollbar{
+    display: none;
+  }
+
+.ininD h4,.ininD5 h4,.ininD1 h4,.ininD2 h4,.ininD4 h4 {
+    min-width: 100%;
+}
+
+
+
+/* Pen Section */
+
+.pSec {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pen {
+    width: 60px;
+    height: 60px;
+    border: 4px solid #0F790D;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#pen {
+    font-size: 25px;
+    color: #0F790D;
+}
+
+
+/*RESPONSIVENESS*/
+
+@media screen and (max-width: 1000px){
+
+    .theIIn {
+        flex-direction: column;
+        
+    }
+
+    .theIIn {
+        margin-top: 170px;
+        margin-bottom: 170px;
+    }
+
+}
+
+@media screen and (max-width: 860px){
+
+    .theIIn {
+        margin-top: 200px;
+        margin-bottom: 170px;
+    }
+
+}
+
+
+@media screen and (max-width: 760px){
+
+    .theIIn {
+        margin-top: 200px;
+        margin-bottom: 170px;
+    }
+
+}
+
+
+@media screen and (max-width: 550px){
+
+    .theIIn {
+        margin-top: 100px;
+        margin-bottom: 100px;
+    }
+
+}
+
+
+
+@media screen and (max-width: 500px){
+
+    .theIIn {
+        margin-top: 20px;
+        
+    }
+
+}
+
+@media screen and (max-width: 420px){
+
+    .theIIn {
+        margin-bottom: 0;
+    }
+
+}
+
+@media screen and (max-width: 400px){
+
+    .theIIn {
+        margin-top: 30px;
+        margin-bottom: 30px;
+    }
+
+}
+
+
+@media screen and (max-width: 380px){
+
+    .theIIn {
+        margin-top: 130px;
+        margin-bottom: 130px;
+    }
+
+}
+
+@media screen and (max-width: 360px){
+
+    .theIIn {
+        margin-top: 100px;
+        margin-bottom: 70px;
+    }
+
+}
+
+@media screen and (max-width: 320px){
+
+    .theIIn {
+        margin-top: 120px;
+        margin-bottom: 100px;
+    }
+
+}
+
+@media screen and (max-width: 280px){
+
+    .theIIn {
+        margin-top: 150px;
+        margin-bottom: 120px;
+    }
+
+    .theISec {
+        width: 270px;
+    }
+
+}
+

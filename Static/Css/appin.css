@@ -1,0 +1,212 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* The big Part */
+.allIn {
+    display: flex;
+}
+
+/* The Navigation Section */
+
+.navAp {
+    width: 70px;
+    height: 100vh;
+    border-right: 2px solid #e0e0e0;
+}
+
+.apIc {
+    width: 100%;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 90px;
+}
+
+/* This Are The Icons */
+#appIc {
+    font-size: 25px;
+    color: #013D1E;
+    margin-top: 17px;
+}
+
+/* THIS IS THE BIGGER PART */
+
+.theReApp {
+    width: calc(100% - 70px);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+/* The Header */
+
+.head {
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.head h4 {
+    font-size: 20px;
+    color: #0F790D;
+}
+
+/* New Nav */
+
+.newNav {
+    width: 100%;
+    height: 70px;
+    align-items: center;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    display: none;
+}
+
+/* Sttaus */
+
+.stt {
+    height: 50px;
+    border: 2px solid #DD4D4D;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 20px;
+}
+
+.stt h2 {
+    margin-left: 3px;
+    color: #DD4D4D;
+}
+
+.stt span {
+    color: #013D1E;
+}
+
+/* Logout Button */
+.logg {
+    width: 150px;
+    height: 50px;
+    border: 2px solid #DD4D4D;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    color: #DD4D4D;
+    font-size: 17px;
+    border-radius: 15px;
+}
+
+/* The Rest Of The Part Part */
+
+.pppart {
+    width: 100%;
+    height: calc(100vh - 80px);
+}
+
+.lable {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background-color: azure;
+}
+
+/* PFd info */
+
+#pdfS1 {
+    width: 40px;
+    height: 40px;
+    background-color: #DD4D4D;
+    color: rgb(230, 230, 230);
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease;
+    position: absolute;
+    right: 20px;
+}
+
+#pdfS1:hover {
+    transform: scale(1.2);
+    
+}
+
+#message {
+    width: 300px;
+    height: 70px;
+    position: absolute;
+    right: 20px;
+    top: 80%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background-color: #DD4D4D;
+    border-radius: 10px;
+    color: #e0e0e0;
+    z-index: 10;
+    animation: fade_in_show 0.5s
+}
+
+@keyframes fade_in_show {
+    0% {
+         opacity: 0;
+         transform: scale(0)
+    }
+
+    100% {
+         opacity: 1;
+         transform: scale(1)
+    }
+}
+
+
+
+/* RESPONSIVENESS */
+
+@media screen and (max-width: 600px){
+
+    .navAp {
+        display: none;
+    }
+
+    .head {
+        height: 170px;
+        flex-direction: column;
+    }
+
+    .newNav {
+        display: flex;
+    }
+    
+    .theReApp {
+        width: 100%;
+    }
+
+    .pppart {
+        height: calc(100vh - 240px);
+    }
+
+}
+
+
+@media screen and (max-width: 300px){
+
+    #message {
+        width: 100%;
+        right: 0;
+    }
+
+}

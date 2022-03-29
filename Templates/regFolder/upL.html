@@ -7,6 +7,7 @@
 <title>E-Application :: - Upload Files</title>
 
 <link rel="stylesheet" href="{% static '/Css/upL.css' %}">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 {% endblock %}
 
@@ -15,32 +16,7 @@
 {% block content %}
 
 
-<!-- 
-<span id="seeID" >{{request.user.upload.pP_file}}</span>
-<a  id="goSucc" href="{% url 'success' %}"></a>
 
-<style>
-
-   
-
-</style>
-
-<script>
-
-    let seeID = document.getElementById('seeID');
-
-    function redSuc(){
-
-        if(seeID.innerHTML != ""){
-
-            document.getElementById('goSucc').click();
-
-        }
-
-    }
-
-</script>
- -->
 <!--Personal Info Form-->
 
 <div class="UplDiv">
@@ -55,7 +31,7 @@
 
     <!--Upload Form-->
 
-    <form  method="POST" enctype="multipart/form-data" id="eduForm" >
+    <form  method="POST" enctype="multipart/form-data" id="eduForm" autocomplete="off">
 
         {% csrf_token %}
         <!--All Upload Files-->
@@ -204,6 +180,48 @@
 
                     </div>
 
+                    <script>
+
+                        
+
+                        var _URL = window.URL;
+                        $("#id_pP_file").change(function (e) {
+
+                            let btSee = document.getElementById('submitBtn');
+
+                            var imageSS = document.getElementById("id_pP_file");
+
+                            var file, img;
+                            if ((file = this.files[0])) {
+                                img = new Image();
+                                img.onload = function () {
+
+                                    if(this.width != this.height ){
+
+                                        alert("Width:" + this.width + " Height: " + this.height+ " INVALID PASSPORT SIZE");
+                                        
+                                        btSee.classList.remove('active');
+                                        btSee.classList.add('inactive')
+                                        btSee.disabled = false;
+
+                                        console.log('test');
+
+                                        console.log(imageSS.value)
+
+                                    }
+
+                                    else{
+                                        alert("Width:" + this.width + " Height: " + this.height+ " VALID PASSPORT SIZE");
+                                        console.log(imageSS.value)
+                                    }
+                                    
+                                };
+                                img.src = _URL.createObjectURL(file);
+                            }
+                        });
+
+                    </script>
+
             
                 </div>
 
@@ -289,11 +307,14 @@
                     </script>
                 
                     <!--This are the control buttons-->
-                    <div class="contIc2">
-                        <div id="canc">
-                            <i class="fas fa-light fa-angle-left"></i>
+                    <a href="{% url 'uplpsInfo' %}">
+                        <div class="contIc2">
+                            <div id="canc">
+                                <i class="fas fa-light fa-angle-left"></i>
+                            </div>
                         </div>
-                    </div>
+                    </a>
+                    
                 </div>
 
             </div>
@@ -306,61 +327,7 @@
 
             function resetForm(){
 
-                //This is the intial submit button setting
-
-                const submit = document.getElementById('submitBtn');
-                //The popup div
-                let alert = document.getElementById('alert');
-
-                submit.classList.remove('active');
-                submit.classList.add('inactive');
-
-                submit.disabled = true;
-
-                
-
-                //document.getElementById('eduForm').reset();
-                document.getElementById('id_cv_file').value = null;
-                let cvName =  document.getElementById("cvName");
-                cvName.textContent = "File Name";
-                cvName.style.color = '#013D1E';
-
-                //Application letter logic
-                document.getElementById('id_aP_file').value = null;
-                let apFile = document.getElementById("letterName");
-                apFile.textContent = "File Name";
-                apFile.style.color = '#013D1E';
-
-                //Application Good Conduct logic
-                document.getElementById('id_gD_file').value = null;
-                let gdFile = document.getElementById("gcName");
-                gdFile.textContent = "File Name";
-                gdFile.style.color = '#013D1E';
-
-                //Application School Letter logic
-                document.getElementById('id_sL_file').value = null;
-                let slFile = document.getElementById("schoolL");
-                slFile.textContent = "File Name";
-                slFile.style.color = '#013D1E';
-
-                //Application National ID logic
-                document.getElementById('id_natID_file').value = null;
-                let natPic = document.getElementById("natIdImage");
-                natPic.textContent = "File Name";
-                natPic.style.color = '#013D1E';
-
-
-                document.getElementById('id_pP_file').value = null;
-                let ppPic = document.getElementById("ppName");
-                ppPic.textContent = "File Name";
-                ppPic.style.color = '#013D1E';
-
-                //Application Personal Accidental cover logic
-                document.getElementById('id_personalAcc_file').value = null;                
-                let pcFile = document.getElementById("accCoverName");
-                pcFile.textContent = "File Name";
-                pcFile.style.color = '#013D1E';
-
+                window.location.reload();
             }
 
         </script>

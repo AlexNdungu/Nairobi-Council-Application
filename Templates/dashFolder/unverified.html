@@ -14,7 +14,7 @@
 
 {% block dashHead %}
 
-            Verified
+            Unverified
 
 {% endblock %}
 
@@ -101,7 +101,11 @@
         <div class="picIc">
 
             <div class="tPic">
-                <img src="{{allShort.upload.image_url}}" alt="">
+                {% if allShort.upload.image_url %}
+                    <img src="{{allShort.upload.image_url}}" alt="">
+                {% else %}
+                    <img src="{% static '/Images/imgs/profile.png' %}" alt="">
+                {% endif %}
             </div>
 
             <!--Icon info-->

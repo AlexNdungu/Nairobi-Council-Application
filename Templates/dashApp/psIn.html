@@ -1,0 +1,214 @@
+{% extends "dashApp/appIn.html" %}
+
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>{{request.user.username}} :: - Infomation</title>
+
+<!--Css Link-->
+
+<link rel="stylesheet" href="{% static '/Css/psAppIn.css' %}">
+
+{% endblock %}
+
+<!--This Is the Heading Infomation Titel-->
+
+{% block head %}Personal Infomation{% endblock %}
+
+<!--the Content-->
+{% block content %}
+
+<div class="theItInf">
+
+    <!--The PP Image-->
+    <div class="bhIm">
+
+        <div class="ppI">
+        {% if request.user.upload.image_url %}
+            <img src="{{request.user.upload.image_url}}" alt="">
+        {% else %}
+            <img src="{% static '/Images/imgs/profile.png' %}" alt="">
+        {% endif %}
+        </div>
+
+    </div>
+
+    <!--The Details-->
+    <div class="theIIn">
+
+        <!--The Different Sections-->
+        <div class="theISec">
+
+            <!--Individula Infomation-->
+            <div class="ininD1">
+                <span>Name</span>
+                <span>:</span>
+                <h4>{{request.user.application.full_name}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider1 = document.querySelector('.ininD1');
+                    let isDown1 = false;
+                    let startX1;
+                    let scrollLeft1;
+                    
+                    slider1.addEventListener('mousedown', (e) => {
+                      isDown1 = true;
+                      //slider1.classList.add('active');
+                      startX1 = e.pageX - slider1.offsetLeft;
+                      scrollLeft1 = slider1.scrollLeft;
+                    });
+                    slider1.addEventListener('mouseleave', () => {
+                      isDown1 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider1.addEventListener('mouseup', () => {
+                      isDown1 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider1.addEventListener('mousemove', (e) => {
+                      if(!isDown1) return;
+                      e.preventDefault();
+                      const x1 = e.pageX - slider1.offsetLeft;
+                      const walk1 = (x1 - startX1) * 3; //scroll-fast
+                      slider1.scrollLeft = scrollLeft1 - walk1;
+                      //console.log(walk1);
+                    });
+    
+                </script>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>NatID</span>
+                <span>:</span>
+                <h4>{{request.user.application.nat_id}}</h4>
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>Age</span>
+                <span>:</span>
+                <h4>{{request.user.application.age}}</h4>
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>Gender</span>
+                <span>:</span>
+                <h4>{{request.user.application.gender}}</h4>
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>Phone</span>
+                <span>:</span>
+                <h4>{{request.user.application.phone}}</h4>
+
+            </div>
+
+
+
+        </div>
+
+
+        <!--The Different Sections-->
+        <div class="theISec">
+
+            <!--Individula Infomation-->
+            <div class="ininD5">
+                <span>Email</span>
+                <span>:</span>
+                <h4>{{request.user.application.email}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider = document.querySelector('.ininD5');
+                    let isDown = false;
+                    let startX;
+                    let scrollLeft;
+                    
+                    slider.addEventListener('mousedown', (e) => {
+                      isDown = true;
+                      slider.classList.add('active');
+                      startX = e.pageX - slider.offsetLeft;
+                      scrollLeft = slider.scrollLeft;
+                    });
+                    slider.addEventListener('mouseleave', () => {
+                      isDown = false;
+                      slider.classList.remove('active');
+                    });
+                    slider.addEventListener('mouseup', () => {
+                      isDown = false;
+                      slider.classList.remove('active');
+                    });
+                    slider.addEventListener('mousemove', (e) => {
+                      if(!isDown) return;
+                      e.preventDefault();
+                      const x = e.pageX - slider.offsetLeft;
+                      const walk = (x - startX) * 3; //scroll-fast
+                      slider.scrollLeft = scrollLeft - walk;
+                      //console.log(walk);
+                    });
+    
+                </script>
+
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>County</span>
+                <span>:</span>
+                <h4>{{request.user.application.county}}</h4>
+            </div>
+
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>POBox</span>
+                <span>:</span>
+                <h4>{{request.user.application.address}}</h4>
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>P_Code</span>
+                <span>:</span>
+                <h4>{{request.user.application.postal_code}}</h4>
+            </div>
+
+            
+        </div>
+
+    </div>
+
+    <!--The Pen Section-->
+
+    <div class="pSec">
+
+        <a href="{% url 'personal_info' %}">
+            <div class="pen">
+                <div id="pen">
+                    <i class="fas fa-solid fa-pen"></i>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <style>
+
+
+    </style>
+
+</div>
+
+{% endblock %}

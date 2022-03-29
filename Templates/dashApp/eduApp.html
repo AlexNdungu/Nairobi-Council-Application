@@ -1,0 +1,464 @@
+{% extends "dashApp/appIn.html" %}
+
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>{{request.user.username}} :: - Education</title>
+
+<!--Css Link-->
+
+<link rel="stylesheet" href="{% static '/Css/appUl.css' %}">
+<link rel="stylesheet" href="{% static '/Css/psAppIn.css' %}">
+
+{% endblock %}
+
+<!--This Is the Heading Infomation Titel-->
+
+{% block head %}Educational Background{% endblock %}
+
+<!--the Content-->
+{% block content %}
+
+<div class="theItInf">
+
+    <!--The Details-->
+    <div class="theIIn">
+
+        <!--University-->
+        <!--The Different Sections-->
+        <div class="theISec">
+
+            <!--Individula Infomation-->
+            <div class="ininD1">
+                <span>Institute</span>
+                <span>:</span>
+                <h4>{{request.user.higher.institution}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider1 = document.querySelector('.ininD1');
+                    let isDown1 = false;
+                    let startX1;
+                    let scrollLeft1;
+                    
+                    slider1.addEventListener('mousedown', (e) => {
+                      isDown1 = true;
+                      //slider1.classList.add('active');
+                      startX1 = e.pageX - slider1.offsetLeft;
+                      scrollLeft1 = slider1.scrollLeft;
+                    });
+                    slider1.addEventListener('mouseleave', () => {
+                      isDown1 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider1.addEventListener('mouseup', () => {
+                      isDown1 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider1.addEventListener('mousemove', (e) => {
+                      if(!isDown1) return;
+                      e.preventDefault();
+                      const x1 = e.pageX - slider1.offsetLeft;
+                      const walk1 = (x1 - startX1) * 3; //scroll-fast
+                      slider1.scrollLeft = scrollLeft1 - walk1;
+                      //console.log(walk1);
+                    });
+    
+                </script>
+
+            </div>
+
+
+            <!--Individula Infomation-->
+            <div class="ininD5">
+                <span>Course</span>
+                <span>:</span>
+                <h4>{{request.user.higher.course}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider = document.querySelector('.ininD5');
+                    let isDown = false;
+                    let startX;
+                    let scrollLeft;
+                    
+                    slider.addEventListener('mousedown', (e) => {
+                      isDown = true;
+                      slider.classList.add('active');
+                      startX = e.pageX - slider.offsetLeft;
+                      scrollLeft = slider.scrollLeft;
+                    });
+                    slider.addEventListener('mouseleave', () => {
+                      isDown = false;
+                      slider.classList.remove('active');
+                    });
+                    slider.addEventListener('mouseup', () => {
+                      isDown = false;
+                      slider.classList.remove('active');
+                    });
+                    slider.addEventListener('mousemove', (e) => {
+                      if(!isDown) return;
+                      e.preventDefault();
+                      const x = e.pageX - slider.offsetLeft;
+                      const walk = (x - startX) * 3; //scroll-fast
+                      slider.scrollLeft = scrollLeft - walk;
+                      //console.log(walk);
+                    });
+    
+                </script>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>Level</span>
+                <span>:</span>
+                <h4>{{request.user.higher.level}}</h4>
+            </div>
+
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>From</span>
+                <span>:</span>
+                <h4>{{request.user.higher.uni_start_date}}</h4>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>To</span>
+                <span>:</span>
+                <h4>{{request.user.higher.uni_finish_date}}</h4>
+            </div>
+
+        </div>
+
+
+        <!--Secondary-->
+        <!--The Different Sections-->
+        <div class="theISec">
+
+            <!--Individula Infomation-->
+            <div class="ininD2">
+                <span>Institute</span>
+                <span>:</span>
+                <h4>{{request.user.secondary.institution_high}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider2 = document.querySelector('.ininD2');
+                    let isDown2 = false;
+                    let startX2;
+                    let scrollLeft2;
+                    
+                    slider2.addEventListener('mousedown', (e) => {
+                      isDown2 = true;
+                      //slider1.classList.add('active');
+                      startX2 = e.pageX - slider2.offsetLeft;
+                      scrollLeft2 = slider2.scrollLeft;
+                    });
+                    slider2.addEventListener('mouseleave', () => {
+                      isDown2 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider2.addEventListener('mouseup', () => {
+                      isDown2 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider2.addEventListener('mousemove', (e) => {
+                      if(!isDown2) return;
+                      e.preventDefault();
+                      const x2 = e.pageX - slider2.offsetLeft;
+                      const walk2 = (x2 - startX2) * 3; //scroll-fast
+                      slider2.scrollLeft = scrollLeft2 - walk2;
+                      //console.log(walk1);
+                    });
+    
+                </script>
+
+            </div>
+
+             <!--Individual Uploads-->
+            <div class="indUppA">
+                <div class="hedP"><span>KCSE Slip</span></div>
+
+                {% if request.user.secondary.kcse_file %}
+                  <a href="{{ MEDIA_URL }}{{request.user.secondary.kcse_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                  </a>
+                {% else %}    
+                  <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                {% endif %}
+            
+            </div>
+
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>From</span>
+                <span>:</span>
+                <h4>{{request.user.secondary.sec_start_date}}</h4>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>To</span>
+                <span>:</span>
+                <h4>{{request.user.secondary.sec_finish_date}}</h4>
+            </div>
+
+        </div>
+
+
+        <!--Primary-->
+        <!--The Different Sections-->
+        <div class="theISec">
+
+            <!--Individula Infomation-->
+            <div class="ininD4">
+                <span>Institute</span>
+                <span>:</span>
+                <h4>{{request.user.primary.institution_pri}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider3 = document.querySelector('.ininD4');
+                    let isDown3 = false;
+                    let startX3;
+                    let scrollLeft3;
+                    
+                    slider3.addEventListener('mousedown', (e) => {
+                      isDown3 = true;
+                      //slider1.classList.add('active');
+                      startX3 = e.pageX - slider3.offsetLeft;
+                      scrollLeft3 = slider3.scrollLeft;
+                    });
+                    slider3.addEventListener('mouseleave', () => {
+                      isDown3 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider3.addEventListener('mouseup', () => {
+                      isDown3 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider3.addEventListener('mousemove', (e) => {
+                      if(!isDown3) return;
+                      e.preventDefault();
+                      const x3 = e.pageX - slider3.offsetLeft;
+                      const walk3 = (x3 - startX3) * 3; //scroll-fast
+                      slider3.scrollLeft = scrollLeft3 - walk3;
+                      //console.log(walk1);
+                    });
+    
+                </script>
+
+            </div>
+
+             <!--Individual Uploads-->
+            <div class="indUppA">
+                <div class="hedP"><span>KCPE Slip</span></div>
+                {% if request.user.primary.kcpe_file %}
+                  <a href="{{ MEDIA_URL }}{{request.user.primary.kcpe_file.url}}">
+                    <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                  </a>
+                {% else %}    
+                  <div class="ic"><div id="ic"><i class="fas fa-solid fa-link"></i></div></div>
+                {% endif %}
+            </div>
+
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>From</span>
+                <span>:</span>
+                <h4>{{request.user.primary.start_date}}</h4>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>To</span>
+                <span>:</span>
+                <h4>{{request.user.primary.finish_date}}</h4>
+            </div>
+
+        </div>
+
+
+    </div>
+
+    <!--The Pen Section-->
+
+    <div class="pSec">
+
+      <a href="{% url 'education' %}">
+        <div class="pen">
+          <div id="pen">
+              <i class="fas fa-solid fa-pen"></i>
+          </div>
+        </div>
+      </a>
+        
+
+    </div>
+
+
+    <style>
+
+
+      @media screen and (max-width: 1030px){
+
+        .theIIn {
+          flex-direction: column;
+        }
+        
+        .theItInf {
+          height: calc(140% - 100px);
+        }
+    }
+
+    @media screen and (max-width: 1000px){
+
+        .theIIn {
+          margin-top: 0;
+          margin-bottom: 0;
+        }
+        
+    }
+
+    @media screen and (max-width: 930px){
+
+      .theItInf {
+        height: calc(180% - 100px);
+      }
+      
+  }
+
+  @media screen and (max-width: 810px){
+
+    .theItInf {
+      height: calc(100% - 100px);
+    }
+    
+}
+
+  @media screen and (max-width: 800px){
+
+    .theItInf {
+      height: calc(190% - 100px);
+    }
+
+    .apIc {
+      margin-top: 70px;
+    }
+    
+}
+
+
+    @media screen and (max-width: 550px){
+
+      .theItInf {
+        height: calc(160% - 100px);
+      }
+
+      .theISec {
+        margin-bottom: 15px;
+      }
+      
+  }
+
+
+      @media screen and (max-width: 450px){
+
+        .theItInf {
+          height: calc(120% - 100px);
+        }
+
+        .theISec {
+          margin-bottom: 15px;
+        }
+        
+    }
+
+
+    @media screen and (max-width: 420px){
+
+        .theItInf {
+          height: calc(125% - 100px);
+        }
+
+        .theISec {
+          margin-bottom: 15px;
+        }
+
+    }
+
+    @media screen and (max-width: 400px){
+
+      .theItInf {
+        height: calc(125% - 100px);
+      }
+
+      .theISec {
+        margin-bottom: 15px;
+      }
+
+  }
+
+  @media screen and (max-width: 390px){
+
+    .theItInf {
+      height: calc(135% - 100px);
+    }
+
+    .theISec {
+      margin-bottom: 15px;
+    }
+
+}
+
+  @media screen and (max-width: 380px){
+
+    .theItInf {
+      height: calc(155% - 100px);
+    }
+
+    .theISec {
+      margin-bottom: 15px;
+    }
+
+}
+
+  @media screen and (max-width: 280px){
+
+    .theItInf {
+      height: calc(175% - 100px);
+    }
+
+    .theISec {
+      margin-bottom: 15px;
+    }
+
+    .lable h2 {
+      margin-left: 20px;
+    }
+
+}
+
+    </style>
+
+</div>
+
+{% endblock %}

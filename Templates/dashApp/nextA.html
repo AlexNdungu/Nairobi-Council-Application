@@ -1,0 +1,181 @@
+{% extends "dashApp/appIn.html" %}
+
+{% load static %}
+
+<!--Head For Other Pages-->
+{% block extra_head %}
+
+<title>{{request.user.username}} :: - Kin</title>
+
+<!--Css Link-->
+
+<link rel="stylesheet" href="{% static '/Css/psAppIn.css' %}">
+
+{% endblock %}
+
+<!--This Is the Heading Infomation Titel-->
+
+{% block head %}Next Of Kin{% endblock %}
+
+<!--the Content-->
+{% block content %}
+
+<div class="theItInf">
+
+    <!--The Details-->
+    <div class="theIIn">
+
+        <!--The Different Sections-->
+        <div class="theISec">
+
+            <!--Individula Infomation-->
+            <div class="ininD1">
+                <span>Name</span>
+                <span>:</span>
+                <h4>{{request.user.next.kin_name}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider1 = document.querySelector('.ininD1');
+                    let isDown1 = false;
+                    let startX1;
+                    let scrollLeft1;
+                    
+                    slider1.addEventListener('mousedown', (e) => {
+                      isDown1 = true;
+                      //slider1.classList.add('active');
+                      startX1 = e.pageX - slider1.offsetLeft;
+                      scrollLeft1 = slider1.scrollLeft;
+                    });
+                    slider1.addEventListener('mouseleave', () => {
+                      isDown1 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider1.addEventListener('mouseup', () => {
+                      isDown1 = false;
+                      //slider1.classList.remove('active');
+                    });
+                    slider1.addEventListener('mousemove', (e) => {
+                      if(!isDown1) return;
+                      e.preventDefault();
+                      const x1 = e.pageX - slider1.offsetLeft;
+                      const walk1 = (x1 - startX1) * 3; //scroll-fast
+                      slider1.scrollLeft = scrollLeft1 - walk1;
+                      //console.log(walk1);
+                    });
+    
+                </script>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>NatID</span>
+                <span>:</span>
+                <h4>{{request.user.next.kin_nat_id}}</h4>
+            </div>
+
+
+            <!--Individula Infomation-->
+            <div class="ininD">
+                <span>Phone</span>
+                <span>:</span>
+                <h4>{{request.user.next.kin_phone}}</h4>
+
+            </div>
+
+            <!--Individula Infomation-->
+            <div class="ininD5">
+                <span>Email</span>
+                <span>:</span>
+                <h4>{{request.user.next.kin_email}}</h4>
+
+                <script>
+
+                    //This Grab scroll
+    
+                    const slider = document.querySelector('.ininD5');
+                    let isDown = false;
+                    let startX;
+                    let scrollLeft;
+                    
+                    slider.addEventListener('mousedown', (e) => {
+                      isDown = true;
+                      slider.classList.add('active');
+                      startX = e.pageX - slider.offsetLeft;
+                      scrollLeft = slider.scrollLeft;
+                    });
+                    slider.addEventListener('mouseleave', () => {
+                      isDown = false;
+                      slider.classList.remove('active');
+                    });
+                    slider.addEventListener('mouseup', () => {
+                      isDown = false;
+                      slider.classList.remove('active');
+                    });
+                    slider.addEventListener('mousemove', (e) => {
+                      if(!isDown) return;
+                      e.preventDefault();
+                      const x = e.pageX - slider.offsetLeft;
+                      const walk = (x - startX) * 3; //scroll-fast
+                      slider.scrollLeft = scrollLeft - walk;
+                      //console.log(walk);
+                    });
+    
+                </script>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!--The Pen Section-->
+
+    <div class="pSec">
+
+      <a href="{% url 'next_of_kin' %}">
+        <div class="pen">
+          <div id="pen">
+              <i class="fas fa-solid fa-pen"></i>
+          </div>
+        </div>
+      </a>
+      
+    </div>
+
+</div>
+
+<style>
+
+  
+  @media screen and (max-width: 1000px){
+
+    .theIIn {
+        margin-top: 40px;
+        margin-bottom: 40px;
+    }
+  }
+
+  @media screen and (max-width: 860px){
+
+    .theIIn {
+        margin-top: 80px;
+        margin-bottom: 50px;
+    }
+  }
+
+
+  @media screen and (max-width: 500px){
+
+    .theIIn {
+        margin-top: 0;
+        margin-bottom: 0;
+    }
+  }
+
+</style>
+
+{% endblock %}

@@ -72,14 +72,14 @@
 
                 <!--Form-->
             
-                <form method="POST">
+                <form method="POST" autocomplete="off">
 
                     {% csrf_token %}
 
                     <!--All Inputs-->
                     <div class="inputReg">
 
-                        <input type="text" placeholder="Enter Your UserName" name="username" >
+                        <input type="text" placeholder="Enter Your UserName" name="username" autocomplete="off" >
 
                         <!--Icon Input-->
                         <div id="ic">
@@ -91,7 +91,7 @@
                     <!--All Inputs-->
                     <div class="inputReg">
 
-                        <input type="password"  placeholder="Password" name="password" id="passLog">
+                        <input type="password"  placeholder="Password" name="password" id="passLog" autocomplete="off">
                         <!--Icon Input-->
                         <div id="ic">
                             <i class="fas fa-solid fa-key"></i>
@@ -240,6 +240,11 @@
                           -ms-transform: rotate(45deg);
                           transform: rotate(45deg);
                         }
+
+                        .placeF form{
+                            height: calc(80% - 70px);
+                        }
+
                     </style>
 
 
@@ -250,6 +255,23 @@
                     </div>
 
                 </form>
+
+                <!--Fogot Password-->
+                <a  class="fgp" href="{% url 'register' %}"><h6>Fogot Password?</h6></a>
+
+                <style>
+
+                    .fgp h6 {
+                        height: 60px;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: 16px;
+                        color: #013D1E;
+                    }
+
+                </style>
+                
 
                 <div class="already">
                     <span>I Dont Have An Account</span>
